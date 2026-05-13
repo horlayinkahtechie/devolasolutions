@@ -11,85 +11,79 @@ const Label = ({ text }) => (
   </div>
 );
 
-const tiers = [
+const pricing = [
   {
     tier: "Sole Proprietorship",
     price: "From ₦25,000",
-    note: "service fee only",
     description:
-      "Business name registration for freelancers and one-person businesses. Fast, simple, and fully handled.",
+      "Perfect for freelancers, startups, and small businesses that want to register quickly and legally.",
+
+    features: [
+      "Business name availability search",
+      "CAC business name registration",
+      "Official CAC certificate",
+      "TIN registration",
+      "Digital document delivery",
+      "Basic registration guidance",
+      "3–5 business days processing",
+      "Post-registration support",
+    ],
+
     cta: "Get Started",
     highlight: false,
-    features: {
-      "Business structure": "Sole Proprietorship",
-      "Name availability search": true,
-      "CAC filing & submission": true,
-      "Certificate of registration": true,
-      "Mem & Arts of Association": false,
-      "Share certificates": false,
-      "Company seal": false,
-      "TIN registration": true,
-      "SCUML enrolment": false,
-      "Bank account guidance": false,
-      "Annual returns (yr 1)": false,
-      "Compliance checklist": true,
-      "Digital document delivery": true,
-      "Estimated turnaround": "3–5 days",
-    },
   },
+
   {
     tier: "Limited Liability Co.",
     price: "From ₦80,000",
-    note: "service fee only",
     description:
-      "Full LLC incorporation including all statutory documents, post-registration compliance, and bank account guidance.",
+      "Complete company incorporation package for businesses that need a professional and scalable structure.",
+
+    features: [
+      "Full CAC company incorporation",
+      "Name reservation & approval",
+      "Memorandum & Articles of Association",
+      "Share certificates",
+      "Company status report",
+      "Company seal",
+      "TIN registration",
+      "SCUML registration",
+      "Bank account setup guidance",
+      "Digital delivery of documents",
+      "Priority processing",
+      "Post-registration support",
+    ],
+
     cta: "Most Popular",
     highlight: true,
-    features: {
-      "Business structure": "LLC",
-      "Name availability search": true,
-      "CAC filing & submission": true,
-      "Certificate of registration": true,
-      "Mem & Arts of Association": true,
-      "Share certificates": true,
-      "Company seal": true,
-      "TIN registration": true,
-      "SCUML enrolment": true,
-      "Bank account guidance": true,
-      "Annual returns (yr 1)": true,
-      "Compliance checklist": true,
-      "Digital document delivery": true,
-      "Estimated turnaround": "5–7 days",
-    },
   },
+
   {
     tier: "NGO / Non-Profit",
     price: "From ₦120,000",
-    note: "service fee only",
     description:
-      "Incorporated Trustees registration for foundations, faith organisations, associations, and non-profits.",
+      "Registration package for foundations, associations, clubs, and faith-based organisations.",
+
+    features: [
+      "Incorporated Trustees registration",
+      "CAC IT1 filing",
+      "Constitution drafting assistance",
+      "Trustee verification support",
+      "Name reservation",
+      "TIN registration",
+      "Compliance checklist",
+      "Publication guidance",
+      "Document preparation support",
+      "Digital delivery of documents",
+      "Ongoing registration assistance",
+    ],
+
     cta: "Let's Talk",
     highlight: false,
-    features: {
-      "Business structure": "Incorporated Trustees",
-      "Name availability search": true,
-      "CAC filing & submission": true,
-      "Certificate of registration": true,
-      "Mem & Arts of Association": false,
-      "Share certificates": false,
-      "Company seal": false,
-      "TIN registration": true,
-      "SCUML enrolment": true,
-      "Bank account guidance": true,
-      "Annual returns (yr 1)": true,
-      "Compliance checklist": true,
-      "Digital document delivery": true,
-      "Estimated turnaround": "7–14 days",
-    },
   },
 ];
 
-const featureRows = Object.keys(tiers[0].features);
+const featureRows = Object.keys(pricing[0].features);
 
 const addOns = [
   {
@@ -196,7 +190,7 @@ export default function BusinessRegistrationPricing() {
       <section className="py-16 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {tiers.map((p) => (
+            {pricing.map((p) => (
               <div
                 key={p.tier}
                 className={`relative rounded-3xl flex flex-col gap-6 p-8 overflow-hidden ${
@@ -274,7 +268,7 @@ export default function BusinessRegistrationPricing() {
 
           <div className="grid grid-cols-4 gap-3 mb-2 sticky top-0 bg-[#fafafa] py-3 z-10">
             <div />
-            {tiers.map((t) => (
+            {pricing.map((t) => (
               <div
                 key={t.tier}
                 className={`rounded-xl py-3 text-center ${t.highlight ? "bg-slate-900" : "bg-slate-100"}`}
@@ -297,7 +291,7 @@ export default function BusinessRegistrationPricing() {
                 <span className="text-sm text-slate-700 font-medium">
                   {feature}
                 </span>
-                {tiers.map((t) => {
+                {pricing.map((t) => {
                   const val = t.features[feature];
                   return (
                     <div key={t.tier} className="flex justify-center">

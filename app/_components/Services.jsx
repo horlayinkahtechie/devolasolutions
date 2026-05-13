@@ -11,10 +11,10 @@ const services = [
     types: [
       "E-Commerce Stores",
       "Hotel & Booking Sites",
-      "Restaurant & Food",
-      "Church & Ministry",
-      "Schools & Education",
-      "Real Estate",
+      "Restaurant & Food Ordering Sites",
+      "Church & Ministry Sites",
+      "Schools & Education Sites",
+      "Real Estate Sites",
       "Corporate & Business",
       "SaaS & Web Apps",
       "Landing Pages",
@@ -118,7 +118,8 @@ const schemeStyles = {
     desc: "text-slate-400",
     pill: "bg-white/10 text-slate-300 border border-white/10",
     learnMore: "bg-[#FF5C00] text-white hover:bg-orange-500",
-    viewPricing: "border border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white",
+    viewPricing:
+      "border border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white",
     divider: "border-slate-800",
   },
 };
@@ -171,7 +172,9 @@ const Services = () => (
                   {s.icon}
                 </div>
                 <div>
-                  <h3 className={`text-2xl font-black tracking-tight mb-2 ${st.title}`}>
+                  <h3
+                    className={`text-2xl font-black tracking-tight mb-2 ${st.title}`}
+                  >
                     {s.title}
                   </h3>
                   <p className={`text-sm leading-relaxed ${st.desc}`}>
@@ -185,7 +188,9 @@ const Services = () => (
 
               {/* Project types as pills */}
               <div className="relative z-10">
-                <p className={`text-[10px] font-black uppercase tracking-widest mb-4 ${st.desc}`}>
+                <p
+                  className={`text-[10px] font-black uppercase tracking-widest mb-4 ${st.desc}`}
+                >
                   What we build
                 </p>
                 <div className="flex flex-wrap gap-2">

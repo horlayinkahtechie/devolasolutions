@@ -149,47 +149,68 @@ const pricing = [
     tier: "Sole Proprietorship",
     price: "From ₦25,000",
     description:
-      "Fast, straightforward business name registration for individuals and freelancers.",
+      "Perfect for freelancers, startups, and small businesses that want to register quickly and legally.",
+
     features: [
-      "Name availability search",
-      "Business name registration",
-      "CAC certificate",
-      "Digital delivery",
+      "Business name availability search",
+      "CAC business name registration",
+      "Official CAC certificate",
       "TIN registration",
-      "3–5 business days",
+      "Digital document delivery",
+      "Basic registration guidance",
+      "3–5 business days processing",
+      "Post-registration support",
     ],
+
     cta: "Get Started",
     highlight: false,
   },
+
   {
     tier: "Limited Liability Co.",
     price: "From ₦80,000",
     description:
-      "Full LLC incorporation including all statutory documents and post-registration support.",
+      "Complete company incorporation package for businesses that need a professional and scalable structure.",
+
     features: [
-      "Full CAC incorporation",
-      "Mem & Arts of Association",
+      "Full CAC company incorporation",
+      "Name reservation & approval",
+      "Memorandum & Articles of Association",
       "Share certificates",
+      "Company status report",
       "Company seal",
-      "TIN + SCUML",
-      "Bank account guidance",
+      "TIN registration",
+      "SCUML registration",
+      "Bank account setup guidance",
+      "Digital delivery of documents",
+      "Priority processing",
+      "Post-registration support",
     ],
+
     cta: "Most Popular",
     highlight: true,
   },
+
   {
     tier: "NGO / Non-Profit",
     price: "From ₦120,000",
     description:
-      "Incorporated Trustees registration for foundations, associations, and faith organisations.",
+      "Registration package for foundations, associations, clubs, and faith-based organisations.",
+
     features: [
-      "Incorporated Trustees",
-      "CAC IT 1 filing",
-      "Constitution drafting",
-      "Trustee verification",
+      "Incorporated Trustees registration",
+      "CAC IT1 filing",
+      "Constitution drafting assistance",
+      "Trustee verification support",
+      "Name reservation",
       "TIN registration",
       "Compliance checklist",
+      "Publication guidance",
+      "Document preparation support",
+      "Digital delivery of documents",
+      "Ongoing registration assistance",
     ],
+
     cta: "Let's Talk",
     highlight: false,
   },

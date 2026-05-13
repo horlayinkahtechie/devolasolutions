@@ -16,49 +16,66 @@ const pricing = [
     tier: "Essential",
     price: "From ₦35,000",
     description:
-      "For businesses that need a single high-quality design asset delivered fast.",
+      "Perfect for businesses that need a professional design asset delivered quickly and affordably.",
+
     features: [
-      "1 design deliverable",
-      "2 initial concepts",
-      "2 revision rounds",
-      "Jpeg formats",
+      "1 professional design deliverable",
+      "2 initial design concepts",
+      "Up to 2 revision rounds",
+      "High-resolution PNG & JPEG files",
       "Source files included",
-      "Result in 2 days",
+      "Commercial usage rights",
+      "Fast 2-day delivery",
     ],
+
     cta: "Get Started",
     highlight: false,
   },
+
   {
     tier: "Brand Identity",
     price: "From ₦100,000",
     description:
-      "A complete brand foundation, flier, cards, logo, colours, typography, and guidelines.",
+      "A complete visual identity system for businesses that want a strong and consistent brand presence.",
+
     features: [
-      "Logo (primary + variations)",
-      "Colour palette & typography",
+      "Primary logo + logo variations",
+      "Brand colour palette",
+      "Typography selection",
       "Brand guideline document",
       "Business card design",
-      "Fliers",
-      "Invitation card",
+      "Flyer design",
+      "Invitation card design",
       "Social media kit",
-      "3 months support",
+      "Profile & cover graphics",
+      "Source files included",
+      "Priority revisions",
+      "1 month support",
     ],
+
     cta: "Most Popular",
     highlight: true,
   },
+
   {
     tier: "Full Brand Suite",
     price: "Custom Quote",
     description:
-      "Everything in Brand Identity plus UI/UX, marketing materials, and ongoing design retainer.",
+      "A premium branding solution that combines identity design, UI/UX, marketing assets, and ongoing creative support.",
+
     features: [
-      "Full brand identity",
-      "UI/UX design (Figma)",
-      "Print & marketing suite",
+      "Everything in Brand Identity",
+      "Complete UI/UX design in Figma",
+      "Website or app design system",
+      "Marketing & print materials",
       "Social media templates",
+      "Presentation / pitch deck design",
       "Monthly design retainer",
-      "Priority turnaround",
+      "Unlimited design requests",
+      "Priority turnaround time",
+      "Dedicated creative support",
     ],
+
     cta: "Let's Talk",
     highlight: false,
   },
