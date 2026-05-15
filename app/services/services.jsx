@@ -352,7 +352,7 @@ export default function ServicesPage() {
                         : "bg-white/15 text-white hover:bg-white/25 border border-white/20"
                     }`}
                   >
-                    Get Started →
+                    Learn More →
                   </Link>
                   <Link
                     href={s.servicePricingLink}

@@ -206,7 +206,7 @@ const pricing = [
       "1 month support",
     ],
 
-    cta: "Most Popular",
+    cta: "Contact us",
     highlight: true,
   },
 
@@ -332,7 +332,7 @@ export default function GraphicDesign() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-[#FF5C00] transition-all duration-300 shadow-lg shadow-slate-900/10"
                 >
                   Start Your Project →
@@ -749,7 +749,7 @@ export default function GraphicDesign() {
                 </ul>
 
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                     p.highlight
                       ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -765,7 +765,7 @@ export default function GraphicDesign() {
           <p className="text-center text-xs text-slate-400 mt-6">
             All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
             <Link
-              href="/#contact"
+              href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
             >
               Get a free custom quote →

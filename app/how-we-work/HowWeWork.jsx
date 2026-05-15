@@ -8,10 +8,7 @@ import {
   BiRocket,
   BiHeadphone,
 } from "react-icons/bi";
-import {
-  MdOutlineHandshake,
-  MdTimeline,
-} from "react-icons/md";
+import { MdOutlineHandshake, MdTimeline } from "react-icons/md";
 import { BsArrowRight, BsStopwatch, BsShieldCheck } from "react-icons/bs";
 import { HiSparkles } from "react-icons/hi";
 import FinalCTA from "../_components/FinalCTA";
@@ -61,7 +58,8 @@ const phases = [
       "Clear payment schedule (50% upfront, 50% on delivery)",
       "Signed agreement before any work begins",
     ],
-    outcome: "A signed agreement that protects both sides and sets clear expectations.",
+    outcome:
+      "A signed agreement that protects both sides and sets clear expectations.",
     scheme: "light",
   },
   {
@@ -77,7 +75,8 @@ const phases = [
       "Mobile and desktop responsive layouts",
       "Up to 3 rounds of design revisions",
     ],
-    outcome: "Approved, pixel-perfect designs that both sides are excited to build.",
+    outcome:
+      "Approved, pixel-perfect designs that both sides are excited to build.",
     scheme: "dark",
   },
   {
@@ -109,7 +108,8 @@ const phases = [
       "Accessibility checks (WCAG compliance)",
       "Security review and final bug fix pass",
     ],
-    outcome: "A product that works correctly on every device, before it's in front of your users.",
+    outcome:
+      "A product that works correctly on every device, before it's in front of your users.",
     scheme: "orange",
   },
   {
@@ -125,7 +125,8 @@ const phases = [
       "App Store & Google Play submission (for apps)",
       "Post-launch smoke test and monitoring",
     ],
-    outcome: "You're live, indexed, and tracking — with us on standby for the first 48 hours.",
+    outcome:
+      "You're live, indexed, and tracking — with us on standby for the first 48 hours.",
     scheme: "dark",
   },
   {
@@ -141,7 +142,8 @@ const phases = [
       "Training on how to manage your platform",
       "Optional ongoing maintenance retainer",
     ],
-    outcome: "Peace of mind that we don't vanish the moment the project is delivered.",
+    outcome:
+      "Peace of mind that we don't vanish the moment the project is delivered.",
     scheme: "light",
   },
 ];
@@ -287,7 +289,7 @@ export default function HowWeWork() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-[#FF5C00] transition-all duration-300 shadow-lg shadow-slate-900/10"
                 >
                   Start a Project →
@@ -304,13 +306,35 @@ export default function HowWeWork() {
             {/* Stats */}
             <div className="hidden lg:grid grid-cols-2 gap-4">
               {[
-                { stat: "7", label: "Phases in every project", color: "text-[#FF5C00]", bg: "bg-orange-50" },
-                { stat: "48h", label: "First update after kickoff", color: "text-blue-600", bg: "bg-blue-50" },
-                { stat: "100%", label: "Source code ownership", color: "text-green-600", bg: "bg-green-50" },
-                { stat: "0", label: "Hidden fees, ever", color: "text-slate-900", bg: "bg-slate-100" },
+                {
+                  stat: "7",
+                  label: "Phases in every project",
+                  color: "text-[#FF5C00]",
+                  bg: "bg-orange-50",
+                },
+                {
+                  stat: "48h",
+                  label: "First update after kickoff",
+                  color: "text-blue-600",
+                  bg: "bg-blue-50",
+                },
+                {
+                  stat: "100%",
+                  label: "Source code ownership",
+                  color: "text-green-600",
+                  bg: "bg-green-50",
+                },
+                {
+                  stat: "0",
+                  label: "Hidden fees, ever",
+                  color: "text-slate-900",
+                  bg: "bg-slate-100",
+                },
               ].map(({ stat, label, color, bg }) => (
                 <div key={label} className={`${bg} rounded-3xl p-8`}>
-                  <div className={`text-5xl font-black ${color} leading-none mb-2`}>
+                  <div
+                    className={`text-5xl font-black ${color} leading-none mb-2`}
+                  >
                     {stat}
                   </div>
                   <div className="text-sm text-slate-500 font-medium leading-snug">
@@ -366,7 +390,9 @@ export default function HowWeWork() {
                       {phase.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className={`text-xl font-black tracking-tight ${st.title}`}>
+                      <h3
+                        className={`text-xl font-black tracking-tight ${st.title}`}
+                      >
                         {phase.title}
                       </h3>
                       <span
@@ -378,7 +404,9 @@ export default function HowWeWork() {
                   </div>
 
                   {/* Description */}
-                  <p className={`relative z-10 text-sm leading-relaxed ${st.desc}`}>
+                  <p
+                    className={`relative z-10 text-sm leading-relaxed ${st.desc}`}
+                  >
                     {phase.desc}
                   </p>
 
@@ -386,7 +414,9 @@ export default function HowWeWork() {
                   <ul className="relative z-10 space-y-2">
                     {phase.details.map((d) => (
                       <li key={d} className="flex items-start gap-2.5">
-                        <span className={`${st.check} shrink-0 mt-0.5 font-black text-sm`}>
+                        <span
+                          className={`${st.check} shrink-0 mt-0.5 font-black text-sm`}
+                        >
                           ✓
                         </span>
                         <span className={`text-sm ${st.detail} leading-snug`}>
@@ -403,7 +433,9 @@ export default function HowWeWork() {
                     <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-60">
                       Phase outcome
                     </p>
-                    <p className={`text-sm font-semibold leading-snug ${st.outcomeBold}`}>
+                    <p
+                      className={`text-sm font-semibold leading-snug ${st.outcomeBold}`}
+                    >
                       {phase.outcome}
                     </p>
                   </div>
@@ -551,25 +583,25 @@ export default function HowWeWork() {
             {[
               {
                 quote:
-                  "I was nervous because I'd been burned by another developer before. Devola walked me through every decision and kept me updated every week. I always knew what was happening.",
-                name: "Ngozi Eze",
-                role: "Founder, Ezeh Home Foods",
-                initials: "NE",
+                  "The website loads faster compared to our previous website. The image doesn't even take time to load. You also took your time to look into what we want and delivered exactly what we needed",
+                name: "MR Femi",
+                role: "IT Engineer, GTA Hotels Group",
+                initials: "FE",
               },
               {
                 quote:
-                  "They sent a proposal within 24 hours that was so detailed I knew exactly what we'd get. No vague promises — just a clear scope. That told me everything I needed to know.",
-                name: "Babatunde Afolabi",
-                role: "CEO, Afolabi Chambers",
-                initials: "BA",
+                  "I love the UI of my E-commerce website, the payment integration and the admin management system. And the fact I can add products myself.",
+                name: "Adebayo Lola",
+                role: "CEO, LolasElan",
+                initials: "AL",
                 dark: true,
               },
               {
                 quote:
-                  "The weekly builds were incredible. I could test the app on my actual iPhone as it was being built and catch issues early. That process saved us weeks of last-minute fixes.",
-                name: "Yetunde Obi",
-                role: "Co-founder, StyleTrack NG",
-                initials: "YO",
+                  "I love how fast you deliver the project and how everything works. I also love your fast response time.",
+                name: "AMZ",
+                role: "CEO, Amazon World",
+                initials: "AZ",
               },
             ].map((t) => (
               <div

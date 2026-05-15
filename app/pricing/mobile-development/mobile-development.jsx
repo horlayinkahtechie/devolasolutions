@@ -253,7 +253,7 @@ export default function MobileDevelopmentPricing() {
                 </ul>
 
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                     p.highlight
                       ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -269,7 +269,7 @@ export default function MobileDevelopmentPricing() {
           <p className="text-center text-xs text-slate-400 mt-6">
             All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
             <Link
-              href="/#contact"
+              href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
             >
               Get a free custom quote →
@@ -417,7 +417,7 @@ export default function MobileDevelopmentPricing() {
               </p>
             </div>
             <Link
-              href="/#contact"
+              href="/contact"
               className="shrink-0 bg-[#FF5C00] text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-orange-500 transition-colors"
             >
               Get a Free Quote →

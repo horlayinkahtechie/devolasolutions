@@ -472,7 +472,7 @@ export default function Portfolio() {
                   num: "text-white",
                 },
                 {
-                  stat: "2019",
+                  stat: "2022",
                   label: "Year founded",
                   bg: "bg-white border border-slate-100",
                   num: "text-slate-900",
@@ -579,7 +579,7 @@ export default function Portfolio() {
                 : `${active} project${filteredAll.length !== 1 ? "s" : ""}`}
             </p>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 bg-slate-900 text-white text-sm font-bold px-6 py-3 rounded-full hover:bg-[#FF5C00] transition-colors duration-300"
             >
               Start a Project →

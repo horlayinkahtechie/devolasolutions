@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const stats = [
   { value: "40+", label: "Happy Clients" },
   { value: "5+", label: "Years Active" },
@@ -57,15 +59,21 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-14">
-            <button className="group cursor-pointer bg-slate-900 text-white px-9 py-4 rounded-full font-bold hover:bg-[#FF5C00] transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-orange-500/20 flex items-center justify-center gap-2">
+            <Link
+              href="/contact"
+              className="group cursor-pointer bg-slate-900 text-white px-9 py-4 rounded-full font-bold hover:bg-[#FF5C00] transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-orange-500/20 flex items-center justify-center gap-2"
+            >
               Get Started
               <span className="group-hover:translate-x-1 transition-transform duration-200">
                 →
               </span>
-            </button>
-            <button className="cursor-pointer text-slate-900 px-9 py-4 rounded-full font-bold border border-slate-200 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2">
-              View Portfolio
-            </button>
+            </Link>
+            <Link
+              href="/portfolio"
+              className="cursor-pointer text-slate-900 px-9 py-4 rounded-full font-bold border border-slate-200 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              View Our Works
+            </Link>
           </div>
 
           {/* Stats row */}

@@ -187,7 +187,7 @@ const pricing = [
       "Post-registration support",
     ],
 
-    cta: "Most Popular",
+    cta: "Contact us",
     highlight: true,
   },
 
@@ -316,7 +316,7 @@ export default function BusinessRegistration() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-[#FF5C00] transition-all duration-300 shadow-lg shadow-slate-900/10"
                 >
                   Register My Business →
@@ -796,7 +796,7 @@ export default function BusinessRegistration() {
                 </ul>
 
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                     p.highlight
                       ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -813,7 +813,7 @@ export default function BusinessRegistration() {
             All prices are in Nigerian Naira (₦). Government fees billed
             separately at cost.{" "}
             <Link
-              href="/#contact"
+              href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
             >
               Get a free custom quote →

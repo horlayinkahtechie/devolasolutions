@@ -42,27 +42,27 @@ const heroStats = [
 
 const milestones = [
   {
-    year: "2019",
+    year: "2022",
     text: "Devola Solutions founded — first 2 clients onboarded.",
   },
   {
-    year: "2020",
+    year: "2023",
     text: "Delivered our first full-stack web platform for a hospitality brand.",
   },
   {
-    year: "2021",
+    year: "2024",
     text: "Launched mobile app division; UI/UX design added to services.",
   },
   {
-    year: "2022",
+    year: "2025",
     text: "Business registration services introduced, partnering with CAC.",
   },
   {
-    year: "2023",
-    text: "Surpassed 30+ active clients; team grew to 8+ professionals.",
+    year: "2026",
+    text: "Surpassed 40+ active clients; team grew to 8+ professionals.",
   },
   {
-    year: "2024",
+    year: "2026",
     text: "50+ projects delivered. Expanding into West African markets.",
   },
 ];
@@ -103,7 +103,7 @@ const differentiators = [
 const team = [
   {
     name: "Alao Abdulsalam Olayinka",
-    role: "Founder & CEO",
+    role: "Founder & Senior Developer",
     initials: "AA",
     bg: "bg-[#FF5C00]",
     text: "text-white",
@@ -190,10 +190,10 @@ const achievements = [
 const testimonials = [
   {
     quote:
-      "Devola turned our outdated website into a conversion machine. Within 3 months of launch, our inbound leads doubled.",
-    name: "Adebayo Okafor",
-    role: "CEO, PrimeTech Nigeria",
-    initials: "AO",
+      "“The website loads faster compared to our previous website. The image doesn't even take time to load. You also took your time to look into what we want and delivered exactly what we needed.",
+    name: "Mr Femi",
+    role: "IT Engineer, GTA Hotel",
+    initials: "FE",
     card: "bg-white border-slate-100",
     text: "text-slate-900",
     muted: "text-slate-500",
@@ -202,10 +202,10 @@ const testimonials = [
   },
   {
     quote:
-      "The mobile app they built has over 10,000 downloads in just 6 months. Exceptional work from an exceptional team.",
-    name: "Chidinma Eze",
+      "I love the UI of my E-commerce website, the payment integration and the admin management system. And the fact I can add products myself. And also the support of multiple currencies.",
+    name: "Olusanya Rofiat",
     role: "Founder, That Local Girl",
-    initials: "CE",
+    initials: "OR",
     card: "bg-slate-900 border-slate-800",
     text: "text-white",
     muted: "text-slate-400",
@@ -215,8 +215,8 @@ const testimonials = [
   {
     quote:
       "From business registration to a full web presence, they handled everything. Professional, fast, and reliable.",
-    name: "Emmanuel Nwosu",
-    role: "Director, GTA Hotels",
+    name: "Yusroh",
+    role: "CEO, Laide Lux Hub",
     initials: "EN",
     card: "bg-[#FF5C00] border-orange-400/20",
     text: "text-white",
@@ -341,7 +341,7 @@ export default function Aboutus() {
                 fast, and delivered quality without the runaround.
               </p>
               <p>
-                We started in 2019 with two clients and a clear conviction —
+                We started in 2022 with two clients and a clear conviction —
                 that world-class digital products shouldn&apos;t be out of reach
                 for African businesses. Today, 50+ projects later, that
                 conviction has only grown stronger.
@@ -356,11 +356,11 @@ export default function Aboutus() {
             {/* Founder quote */}
             <blockquote className="mt-10 border-l-4 border-[#FF5C00] pl-6">
               <p className="text-slate-700 font-medium italic leading-relaxed">
-                &ldquo;We don&apos;t just build products — we build the digital
+                &ldquo;We don&apos;t just build products, we build the digital
                 foundation that gives businesses the confidence to grow.&rdquo;
               </p>
               <footer className="mt-3 text-sm font-bold text-slate-900">
-                Abdullahi Olaiwon
+                Alao Abdulsalam Olayinka
                 <span className="text-slate-400 font-medium">
                   {" "}
                   · Founder & CEO

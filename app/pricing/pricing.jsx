@@ -403,7 +403,7 @@ export default function Pricing() {
                   </ul>
 
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                       t.highlight
                         ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -519,7 +519,7 @@ export default function Pricing() {
             All prices in Nigerian Naira (₦). Third-party fees billed separately
             at exact cost.{" "}
             <Link
-              href="/#contact"
+              href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
             >
               Get a custom quote →

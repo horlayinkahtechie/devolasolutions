@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BsCheckLg, BsDashLg } from "react-icons/bs";
 import FinalCTA from "../../_components/FinalCTA";
 
 const Label = ({ text }) => (
@@ -11,13 +10,11 @@ const Label = ({ text }) => (
   </div>
 );
 
-const pricing = [
+const packages = [
   {
     tier: "Sole Proprietorship",
-    price: "From ₦25,000",
     description:
-      "Perfect for freelancers, startups, and small businesses that want to register quickly and legally.",
-
+      "For freelancers, sole traders, and small businesses that want to trade legally under a registered business name.",
     features: [
       "Business name availability search",
       "CAC business name registration",
@@ -28,17 +25,13 @@ const pricing = [
       "3–5 business days processing",
       "Post-registration support",
     ],
-
-    cta: "Get Started",
+    cta: "Get a Quote",
     highlight: false,
   },
-
   {
     tier: "Limited Liability Co.",
-    price: "From ₦80,000",
     description:
-      "Complete company incorporation package for businesses that need a professional and scalable structure.",
-
+      "Full company incorporation for businesses that need a professional, scalable, and investor-ready legal structure.",
     features: [
       "Full CAC company incorporation",
       "Name reservation & approval",
@@ -49,21 +42,17 @@ const pricing = [
       "TIN registration",
       "SCUML registration",
       "Bank account setup guidance",
-      "Digital delivery of documents",
+      "Digital delivery of all documents",
       "Priority processing",
       "Post-registration support",
     ],
-
-    cta: "Most Popular",
+    cta: "Get a Quote",
     highlight: true,
   },
-
   {
     tier: "NGO / Non-Profit",
-    price: "From ₦120,000",
     description:
-      "Registration package for foundations, associations, clubs, and faith-based organisations.",
-
+      "For foundations, associations, clubs, and faith-based organisations that need formal recognition.",
     features: [
       "Incorporated Trustees registration",
       "CAC IT1 filing",
@@ -74,74 +63,65 @@ const pricing = [
       "Compliance checklist",
       "Publication guidance",
       "Document preparation support",
-      "Digital delivery of documents",
+      "Digital delivery of all documents",
       "Ongoing registration assistance",
     ],
-
-    cta: "Let's Talk",
+    cta: "Get a Quote",
     highlight: false,
   },
 ];
 
-const featureRows = Object.keys(pricing[0].features);
-
 const addOns = [
   {
-    name: "Annual CAC returns",
-    price: "From ₦15,000/year",
-    desc: "We file your annual returns to keep the company in good standing.",
+    name: "Annual CAC Returns",
+    desc: "We file your annual returns on time to keep your company in good standing with the CAC.",
   },
   {
-    name: "NAFDAC registration",
-    price: "On request",
-    desc: "For food, drugs, cosmetics, and regulated products.",
+    name: "NAFDAC Registration",
+    desc: "For food, drugs, cosmetics, and other regulated products — handled end to end.",
   },
   {
-    name: "Business plan writing",
-    price: "From ₦50,000",
-    desc: "Investor-ready business plan and financial projections.",
+    name: "Business Plan Writing",
+    desc: "Investor-ready business plan with financial projections and market analysis.",
   },
   {
-    name: "Trademark registration",
-    price: "From ₦60,000",
-    desc: "Protect your brand name and logo with FIPO registration.",
+    name: "Trademark Registration",
+    desc: "Protect your brand name and logo with a FIPO trademark registration.",
   },
   {
-    name: "VAT registration",
-    price: "₦15,000",
-    desc: "Federal Inland Revenue VAT registration for qualifying businesses.",
+    name: "VAT Registration",
+    desc: "Federal Inland Revenue VAT registration for businesses meeting the threshold.",
   },
   {
-    name: "Address / Registered office",
-    price: "From ₦20,000/year",
-    desc: "Use our registered office address if you don't have a physical office.",
+    name: "Registered Office Address",
+    desc: "Use our address as your official registered office if you don't have a physical location.",
   },
 ];
 
 const faqs = [
   {
-    q: "What do the prices include?",
-    a: "The prices above are our service fees. Government filing fees charged by the CAC are billed separately at their actual cost with zero markup. We'll give you a full breakdown before any payment is made.",
+    q: "How does pricing work?",
+    a: "We provide a full cost breakdown before you commit to anything. Our quote covers service fees only — government filing fees charged by the CAC are billed separately at their actual cost with zero markup.",
   },
   {
     q: "What is the payment structure?",
-    a: "100% upfront for business registration. Government fees are collected separately once we've confirmed name availability and you're ready to proceed.",
+    a: "100% upfront for our service fee. Government fees are collected separately once we have confirmed name availability and you are ready to proceed.",
   },
   {
     q: "What if my preferred business name is taken?",
-    a: "We run a free name availability search before any payment. If your first choice is taken, we'll advise on alternatives at no extra charge.",
+    a: "We run a free name availability search before any payment. If your first choice is unavailable, we will advise on alternatives at no extra charge.",
   },
   {
-    q: "Do I need to come to any office?",
-    a: "No. The entire process is handled remotely. We collect all required documents digitally and handle all CAC interactions on your behalf.",
+    q: "Do I need to visit any office?",
+    a: "No. The entire process is handled remotely. We collect all required documents digitally and manage all CAC interactions on your behalf.",
   },
   {
     q: "What documents do I need to provide?",
-    a: "A valid government ID (NIN slip, international passport, or driver's licence), your preferred business name options, a business address, and details of directors or shareholders for LLCs. We send a clear checklist once you engage us.",
+    a: "A valid government ID (NIN slip, international passport, or driver's licence), your preferred business name options, a business address, and director or shareholder details for LLCs. We send a clear checklist as soon as you engage us.",
   },
   {
-    q: "How long does it actually take?",
-    a: "Name search takes 1–2 hours. After we receive all your documents and payment, most registrations complete within the stated turnaround. Delays can occur during peak CAC periods.",
+    q: "How long does registration take?",
+    a: "Name search takes 1–2 hours. After we receive all documents, most registrations complete within the stated turnaround. Delays can occur during peak CAC periods — we will always keep you informed.",
   },
 ];
 
@@ -174,23 +154,25 @@ export default function BusinessRegistrationPricing() {
             <h1 className="text-5xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.0] mb-6">
               Business Registration
               <br />
-              <span className="text-[#FF5C00]">Pricing.</span>
+              <span className="text-[#FF5C00]">Packages.</span>
             </h1>
             <p className="text-lg text-slate-500 leading-relaxed">
-              Our service fee only. Government fees are billed separately at
-              exact cost — no markups, ever.
+              Every registration is different — government fees, name
+              availability, and required documents vary per case. Get in touch
+              for a free quote and full cost breakdown before you commit to
+              anything.
             </p>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════
-          PRICING CARDS
+          PACKAGE CARDS
       ══════════════════════════════ */}
       <section className="py-16 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {pricing.map((p) => (
+            {packages.map((p) => (
               <div
                 key={p.tier}
                 className={`relative rounded-3xl flex flex-col gap-6 p-8 overflow-hidden ${
@@ -204,30 +186,41 @@ export default function BusinessRegistrationPricing() {
                     Popular
                   </div>
                 )}
+
                 <div>
                   <p
-                    className={`text-xs font-black uppercase tracking-widest mb-2 ${p.highlight ? "text-[#FF5C00]" : "text-slate-400"}`}
+                    className={`text-xs font-black uppercase tracking-widest mb-3 ${p.highlight ? "text-[#FF5C00]" : "text-slate-400"}`}
                   >
                     {p.tier}
                   </p>
                   <p
-                    className={`text-4xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
-                  >
-                    {p.price}
-                  </p>
-                  <p
-                    className={`text-xs mt-1 font-medium ${p.highlight ? "text-slate-500" : "text-slate-400"}`}
-                  >
-                    {p.note}
-                  </p>
-                  <p
-                    className={`text-sm mt-4 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
+                    className={`text-sm leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
                   >
                     {p.description}
                   </p>
                 </div>
+
+                <ul className="space-y-2.5 flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <span
+                        className={`shrink-0 mt-0.5 ${p.highlight ? "text-[#FF5C00]" : "text-green-500"}`}
+                      >
+                        ✓
+                      </span>
+                      <span
+                        className={
+                          p.highlight ? "text-slate-300" : "text-slate-600"
+                        }
+                      >
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 mt-auto ${
                     p.highlight
                       ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -241,78 +234,13 @@ export default function BusinessRegistrationPricing() {
           </div>
 
           <div className="mt-6 bg-orange-50 border border-orange-100 rounded-2xl px-6 py-4 flex items-start gap-3 max-w-3xl mx-auto">
-            <span className="text-[#FF5C00] font-black text-lg shrink-0">
-              !
-            </span>
+            <span className="text-[#FF5C00] font-black text-lg shrink-0">!</span>
             <p className="text-sm text-slate-700 leading-relaxed">
               <strong>Government fees are not included.</strong> CAC filing
               fees, stamp duties, and other government charges are billed
-              separately at their actual cost. We will provide a full
-              cost breakdown before you commit.
+              separately at their actual cost — no markups. We will provide a
+              full breakdown before any payment is made.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════
-          FULL COMPARISON TABLE
-      ══════════════════════════════ */}
-      <section className="py-16 px-6 md:px-12 border-t border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <Label text="Full Breakdown" />
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-              Compare Every Package
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-4 gap-3 mb-2 sticky top-0 bg-[#fafafa] py-3 z-10">
-            <div />
-            {pricing.map((t) => (
-              <div
-                key={t.tier}
-                className={`rounded-xl py-3 text-center ${t.highlight ? "bg-slate-900" : "bg-slate-100"}`}
-              >
-                <span
-                  className={`text-[10px] font-black uppercase tracking-widest leading-tight px-1 block ${t.highlight ? "text-[#FF5C00]" : "text-slate-500"}`}
-                >
-                  {t.tier}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-1">
-            {featureRows.map((feature, i) => (
-              <div
-                key={feature}
-                className={`grid grid-cols-4 gap-3 items-center rounded-xl px-4 py-3.5 ${i % 2 === 0 ? "bg-white border border-slate-100" : ""}`}
-              >
-                <span className="text-sm text-slate-700 font-medium">
-                  {feature}
-                </span>
-                {pricing.map((t) => {
-                  const val = t.features[feature];
-                  return (
-                    <div key={t.tier} className="flex justify-center">
-                      {typeof val === "boolean" ? (
-                        val ? (
-                          <BsCheckLg className="text-green-500 text-base" />
-                        ) : (
-                          <BsDashLg className="text-slate-300 text-base" />
-                        )
-                      ) : (
-                        <span
-                          className={`text-xs font-bold text-center ${t.highlight ? "text-[#FF5C00]" : "text-slate-700"}`}
-                        >
-                          {val}
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -339,17 +267,18 @@ export default function BusinessRegistrationPricing() {
                 key={a.name}
                 className="bg-white border border-slate-100 rounded-2xl px-6 py-5 flex flex-col gap-2"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-sm font-black text-slate-900">
-                    {a.name}
-                  </span>
-                  <span className="text-sm font-black text-[#FF5C00] shrink-0">
-                    {a.price}
-                  </span>
-                </div>
+                <span className="text-sm font-black text-slate-900">
+                  {a.name}
+                </span>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   {a.desc}
                 </p>
+                <Link
+                  href="/contact"
+                  className="text-xs font-bold text-[#FF5C00] hover:underline mt-1 self-start"
+                >
+                  Get a quote →
+                </Link>
               </div>
             ))}
           </div>
@@ -357,14 +286,14 @@ export default function BusinessRegistrationPricing() {
       </section>
 
       {/* ══════════════════════════════
-          PAYMENT & FAQ
+          FAQs
       ══════════════════════════════ */}
       <section className="py-16 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
             <Label text="Pricing FAQs" />
             <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-              Common Pricing Questions
+              Common Questions
             </h2>
           </div>
 
@@ -393,7 +322,7 @@ export default function BusinessRegistrationPricing() {
               </p>
             </div>
             <Link
-              href="/#contact"
+              href="/contact"
               className="shrink-0 bg-[#FF5C00] text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-orange-500 transition-colors"
             >
               Start Registration →
