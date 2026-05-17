@@ -107,14 +107,14 @@ const faqData = {
     },
     {
       q: "What happens if my preferred business name is already taken?",
-      a: "We perform a preliminary search before filing. If your first choice is taken, we'll help you brainstorm variations or similar names that are legally available and still reflect your brand.",
+      a: "We perform a preliminary search before filings. If your first choice is taken, we'll help you brainstorm variations or similar names that are legally available and still reflect your brand.",
     },
   ],
 };
 
 const tabs = Object.keys(faqData);
 
-export default function FAQs({ defaultTab }) {
+export default function FAQs({ defaultTab = null }) {
   const [activeTab, setActiveTab] = useState(
     defaultTab && tabs.includes(defaultTab) ? defaultTab : tabs[0],
   );
