@@ -62,12 +62,10 @@ const faqData = {
       q: "What design services do you offer?",
       a: "We cover brand identity (logo, colour palette, typography), UI/UX design, social media graphics, pitch decks, flyers, and print-ready materials.",
     },
-
     {
       q: "Will I own the final design files?",
       a: "Yes, you receive full ownership of all deliverables in multiple formats (PDF, PNG, SVG) plus the editable source files (Figma or Adobe Illustrator/Photoshop).",
     },
-
     {
       q: "How many revision rounds are included?",
       a: "Our standard packages include three rounds of revisions. Additional rounds are available at an agreed rate if you need more iterations before final approval.",
@@ -116,7 +114,7 @@ const faqData = {
 
 const tabs = Object.keys(faqData);
 
-const FAQs = ({ defaultTab }) => {
+export default function FAQs({ defaultTab }) {
   const [activeTab, setActiveTab] = useState(
     defaultTab && tabs.includes(defaultTab) ? defaultTab : tabs[0],
   );
@@ -172,43 +170,58 @@ const FAQs = ({ defaultTab }) => {
 
         {/* ── FAQ Accordion ── */}
         <div className="space-y-3">
-          {faqData[activeTab].map((faq, i) => (
-            <div
-              key={i}
-              className={`bg-white rounded-3xl border transition-all duration-300 overflow-hidden ${
-                openIndex === i
-                  ? "border-slate-200 shadow-lg"
-                  : "border-slate-100 shadow-sm"
-              }`}
-            >
-              <button
-                onClick={() => toggle(i)}
-                className="w-full flex items-center justify-between gap-4 px-7 py-6 text-left"
+          {faqData[activeTab].map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className={`bg-white rounded-3xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? "border-slate-200 shadow-lg"
+                    : "border-slate-100 shadow-sm"
+                }`}
               >
-                <span className="text-base font-bold text-slate-900 leading-snug">
-                  {faq.q}
-                </span>
-                <span
-                  className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light shrink-0 transition-all duration-300 ${
-                    openIndex === i
-                      ? "bg-[#FF5C00] border-[#FF5C00] text-white rotate-45"
-                      : "border-slate-200 text-[#FF5C00]"
+                <button
+                  onClick={() => toggle(i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${i}`}
+                  className="w-full flex items-center justify-between gap-4 px-7 py-6 text-left focus:outline-none"
+                >
+                  <span className="text-base font-bold text-slate-900 leading-snug">
+                    {faq.q}
+                  </span>
+                  <span
+                    className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light shrink-0 transition-all duration-300 ${
+                      isOpen
+                        ? "bg-[#FF5C00] border-[#FF5C00] text-white rotate-45"
+                        : "border-slate-200 text-[#FF5C00]"
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+
+                {/* Animated Drawer using Tailwind CSS Grid */}
+                <div
+                  id={`faq-panel-${i}`}
+                  className={`transition-all duration-300 ease-in-out grid ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
-                  +
-                </span>
-              </button>
-
-              {openIndex === i && (
-                <div className="px-7 pb-7">
-                  <div className="h-px bg-slate-100 mb-5" />
-                  <p className="text-slate-500 leading-relaxed text-sm">
-                    {faq.a}
-                  </p>
+                  <div className="overflow-hidden">
+                    <div className="px-7 pb-7">
+                      <div className="h-px bg-slate-100 mb-5" />
+                      <p className="text-slate-500 leading-relaxed text-sm">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
         {/* ── Bottom note ── */}
@@ -221,6 +234,4 @@ const FAQs = ({ defaultTab }) => {
       </div>
     </section>
   );
-};
-
-export default FAQs;
+}

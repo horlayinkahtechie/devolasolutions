@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const pricingLinks = [
@@ -59,7 +60,12 @@ const Navbar = () => {
           href="/"
           className="text-2xl font-black tracking-tighter text-slate-900 cursor-pointer"
         >
-          AGENCY<span className="text-[#FF5C00]">.</span>
+          <Image
+            src="devola-solutions-logo.png"
+            alt="Devola Solutions Logo"
+            width={100}
+            height={100}
+          />
         </Link>
 
         {/* Desktop Links */}

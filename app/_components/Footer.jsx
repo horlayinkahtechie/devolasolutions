@@ -1,6 +1,7 @@
 import { BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
 import { FaTiktok } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => (
   <footer className="bg-slate-900 text-white pt-32 pb-12 px-6 relative overflow-hidden">
@@ -12,7 +13,12 @@ const Footer = () => (
         {/* Brand Info */}
         <div className="md:col-span-5">
           <div className="text-3xl font-black mb-8 tracking-tighter">
-            AGENCY<span className="text-[#FF5C00]">.</span>
+            <Image
+              src="/devola-solutions-logo.png"
+              alt="Devola Solutions Logo"
+              width={100}
+              height={100}
+            />
           </div>
           <p className="text-slate-400 max-w-sm text-lg leading-relaxed mb-10 font-medium">
             Building digital bridges between your business and your customers
