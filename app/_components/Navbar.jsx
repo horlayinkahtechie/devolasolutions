@@ -37,7 +37,8 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About Us", href: "/about" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/aboutus" },
     { name: "Services", href: "/services" },
     { name: "How we work", href: "/how-we-work" },
     { name: "Portfolio", href: "/portfolio" },
@@ -61,7 +62,7 @@ const Navbar = () => {
           className="text-2xl font-black tracking-tighter text-slate-900 cursor-pointer"
         >
           <Image
-            src="devola-solutions-logo.png"
+            src="/devola-solutions-logo.png"
             alt="Devola Solutions Logo"
             width={100}
             height={100}

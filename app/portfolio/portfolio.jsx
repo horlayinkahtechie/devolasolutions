@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import FinalCTA from "../_components/FinalCTA";
+import Image from "next/image";
 
 /* ─────────────────────────────────
    PROJECTS DATA
@@ -15,66 +16,166 @@ const allProjects = [
     type: "web",
     tools: "Next.js · Firebase · Tailwind",
     desc: "Full hotel booking system with room management, availability calendar, and online reservations.",
-    image: null,
+    image: "/gtaHotel.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Almost completed",
+    link: "https://gtahotelikeja.com",
+  },
+  {
+    id: 2,
+    name: "That Local Girl (Web App)",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Supabase · Tailwind",
+    desc: "E-commerce mobile app with product listings, cart, Stripe payment integration, Carrier integration, real-time shipping fee calculation, and order tracking.",
+    image: "/thatlocalgirl.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2025",
+    featured: true,
+    status: "Completed",
+    link: "https://thatlocalgirl.com",
+  },
+  {
+    id: 3,
+    name: "LolasElan",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Supabase · Tailwind",
+    desc: "E-commerce website for cloth listings, cart, Stripe payment integration, Carrier integration, real-time shipping fee calculation, and order tracking, and admin management system.",
+    image: "/lolaselan.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2025",
+    featured: true,
+    status: "Completed",
+    link: "https://shoplolaselan.uk",
+  },
+  {
+    id: 4,
+    name: "Royal Moss Hotel",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Supabase · Tailwind",
+    desc: "An Hotel Management System with booking integration, real-time room availability check, payment integration, authentication and admin management system.",
+    image: "/royalmosshotel.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://royalmoss.org",
+  },
+  {
+    id: 5,
+    name: "Verse One Hotel",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Supabase · Tailwind",
+    desc: "An Hotel Management System with booking integration, real-time room availability check, payment integration, authentication and admin management system.",
+    image: "/verseonehotel.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
     year: "2024",
     featured: true,
+    status: "Completed",
+    link: "https://verseonehotel.com",
   },
   {
-    id: 2,
-    name: "That Local Girl",
+    id: 6,
+    name: "Amazon World",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Supabase · Tailwind",
+    desc: "An E-commerce website for a clothing brand where users can add to cart, make payment, and admin can list products, and manage products.",
+    image: "/amazonworld.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2024",
+    featured: true,
+    status: "Completed",
+    link: "https://amazonworld.com",
+  },
+  {
+    id: 7,
+    name: "That Local Girl (Mobile App)",
     category: "Mobile App",
     type: "mobile",
-    tools: "React Native · Expo · Firebase",
+    tools: "React Native · Expo · Supabase",
     desc: "E-commerce mobile app with product listings, cart, Paystack checkout, and order tracking.",
-    image: null,
+    image: "/thatlocalgirlmobileapp.jpg",
     screenBg: "bg-orange-100",
     tag: "bg-orange-50 text-[#FF5C00]",
     year: "2024",
     featured: true,
+    status: "Ongoing",
+    link: null,
   },
   {
-    id: 3,
-    name: "Greenleaf Consulting",
+    id: 8,
+    name: "Mr Vincent Itodo",
     category: "Graphic Design",
     type: "design",
     tools: "Figma · Adobe Illustrator",
-    desc: "Complete brand identity — logo, colour palette, typography system, and brand guidelines.",
+    desc: "Complete flier design and invitation card design.",
     image: null,
     screenBg: "bg-green-100",
     tag: "bg-green-50 text-green-600",
-    year: "2024",
+    year: "2026",
     featured: true,
+    status: "Completed",
+    link: null,
   },
   {
-    id: 4,
-    name: "SwiftMove Logistics",
+    id: 9,
+    name: "Campfleet",
     category: "Mobile App",
     type: "mobile",
     tools: "React Native · Node.js · Firebase",
-    desc: "Logistics app with live driver tracking, dispatch management, and proof of delivery.",
-    image: null,
+    desc: "An all-in-one campus social network for Nigerian students.",
+    image: "/campfleet.png",
     screenBg: "bg-slate-200",
     tag: "bg-slate-100 text-slate-600",
-    year: "2024",
+    year: "2026",
     featured: false,
+    status: "Ongoing",
+    link: null,
   },
   {
-    id: 5,
-    name: "AdeyemiLaw",
+    id: 10,
+    name: "Looks Clothing",
     category: "Web Development",
     type: "web",
-    tools: "Next.js · Tailwind",
+    tools: "Next.js · Tailwind · Firebase",
     desc: "Corporate law firm website with practice areas, team profiles, and client consultation booking.",
-    image: null,
+    image: "/looksclothing.png",
     screenBg: "bg-amber-100",
     tag: "bg-amber-50 text-amber-700",
-    year: "2024",
+    year: "2026",
     featured: false,
+    status: "Ongoing",
+    link: "https://looksclothing.netlify.app",
   },
   {
-    id: 6,
+    id: 11,
+    name: "Haut Logistics (Web Design)",
+    category: "Web Development",
+    type: "web",
+    tools: "Figma",
+    desc: "A Website Redesign of an existing logistics company in Canada.",
+    image: "/looksclothing.png",
+    screenBg: "bg-amber-100",
+    tag: "bg-amber-50 text-amber-700",
+    year: "2026",
+    featured: false,
+    status: "Ongoing",
+    link: null,
+  },
+  {
+    id: 12,
     name: "PocketHealth NG",
     category: "Graphic Design",
     type: "design",
@@ -83,11 +184,13 @@ const allProjects = [
     image: null,
     screenBg: "bg-rose-100",
     tag: "bg-rose-50 text-rose-600",
-    year: "2024",
+    year: "2026",
     featured: false,
+    status: "Completed",
+    link: null,
   },
   {
-    id: 7,
+    id: 13,
     name: "Trenova Logistics Ltd",
     category: "Business Registration",
     type: "registration",
@@ -96,11 +199,13 @@ const allProjects = [
     image: null,
     screenBg: "bg-teal-100",
     tag: "bg-teal-50 text-teal-600",
-    year: "2024",
+    year: "2025",
     featured: false,
+    status: "Completed",
+    link: null,
   },
   {
-    id: 8,
+    id: 14,
     name: "Obi Catering Co.",
     category: "Business Registration",
     type: "registration",
@@ -109,37 +214,13 @@ const allProjects = [
     image: null,
     screenBg: "bg-yellow-100",
     tag: "bg-yellow-50 text-yellow-700",
-    year: "2023",
+    year: "2025",
     featured: false,
+    status: "Completed",
+    link: null,
   },
   {
-    id: 9,
-    name: "EcoTrack",
-    category: "Web Development",
-    type: "web",
-    tools: "Next.js · Tailwind · Vercel",
-    desc: "SaaS sustainability dashboard for tracking carbon footprint and ESG reporting across teams.",
-    image: null,
-    screenBg: "bg-emerald-100",
-    tag: "bg-emerald-50 text-emerald-600",
-    year: "2023",
-    featured: false,
-  },
-  {
-    id: 10,
-    name: "StyleTrack NG",
-    category: "Mobile App",
-    type: "mobile",
-    tools: "React Native · Firebase · Expo",
-    desc: "Fashion marketplace app — vendor listings, outfit saves, in-app chat, and Flutterwave payments.",
-    image: null,
-    screenBg: "bg-pink-100",
-    tag: "bg-pink-50 text-pink-600",
-    year: "2023",
-    featured: false,
-  },
-  {
-    id: 11,
+    id: 15,
     name: "Afolabi Chambers",
     category: "Graphic Design",
     type: "design",
@@ -148,21 +229,55 @@ const allProjects = [
     image: null,
     screenBg: "bg-indigo-100",
     tag: "bg-indigo-50 text-indigo-600",
-    year: "2023",
+    year: "2026",
     featured: false,
+    status: "Completed",
+    link: null,
   },
   {
-    id: 12,
-    name: "Ezeh Home Foods",
-    category: "Web Development",
-    type: "web",
-    tools: "Next.js · Paystack · Firebase",
-    desc: "E-commerce store for home-made food products with product listings, online ordering, and delivery zones.",
+    id: 16,
+    name: "World Famous Clothing",
+    category: "Business Registration",
+    type: "registration",
+    tools: "CAC · Trade Mark",
+    desc: "Business name registration with CAC and full trademark filing to protect the brand name and logo.",
     image: null,
-    screenBg: "bg-orange-100",
-    tag: "bg-orange-50 text-orange-600",
-    year: "2023",
+    screenBg: "bg-teal-100",
+    tag: "bg-teal-50 text-teal-600",
+    year: "2025",
     featured: false,
+    status: "Completed",
+    link: null,
+  },
+  {
+    id: 17,
+    name: "Glittering Icon Hub",
+    category: "Business Registration",
+    type: "registration",
+    tools: "CAC · Trade Mark",
+    desc: "Business name registration with CAC and full trademark filing to protect the brand name and logo.",
+    image: null,
+    screenBg: "bg-teal-100",
+    tag: "bg-teal-50 text-teal-600",
+    year: "2025",
+    featured: false,
+    status: "Completed",
+    link: null,
+  },
+  {
+    id: 18,
+    name: "Laide Luxe Hub",
+    category: "Business Registration",
+    type: "registration",
+    tools: "CAC · Trade Mark",
+    desc: "Business name registration with CAC and full trademark filing to protect the brand name and logo.",
+    image: null,
+    screenBg: "bg-teal-100",
+    tag: "bg-teal-50 text-teal-600",
+    year: "2025",
+    featured: false,
+    status: "Completed",
+    link: null,
   },
 ];
 
@@ -173,6 +288,24 @@ const filters = [
   { label: "Graphic Design", value: "Graphic Design" },
   { label: "Business Registration", value: "Business Registration" },
 ];
+
+/* ─────────────────────────────────
+   STATUS BADGE COMPONENT
+───────────────────────────────── */
+const StatusBadge = ({ status }) => {
+  let styles = "bg-slate-100 text-slate-600";
+  if (status === "Completed") styles = "bg-green-100 text-green-700";
+  if (status === "Ongoing") styles = "bg-amber-100 text-amber-700";
+  if (status === "Almost completed") styles = "bg-blue-100 text-blue-700";
+
+  return (
+    <span
+      className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold ${styles}`}
+    >
+      {status}
+    </span>
+  );
+};
 
 /* ─────────────────────────────────
    MOCKUPS
@@ -191,11 +324,12 @@ const BrowserMockup = ({ image, screenBg }) => (
     </div>
     <div className={`flex-1 ${screenBg} relative overflow-hidden`}>
       {image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={image}
-          alt=""
-          className="w-full h-full object-cover object-top"
+          alt="Product Image"
+          fill
+          sizes="(max-w-7xl) 33vw, 50vw"
+          className="object-cover object-top"
         />
       ) : (
         <div className="p-4 space-y-2.5">
@@ -213,9 +347,10 @@ const BrowserMockup = ({ image, screenBg }) => (
     </div>
   </div>
 );
-
-const IPhoneMockup = ({ image, screenBg }) => (
-  <div className="relative mx-auto" style={{ width: 90 }}>
+const IPhoneMockup = (
+  { image, screenBg, width = 90 }, // Added width prop defaulting to 90
+) => (
+  <div className="relative mx-auto" style={{ width: width }}>
     <div className="bg-slate-900 rounded-[2.2rem] p-1.25 shadow-2xl relative">
       <div
         className={`rounded-[1.8rem] overflow-hidden relative ${screenBg}`}
@@ -223,32 +358,35 @@ const IPhoneMockup = ({ image, screenBg }) => (
       >
         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-slate-900 rounded-full z-10" />
         {image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={image} alt="" className="w-full h-full object-cover" />
+          <Image
+            src={image}
+            alt="product image"
+            fill
+            sizes={`${width}px`} // Pass the dynamic width to sizes
+            className="object-cover"
+          />
         ) : (
-          <div className="pt-7 px-2 space-y-1.5">
-            <div className="h-2 bg-white/60 rounded-full w-3/4 mx-auto" />
-            <div className="h-1.5 bg-white/40 rounded-full w-full" />
-            <div className="h-1.5 bg-white/40 rounded-full w-5/6" />
-            <div className="mt-2 h-12 bg-white/35 rounded-lg" />
-            <div className="h-8 bg-white/35 rounded-lg" />
-            <div className="h-8 bg-white/35 rounded-lg" />
-          </div>
+          <div className="pt-7 px-2 space-y-1.5">{/* skeleton code */}</div>
         )}
         <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-slate-900/30 rounded-full" />
       </div>
     </div>
-    <div className="absolute -left-0.5 top-14 w-0.5 h-5 bg-slate-700 rounded-l-sm" />
-    <div className="absolute -left-0.5 top-22 w-0.5 h-5 bg-slate-700 rounded-l-sm" />
-    <div className="absolute -right-0.5 top-20 w-0.5 h-7 bg-slate-700 rounded-r-sm" />
+    {/* static buttons lines */}
   </div>
 );
 
 const DesignMockup = ({ image, screenBg }) => (
-  <div className={`w-full h-full flex items-center justify-center ${screenBg}`}>
+  <div
+    className={`w-full h-full flex items-center justify-center relative ${screenBg}`}
+  >
     {image ? (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={image} alt="" className="w-full h-full object-cover" />
+      <Image
+        src={image}
+        alt="Product Image"
+        fill
+        sizes="(max-w-7xl) 33vw, 50vw"
+        className="object-cover"
+      />
     ) : (
       <div className="relative">
         <div className="w-28 h-20 bg-white rounded-xl shadow-lg border border-white/60 flex items-center justify-center">
@@ -296,108 +434,161 @@ const RegistrationMockup = ({ screenBg }) => (
 /* ─────────────────────────────────
    PROJECT CARD
 ───────────────────────────────── */
-const ProjectCard = ({ project, featured }) => (
-  <div
-    className={`bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer flex flex-col ${featured ? "lg:col-span-1" : ""}`}
-  >
-    {/* Mockup */}
-    <div className="relative h-56 overflow-hidden bg-slate-50">
-      {project.type === "web" && (
-        <BrowserMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "mobile" && (
-        <div className="h-full flex items-center justify-center py-3">
-          <IPhoneMockup image={project.image} screenBg={project.screenBg} />
+const ProjectCard = ({ project }) => {
+  const CardContent = () => (
+    <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col h-full">
+      {/* Mockup Container */}
+      <div className="relative h-56 overflow-hidden bg-slate-50">
+        {project.type === "web" && (
+          <BrowserMockup image={project.image} screenBg={project.screenBg} />
+        )}
+        {project.type === "mobile" && (
+          <div className="h-full flex items-center justify-center py-6">
+            <IPhoneMockup
+              image={project.image}
+              screenBg={project.screenBg}
+              width={160}
+            />
+          </div>
+        )}
+        {project.type === "design" && (
+          <DesignMockup image={project.image} screenBg={project.screenBg} />
+        )}
+        {project.type === "registration" && (
+          <RegistrationMockup screenBg={project.screenBg} />
+        )}
+
+        {/* Badges on Top of Images */}
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+          <span className="bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 text-[10px] font-bold text-slate-500">
+            {project.year}
+          </span>
+          <StatusBadge status={project.status} />
         </div>
-      )}
-      {project.type === "design" && (
-        <DesignMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "registration" && (
-        <RegistrationMockup screenBg={project.screenBg} />
-      )}
+      </div>
 
-      {/* Year badge */}
-      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 text-[10px] font-bold text-slate-500">
-        {project.year}
+      {/* Description Box */}
+      <div className="p-6 flex items-start justify-between gap-4 flex-1">
+        <div className="min-w-0 flex-1">
+          <span
+            className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 ${project.tag}`}
+          >
+            {project.category}
+          </span>
+          <h3 className="text-lg font-black text-slate-900 tracking-tight leading-tight mb-1">
+            {project.name}
+          </h3>
+          <p className="text-xs text-slate-400 mb-2">{project.tools}</p>
+          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+            {project.desc}
+          </p>
+
+          {/* Dynamic Link Notification */}
+          {project.link && (
+            <p className="text-xs font-bold text-[#FF5C00] mt-3 group-hover:underline">
+              Visit project →
+            </p>
+          )}
+        </div>
+        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#FF5C00] group-hover:text-white transition-all duration-300 shrink-0 group-hover:scale-110 mt-1">
+          →
+        </div>
       </div>
     </div>
+  );
 
-    {/* Footer */}
-    <div className="p-6 flex items-start justify-between gap-4 flex-1">
-      <div className="min-w-0 flex-1">
-        <span
-          className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 ${project.tag}`}
-        >
-          {project.category}
-        </span>
-        <h3 className="text-lg font-black text-slate-900 tracking-tight leading-tight mb-1">
-          {project.name}
-        </h3>
-        <p className="text-xs text-slate-400 mb-2">{project.tools}</p>
-        <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
-          {project.desc}
-        </p>
-      </div>
-      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#FF5C00] group-hover:text-white transition-all duration-300 shrink-0 group-hover:scale-110 mt-1">
-        →
-      </div>
-    </div>
-  </div>
-);
+  return project.link ? (
+    <Link
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block h-full"
+    >
+      <CardContent />
+    </Link>
+  ) : (
+    <CardContent />
+  );
+};
 
 /* ─────────────────────────────────
    FEATURED CARD (wide)
 ───────────────────────────────── */
-const FeaturedCard = ({ project }) => (
-  <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer grid md:grid-cols-2">
-    {/* Mockup */}
-    <div className="relative h-64 md:h-auto overflow-hidden bg-slate-50">
-      {project.type === "web" && (
-        <BrowserMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "mobile" && (
-        <div className="h-full flex items-center justify-center py-6">
-          <IPhoneMockup image={project.image} screenBg={project.screenBg} />
-        </div>
-      )}
-      {project.type === "design" && (
-        <DesignMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 text-[10px] font-bold text-slate-500">
-        {project.year}
-      </div>
-      <div className="absolute top-3 right-3 bg-slate-900 text-white rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest">
-        Featured
-      </div>
-    </div>
+const FeaturedCard = ({ project }) => {
+  const CardContent = () => (
+    <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 grid md:grid-cols-2 h-full">
+      {/* Mockup Container */}
+      <div className="relative h-64 md:h-auto overflow-hidden bg-slate-50">
+        {project.type === "web" && (
+          <BrowserMockup image={project.image} screenBg={project.screenBg} />
+        )}
+        {project.type === "mobile" && (
+          <div className="h-full flex items-center justify-center py-6">
+            <IPhoneMockup
+              image={project.image}
+              screenBg={project.screenBg}
+              width={160}
+            />
+          </div>
+        )}
+        {project.type === "design" && (
+          <DesignMockup image={project.image} screenBg={project.screenBg} />
+        )}
 
-    {/* Info */}
-    <div className="p-8 flex flex-col justify-between">
-      <div>
-        <span
-          className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${project.tag}`}
-        >
-          {project.category}
-        </span>
-        <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-tight mb-3">
-          {project.name}
-        </h3>
-        <p className="text-xs text-slate-400 mb-4">{project.tools}</p>
-        <p className="text-sm text-slate-500 leading-relaxed">{project.desc}</p>
+        {/* Left Side Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+          <span className="bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 text-[10px] font-bold text-slate-500">
+            {project.year}
+          </span>
+          <StatusBadge status={project.status} />
+        </div>
+        <div className="absolute top-3 right-3 bg-slate-900 text-white rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest">
+          Featured
+        </div>
       </div>
-      <div className="flex items-center gap-2 mt-8 text-sm font-bold text-slate-900 group-hover:text-[#FF5C00] transition-colors">
-        View Project
-        <span className="group-hover:translate-x-1 transition-transform">
-          →
-        </span>
+
+      {/* Info Container */}
+      <div className="p-8 flex flex-col justify-between">
+        <div>
+          <span
+            className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${project.tag}`}
+          >
+            {project.category}
+          </span>
+          <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-tight mb-3">
+            {project.name}
+          </h3>
+          <p className="text-xs text-slate-400 mb-4">{project.tools}</p>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            {project.desc}
+          </p>
+        </div>
+        <div className="flex items-center gap-2 mt-8 text-sm font-bold text-slate-900 group-hover:text-[#FF5C00] transition-colors">
+          {project.link ? "Visit Project" : "View Project"}
+          <span className="group-hover:translate-x-1 transition-transform">
+            →
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+
+  return project.link ? (
+    <Link
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
+      <CardContent />
+    </Link>
+  ) : (
+    <CardContent />
+  );
+};
 
 /* ─────────────────────────────────
-   PAGE
+   MAIN PORTFOLIO PAGE
 ───────────────────────────────── */
 export default function Portfolio() {
   const [active, setActive] = useState("All");
@@ -411,14 +602,11 @@ export default function Portfolio() {
       : allProjects.filter((p) => p.category === active);
 
   const showFeatured = active === "All";
-
   const gridProjects = showFeatured ? rest : filteredAll;
 
   return (
     <div className="bg-[#fafafa]">
-      {/* ══════════════════════════════
-          HERO
-      ══════════════════════════════ */}
+      {/* Hero Section */}
       <section className="relative overflow-hidden px-6 md:px-12 pt-36 pb-20">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -450,7 +638,7 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* Stats */}
+            {/* Stats Metric Box */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 {
@@ -496,12 +684,10 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          FILTERS + GRID
-      ══════════════════════════════ */}
+      {/* Filter and Grid Section */}
       <section className="py-16 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
-          {/* Filter tabs */}
+          {/* Tabs Filter Header */}
           <div className="flex flex-wrap gap-2 mb-12">
             {filters.map((f) => (
               <button
@@ -515,11 +701,7 @@ export default function Portfolio() {
               >
                 {f.label}
                 <span
-                  className={`ml-2 text-[10px] font-black px-1.5 py-0.5 rounded-full ${
-                    active === f.value
-                      ? "bg-white/20 text-white"
-                      : "bg-slate-100 text-slate-400"
-                  }`}
+                  className={`ml-2 text-[10px] font-black px-1.5 py-0.5 rounded-full ${active === f.value ? "bg-white/20 text-white" : "bg-slate-100 text-slate-400"}`}
                 >
                   {f.value === "All"
                     ? allProjects.length
@@ -529,7 +711,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Featured projects (All view only) */}
+          {/* Featured Content Area (Default Display) */}
           {showFeatured && (
             <div className="mb-8">
               <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-5">
@@ -549,7 +731,7 @@ export default function Portfolio() {
             </div>
           )}
 
-          {/* Project grid */}
+          {/* Cards Dynamic Grid */}
           {gridProjects.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {gridProjects.map((p) => (
@@ -567,7 +749,7 @@ export default function Portfolio() {
             </div>
           )}
 
-          {/* Count bar */}
+          {/* Counter Status Bar */}
           <div className="mt-10 pt-8 border-t border-slate-100 flex items-center justify-between">
             <p className="text-sm text-slate-400 font-medium">
               Showing{" "}
@@ -588,9 +770,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          PROCESS STRIP
-      ══════════════════════════════ */}
+      {/* Discovery / Process Banner */}
       <section className="py-16 px-6 md:px-12 border-t border-slate-100 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
@@ -602,9 +782,7 @@ export default function Portfolio() {
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-tight mb-3">
-                Every project starts
-                <br />
-                with a free call.
+                Every project starts <br /> with a free call.
               </h2>
               <p className="text-slate-500 text-sm leading-relaxed">
                 No commitment, no pitch pressure. Just a 20-minute conversation
