@@ -95,10 +95,10 @@ const Footer = () => (
               Have a project in mind?
             </p>
             <a
-              href="mailto:contact@devolasolutions.com"
+              href="mailto:devolacontact@gmail.com"
               className="text-xl font-bold border-b-2 border-[#FF5C00] hover:text-[#FF5C00] transition-colors pb-1"
             >
-              contact@devolasolutions.com
+              devolacontact@gmail.com
             </a>
           </div>
         </div>

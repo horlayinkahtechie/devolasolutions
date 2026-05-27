@@ -16,7 +16,6 @@ const services = [
 ];
 
 const budgets = [
-  "Under ₦100,000",
   "₦100,000 – ₦300,000",
   "₦300,000 – ₦750,000",
   "₦750,000 – ₦2,000,000",
@@ -37,20 +36,20 @@ const contactInfo = [
   {
     icon: <BiEnvelope />,
     label: "Email us",
-    value: "hello@devolasolutions.com",
-    href: "mailto:hello@devolasolutions.com",
+    value: "devolacontact@gmail.com",
+    href: "mailto:devolacontact@gmail.com",
   },
   {
     icon: <BiLogoWhatsapp />,
     label: "WhatsApp",
-    value: "+234 800 000 0000",
-    href: "https://wa.me/2348000000000",
+    value: "+234 816 941 5526",
+    href: "https://wa.me/2348169415526",
   },
   {
     icon: <BiPhone />,
     label: "Call us",
-    value: "+234 800 000 0000",
-    href: "tel:+2348000000000",
+    value: "+234 816 941 5526",
+    href: "https://wa.me/2348169415526",
   },
   {
     icon: <BiMap />,
@@ -463,9 +462,21 @@ export default function Contact() {
                 </p>
                 <div className="flex gap-3">
                   {[
-                    { icon: <BsInstagram />, href: "#", label: "Instagram" },
-                    { icon: <BsTwitterX />, href: "#", label: "Twitter" },
-                    { icon: <BsLinkedin />, href: "#", label: "LinkedIn" },
+                    {
+                      icon: <BsInstagram />,
+                      href: "https://instagram.com/dev_olayinka",
+                      label: "Instagram",
+                    },
+                    {
+                      icon: <BsTwitterX />,
+                      href: "https://x.com/dev_olayinka",
+                      label: "Twitter",
+                    },
+                    {
+                      icon: <BsLinkedin />,
+                      href: "https://linkedin.com/dev_olayinka",
+                      label: "LinkedIn",
+                    },
                   ].map((s) => (
                     <a
                       key={s.label}
