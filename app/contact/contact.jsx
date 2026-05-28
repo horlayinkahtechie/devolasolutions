@@ -36,8 +36,8 @@ const contactInfo = [
   {
     icon: <BiEnvelope />,
     label: "Email us",
-    value: "devolacontact@gmail.com",
-    href: "mailto:devolacontact@gmail.com",
+    value: "devolasolutions@gmail.com",
+    href: "mailto:devolasolutions@gmail.com",
   },
   {
     icon: <BiLogoWhatsapp />,
@@ -109,6 +109,8 @@ export default function Contact() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
+  const [submitError, setSubmitError] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
@@ -117,10 +119,23 @@ export default function Contact() {
       return;
     }
     setLoading(true);
-    // TODO: wire up to email service / API route
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setSubmitError(
+        "Something went wrong. Please try again or email us directly.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputBase =
@@ -394,6 +409,12 @@ export default function Contact() {
                     </>
                   )}
                 </button>
+
+                {submitError && (
+                  <p className="text-center text-xs text-red-500">
+                    {submitError}
+                  </p>
+                )}
 
                 <p className="text-center text-xs text-slate-400">
                   By submitting you agree to our{" "}

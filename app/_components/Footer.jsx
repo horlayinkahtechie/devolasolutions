@@ -31,7 +31,7 @@ const Footer = () => (
                 icon: <BsInstagram />,
                 href: "https://instagram.com/dev_olayinka",
               },
-              { icon: <FaTiktok />, href: "https://tiktok.com/dev_olayinka" },
+              { icon: <FaTiktok />, href: "https://tiktok.com/@dev_olayinka" },
               { icon: <BsWhatsapp />, href: "https://wa.me/08169415526" },
             ].map(({ icon, href }, i) => {
               const cls =
@@ -112,10 +112,10 @@ const Footer = () => (
               Have a project in mind?
             </p>
             <a
-              href="mailto:devolacontact@gmail.com"
+              href="mailto:devolasolutions@gmail.com"
               className="text-xl font-bold border-b-2 border-[#FF5C00] hover:text-[#FF5C00] transition-colors pb-1"
             >
-              devolacontact@gmail.com
+              devolasolutions@gmail.com
             </a>
           </div>
         </div>

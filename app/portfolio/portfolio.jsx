@@ -170,7 +170,7 @@ const allProjects = [
     screenBg: "bg-amber-100",
     tag: "bg-amber-50 text-amber-700",
     year: "2026",
-    featured: false,
+    featured: true,
     status: "Ongoing",
     link: "https://vanita.netlify.app",
   },

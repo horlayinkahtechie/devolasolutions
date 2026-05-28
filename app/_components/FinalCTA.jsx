@@ -96,7 +96,7 @@ const FinalCTA = () => {
               </a>
 
               <a
-                href="mailto:hello@youragency.com"
+                href="mailto:devolasolutions@gmail.com"
                 className="flex items-center gap-4 group w-fit"
               >
                 <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-50 group-hover:text-white transition-all duration-300">
@@ -107,7 +107,7 @@ const FinalCTA = () => {
                     Email
                   </div>
                   <div className="text-white font-bold text-lg">
-                    hello@youragency.com
+                    devolasolutions@gmail.com
                   </div>
                 </div>
               </a>
