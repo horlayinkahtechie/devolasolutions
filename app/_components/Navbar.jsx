@@ -28,7 +28,9 @@ const Navbar = () => {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -173,7 +175,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white/98 backdrop-blur-2xl transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 bg-white transition-all duration-500 lg:hidden ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
