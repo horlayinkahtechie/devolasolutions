@@ -46,8 +46,8 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-[#fafafa]">
-      <div className="max-w-7xl mx-auto bg-slate-900 rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-2xl shadow-slate-200">
+    <section className="py-16 md:py-24 px-4 md:px-12 bg-[#fafafa]">
+      <div className="max-w-7xl mx-auto bg-slate-900 rounded-2xl md:rounded-[3rem] p-6 sm:p-10 md:p-16 relative overflow-hidden shadow-2xl shadow-slate-200">
         {/* Ambient glows */}
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#FF5C00] blur-[140px] opacity-10 pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-slate-700 blur-[120px] opacity-30 pointer-events-none" />
@@ -106,14 +106,14 @@ const FinalCTA = () => {
                   <div className="text-xs text-slate-500 font-bold uppercase tracking-tighter">
                     Email
                   </div>
-                  <div className="text-white font-bold text-lg">
+                  <div className="text-white font-bold text-base md:text-lg break-all">
                     devolasolutions@gmail.com
                   </div>
                 </div>
               </a>
             </div>
 
-            <div className="flex items-center gap-10 pt-8 border-t border-white/10">
+            <div className="flex items-center gap-6 md:gap-10 pt-8 border-t border-white/10">
               {trustStats.map(({ value, label }) => (
                 <div key={label}>
                   <div className="text-2xl font-extrabold text-white">
@@ -128,7 +128,7 @@ const FinalCTA = () => {
           </div>
 
           {/* ── RIGHT: Expanded Lead Form ── */}
-          <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 md:p-10 backdrop-blur-sm shadow-inner">
+          <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-[2.5rem] p-5 sm:p-8 md:p-10 backdrop-blur-sm shadow-inner">
             {submitted ? (
               <div className="text-center py-20">
                 <div className="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
