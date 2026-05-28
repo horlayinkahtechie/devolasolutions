@@ -25,16 +25,33 @@ const Footer = () => (
             with precision and style.
           </p>
           <div className="flex gap-4">
-            {[<BsTwitter />, <BsInstagram />, <FaTiktok />, <BsWhatsapp />].map(
-              (social) => (
-                <div
-                  key={social}
-                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center font-bold text-xs hover:border-[#FF5C00] hover:text-[#FF5C00] cursor-pointer transition-all duration-300"
+            {[
+              { icon: <BsTwitter />, href: "https://twitter.com/dev_olayinka" },
+              {
+                icon: <BsInstagram />,
+                href: "https://instagram.com/dev_olayinka",
+              },
+              { icon: <FaTiktok />, href: "https://tiktok.com/dev_olayinka" },
+              { icon: <BsWhatsapp />, href: "https://wa.me/08169415526" },
+            ].map(({ icon, href }, i) => {
+              const cls =
+                "w-12 h-12 rounded-full border border-white/10 flex items-center justify-center font-bold text-xs hover:border-[#FF5C00] hover:text-[#FF5C00] cursor-pointer transition-all duration-300";
+              return href ? (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cls}
                 >
-                  {social}
+                  {icon}
+                </a>
+              ) : (
+                <div key={i} className={cls}>
+                  {icon}
                 </div>
-              ),
-            )}
+              );
+            })}
           </div>
         </div>
 
