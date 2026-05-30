@@ -157,7 +157,7 @@ const allProjects = [
   },
   {
     id: 11,
-    name: "Vanita",
+    name: "Vanita IO",
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind · Firebase",
@@ -168,7 +168,7 @@ const allProjects = [
     year: "2026",
     featured: false,
     status: "Ongoing",
-    link: "https://vanita.netlify.app",
+    link: "https://vanitaio.netlify.app",
   },
   {
     id: 12,
