@@ -157,7 +157,7 @@ const allProjects = [
   },
   {
     id: 11,
-    name: "Vanita IO",
+    name: "ECOMM",
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind · Firebase",
