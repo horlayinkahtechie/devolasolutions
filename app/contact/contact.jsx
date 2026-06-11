@@ -36,8 +36,8 @@ const contactInfo = [
   {
     icon: <BiEnvelope />,
     label: "Email us",
-    value: "devolasolutions@gmail.com",
-    href: "mailto:devolasolutions@gmail.com",
+    value: "abdulsalam@devolasolutions.com",
+    href: "mailto:abdulsalam@devolasolutions.com",
   },
   {
     icon: <BiLogoWhatsapp />,

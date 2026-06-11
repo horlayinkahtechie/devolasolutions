@@ -115,7 +115,7 @@ const Footer = () => (
               href="mailto:devolasolutions@gmail.com"
               className="text-xl font-bold border-b-2 border-[#FF5C00] hover:text-[#FF5C00] transition-colors pb-1"
             >
-              devolasolutions@gmail.com
+              abdulsalam@devolasolutions.com
             </a>
           </div>
         </div>
