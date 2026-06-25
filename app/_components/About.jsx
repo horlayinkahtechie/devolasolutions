@@ -1,22 +1,24 @@
-import React from "react";
 import Link from "next/link";
 
 const About = () => {
   return (
-    <section className="py-24 px-6 bg-white overflow-hidden">
+    <section className="py-24 px-5 md:px-10 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        {/* Left */}
         <div className="lg:col-span-7">
-          <span className="text-[#FF5C00] font-bold tracking-[0.3em] text-xs uppercase">
-            Our Story
-          </span>
-          <h2 className="text-5xl md:text-7xl font-black font-jakarta tracking-tighter mt-4 mb-8 leading-[0.9] text-slate-900">
+          <div className="inline-flex items-center gap-2.5 mb-6">
+            <span className="w-6 h-[2px] bg-[#FF5C00] rounded-full" />
+            <span className="text-[#FF5C00] font-bold tracking-[0.25em] text-xs uppercase">Our Story</span>
+          </div>
+
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mt-2 mb-8 leading-[0.92] text-slate-900">
             Digital Craftsmanship <br />
-            <span className="text-slate-300 italic font-medium">
+            <span className="text-slate-300 italic font-semibold text-3xl md:text-4xl lg:text-5xl">
               without the ego.
             </span>
           </h2>
 
-          <div className="space-y-6 max-w-xl text-lg text-slate-600 font-medium leading-relaxed">
+          <div className="space-y-5 max-w-xl text-[15px] md:text-base text-slate-500 leading-relaxed">
             <p>
               We are a collective of developers and designers who believe that
               great software shouldn&apos;t be a headache. We bridge the gap
@@ -31,65 +33,44 @@ const About = () => {
 
           <Link
             href="/aboutus"
-            className="group mt-10 flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-[#FF5C00] transition-colors"
+            className="group mt-10 inline-flex items-center gap-4 font-bold uppercase tracking-widest text-xs text-[#FF5C00] hover:gap-5 transition-all duration-300"
           >
             Read More About Us
-            <span className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-[#FF5C00] group-hover:border-[#FF5C00] group-hover:text-white transition-all duration-300">
+            <span className="w-11 h-11 rounded-full border-2 border-orange-200 flex items-center justify-center group-hover:bg-[#FF5C00] group-hover:border-[#FF5C00] group-hover:text-white transition-all duration-300 text-sm">
               →
             </span>
           </Link>
         </div>
 
-        {/* --- Right Column: The Stat Stack --- */}
+        {/* Right: Stats */}
         <div className="lg:col-span-5 relative">
-          {/* Subtle background element */}
-          <div className="absolute -inset-4 bg-[#fafafa] rounded-[3rem] -rotate-2 z-0" />
+          <div className="absolute -inset-4 bg-[#fafafa] rounded-[2.5rem] -rotate-2 z-0" />
 
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Stat Item 1: Projects */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-              <p className="text-[#FF5C00] font-black text-4xl mb-2 tracking-tighter">
-                50+
-              </p>
-              <h4 className="text-xs uppercase tracking-widest font-bold text-slate-400">
-                Projects Launched
-              </h4>
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-white p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <p className="text-[#FF5C00] font-black text-4xl mb-1.5 tracking-tighter leading-none">50+</p>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-400">Projects Launched</h4>
             </div>
 
-            {/* Stat Item 2: Location */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-              <p className="text-slate-900 font-black text-2xl mb-2 tracking-tight">
-                Nigeria
-              </p>
-              <h4 className="text-xs uppercase tracking-widest font-bold text-slate-400">
-                HQ Location
-              </h4>
+            <div className="bg-white p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <p className="text-slate-900 font-black text-2xl mb-1.5 tracking-tight">Nigeria</p>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-400">HQ Location</h4>
             </div>
 
-            {/* Stat Item 3: Support */}
-            <div className="bg-slate-900 p-8 rounded-3xl shadow-xl sm:col-span-1">
-              <div className="flex items-center gap-2 mb-2">
+            <div className="bg-slate-900 p-7 rounded-3xl shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+              <div className="flex items-center gap-2 mb-1.5">
                 <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
                 </span>
-                <p className="text-white font-black text-2xl tracking-tight text-white">
-                  24/7
-                </p>
+                <p className="font-black text-2xl tracking-tight leading-none text-white">24/7</p>
               </div>
-              <h4 className="text-xs uppercase tracking-widest font-bold text-slate-500">
-                Global Support
-              </h4>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Global Support</h4>
             </div>
 
-            {/* Stat Item 4: Satisfaction (The Bonus) */}
-            <div className="bg-orange-50 p-8 rounded-3xl border border-orange-100 shadow-sm">
-              <p className="text-[#FF5C00] font-black text-4xl mb-2 tracking-tighter">
-                99%
-              </p>
-              <h4 className="text-xs uppercase tracking-widest font-bold text-orange-300">
-                Client Success
-              </h4>
+            <div className="bg-orange-50 p-7 rounded-3xl border border-orange-100 hover:-translate-y-0.5 transition-all duration-300">
+              <p className="text-[#FF5C00] font-black text-4xl mb-1.5 tracking-tighter leading-none">99%</p>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-orange-300">Client Success</h4>
             </div>
           </div>
         </div>

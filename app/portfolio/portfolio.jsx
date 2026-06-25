@@ -627,13 +627,11 @@ export default function Portfolio() {
       <section className="relative overflow-hidden px-6 md:px-12 pt-36 pb-20">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm text-slate-400 font-medium mb-10">
-            <Link href="/" className="hover:text-[#FF5C00] transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-bold">Portfolio</span>
-          </div>
+          <nav className="flex items-center gap-1.5 text-xs text-slate-400 font-medium mb-10">
+            <Link href="/" className="hover:text-[#FF5C00] transition-colors duration-200">Home</Link>
+            <span className="text-slate-300">›</span>
+            <span className="text-slate-700 font-bold">Portfolio</span>
+          </nav>
 
           <div className="grid md:grid-cols-2 gap-12 items-end">
             <div>

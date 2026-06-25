@@ -29,7 +29,6 @@ const faqData = {
       a: "Absolutely. We specialise in modernising legacy sites — improving speed, design, and conversion rates — while preserving your brand identity and migrating your existing content.",
     },
   ],
-
   "Mobile App": [
     {
       q: "Do you build for both iOS and Android?",
@@ -53,10 +52,9 @@ const faqData = {
     },
     {
       q: "Do you provide post-launch support?",
-      a: "Yes. We offer maintenance packages covering OS compatibility updates, bug fixes, performance monitoring, and incremental feature releases after your initial launch. This may attract additional fee if it is beyond just little updates",
+      a: "Yes. We offer maintenance packages covering OS compatibility updates, bug fixes, performance monitoring, and incremental feature releases after your initial launch.",
     },
   ],
-
   "Graphic Design": [
     {
       q: "What design services do you offer?",
@@ -72,14 +70,13 @@ const faqData = {
     },
     {
       q: "How long does a brand identity project take?",
-      a: "A complete brand identity, logo, colour system, typography, and basic brand guide — typically takes 2–4 weeks from approved brief to final delivery.",
+      a: "A complete brand identity — logo, colour system, typography, and basic brand guide — typically takes 2–4 weeks from approved brief to final delivery.",
     },
     {
       q: "What do you need from me to get started?",
       a: "A brief covering your brand story, target audience, competitor references, and any style preferences. The more context you give us, the more accurately we can capture your vision on the first pass.",
     },
   ],
-
   "Business Registration": [
     {
       q: "What types of businesses can you register?",
@@ -99,7 +96,7 @@ const faqData = {
     },
     {
       q: "How much does business registration cost?",
-      a: "Our service fees vary by business type and share capital. Government filing fees are charged separately at cost with no markup. Reach out for a tailored quote, the process is simpler than most people expect.",
+      a: "Our service fees vary by business type and share capital. Government filing fees are charged separately at cost with no markup. Reach out for a tailored quote.",
     },
     {
       q: "Can a foreigner register a business in Nigeria?",
@@ -128,39 +125,34 @@ export default function FAQs({ defaultTab = null }) {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-[#fafafa]">
+    <section className="py-24 px-5 md:px-10 bg-[#fafafa]">
       <div className="max-w-4xl mx-auto">
-        {/* ── Section Header ── */}
+        {/* Header */}
         <div className="mb-14 pb-12 border-b border-slate-200">
           <div className="inline-flex items-center gap-2.5 mb-5">
-            <span className="w-6 h-0.5 bg-[#FF5C00] inline-block rounded-full" />
-            <span className="text-[#FF5C00] text-xs font-bold uppercase tracking-widest">
-              FAQs
-            </span>
+            <span className="w-6 h-0.5 bg-[#FF5C00] rounded-full" />
+            <span className="text-[#FF5C00] text-[11px] font-bold uppercase tracking-widest">FAQs</span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h2 className="text-5xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
-              Common
-              <br />
-              Questions
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
+              Common<br />Questions
             </h2>
-            <p className="text-slate-500 leading-relaxed max-w-xs">
-              Select a service below to see answers to the questions we get
-              asked most.
+            <p className="text-slate-500 leading-relaxed max-w-xs text-sm">
+              Select a service below to see answers to the questions we get asked most.
             </p>
           </div>
         </div>
 
-        {/* ── Category Tabs ── */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        {/* Tab pills */}
+        <div className="flex flex-wrap gap-2 mb-8">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => switchTab(tab)}
-              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 ${
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${
                 activeTab === tab
                   ? "bg-slate-900 text-white shadow-sm"
-                  : "bg-white border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-700"
+                  : "bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-700"
               }`}
             >
               {tab}
@@ -168,30 +160,26 @@ export default function FAQs({ defaultTab = null }) {
           ))}
         </div>
 
-        {/* ── FAQ Accordion ── */}
-        <div className="space-y-3">
+        {/* Accordion */}
+        <div className="space-y-2.5">
           {faqData[activeTab].map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={i}
-                className={`bg-white rounded-3xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? "border-slate-200 shadow-lg"
-                    : "border-slate-100 shadow-sm"
+                className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isOpen ? "border-slate-200 shadow-md shadow-slate-900/5" : "border-slate-100 shadow-sm"
                 }`}
               >
                 <button
                   onClick={() => toggle(i)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-panel-${i}`}
-                  className="w-full flex items-center justify-between gap-4 px-7 py-6 text-left focus:outline-none"
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none"
                 >
-                  <span className="text-base font-bold text-slate-900 leading-snug">
-                    {faq.q}
-                  </span>
+                  <span className="text-[15px] font-bold text-slate-900 leading-snug">{faq.q}</span>
                   <span
-                    className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light shrink-0 transition-all duration-300 ${
+                    className={`w-7 h-7 rounded-full border flex items-center justify-center text-base font-light shrink-0 transition-all duration-300 ${
                       isOpen
                         ? "bg-[#FF5C00] border-[#FF5C00] text-white rotate-45"
                         : "border-slate-200 text-[#FF5C00]"
@@ -201,21 +189,16 @@ export default function FAQs({ defaultTab = null }) {
                   </span>
                 </button>
 
-                {/* Animated Drawer using Tailwind CSS Grid */}
                 <div
                   id={`faq-panel-${i}`}
                   className={`transition-all duration-300 ease-in-out grid ${
-                    isOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-7 pb-7">
-                      <div className="h-px bg-slate-100 mb-5" />
-                      <p className="text-slate-500 leading-relaxed text-sm">
-                        {faq.a}
-                      </p>
+                    <div className="px-6 pb-6">
+                      <div className="h-px bg-slate-100 mb-4" />
+                      <p className="text-slate-500 leading-relaxed text-sm">{faq.a}</p>
                     </div>
                   </div>
                 </div>
@@ -224,12 +207,11 @@ export default function FAQs({ defaultTab = null }) {
           })}
         </div>
 
-        {/* ── Bottom note ── */}
         <p className="mt-10 text-center text-sm text-slate-400">
           Still have questions?{" "}
-          <button className="text-slate-900 font-bold hover:text-[#FF5C00] transition-colors duration-200">
+          <a href="/contact" className="text-slate-900 font-bold hover:text-[#FF5C00] transition-colors duration-200">
             Send us a message →
-          </button>
+          </a>
         </p>
       </div>
     </section>

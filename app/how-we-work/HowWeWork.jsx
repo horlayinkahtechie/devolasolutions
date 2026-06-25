@@ -264,13 +264,11 @@ export default function HowWeWork() {
         <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] opacity-40 pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm text-slate-400 font-medium mb-10">
-            <Link href="/" className="hover:text-[#FF5C00] transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-bold">How We Work</span>
-          </div>
+          <nav className="flex items-center gap-1.5 text-xs text-slate-400 font-medium mb-10">
+            <Link href="/" className="hover:text-[#FF5C00] transition-colors duration-200">Home</Link>
+            <span className="text-slate-300">›</span>
+            <span className="text-slate-700 font-bold">How We Work</span>
+          </nav>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -686,7 +684,7 @@ export default function HowWeWork() {
             ].map((f) => (
               <div
                 key={f.q}
-                className="bg-white border border-slate-100 rounded-2xl px-7 py-6"
+                className="bg-white border border-slate-100 rounded-2xl px-7 py-6 hover:shadow-sm hover:border-slate-200 transition-all duration-200"
               >
                 <h3 className="text-sm font-black text-slate-900 mb-2">
                   {f.q}

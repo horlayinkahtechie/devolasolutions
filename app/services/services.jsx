@@ -184,13 +184,11 @@ export default function ServicesPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-slate-400 font-medium mb-10">
-            <Link href="/" className="hover:text-[#FF5C00] transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-bold">Services</span>
-          </div>
+          <nav className="flex items-center gap-1.5 text-xs text-slate-400 font-medium mb-10">
+            <Link href="/" className="hover:text-[#FF5C00] transition-colors duration-200">Home</Link>
+            <span className="text-slate-300">›</span>
+            <span className="text-slate-700 font-bold">Services</span>
+          </nav>
 
           <SectionLabel text="What We Do" />
 
