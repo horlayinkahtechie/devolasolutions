@@ -581,10 +581,24 @@ export default function HowWeWork() {
             {[
               {
                 quote:
+                  "I love the fact that you are very professional. You communicated effectively and help us achieve all we can't achieve on WordPress",
+                name: "No Lans",
+                role: "Project Manager, Dwelcore",
+                initials: "NL",
+              },
+              {
+                quote:
                   "The website loads faster compared to our previous website. The image doesn't even take time to load. You also took your time to look into what we want and delivered exactly what we needed",
                 name: "MR Femi",
                 role: "IT Engineer, GTA Hotels Group",
                 initials: "FE",
+              },
+               {
+                quote:
+                  "I love the simplicity of the website design, and how fast you implemented the changes I requested. You also delivered the project on time.",
+                name: "MR Sodiq",
+                role: "CEO, Ayora Tribe Limited",
+                initials: "SO",
               },
               {
                 quote:
@@ -593,6 +607,15 @@ export default function HowWeWork() {
                 role: "CEO, LolasElan",
                 initials: "AL",
                 dark: true,
+              },
+
+              ,
+               {
+                quote:
+                  "I was referred to you by Mr. Vincent and honestly, you did not disappoint. The logo design was amazing and the website is very responsive. I love the fact that you are very professional and you delivered on time.",
+                name: "Yordson Apartments",
+                role: "CEO, Yordson Apartments",
+                initials: "SO",
               },
               {
                 quote:

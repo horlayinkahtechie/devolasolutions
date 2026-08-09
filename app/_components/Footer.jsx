@@ -90,7 +90,7 @@ const Footer = () => (
               href="mailto:devolasolutions@gmail.com"
               className="text-base font-bold border-b-2 border-[#FF5C00]/40 hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all duration-300 pb-1 inline-block"
             >
-              abdulsalam@devolasolutions.com
+              devolasolutions@gmail.com
             </a>
           </div>
         </div>
@@ -98,7 +98,7 @@ const Footer = () => (
 
       {/* Bottom bar */}
       <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 uppercase tracking-[0.25em] font-bold">
-        <p>© 2026 DevOla Solutions. Handcrafted in Nigeria.</p>
+        <p>© 2026 Devola Solutions. Handcrafted in Nigeria. · RC 9717931</p>
         <div className="flex gap-6">
           <a href="/privacy-policy" className="hover:text-slate-400 transition-colors duration-200">Privacy Policy</a>
           <a href="/terms" className="hover:text-slate-400 transition-colors duration-200">Terms of Service</a>

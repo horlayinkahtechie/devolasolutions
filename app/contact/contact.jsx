@@ -16,7 +16,7 @@ const services = [
 ];
 
 const budgets = [
-  "₦100,000 – ₦300,000",
+  "₦200,000 – ₦300,000",
   "₦300,000 – ₦750,000",
   "₦750,000 – ₦2,000,000",
   "Above ₦2,000,000",
@@ -29,8 +29,8 @@ const contactInfo = [
   {
     icon: <BiEnvelope size={18} />,
     label: "Email us",
-    value: "abdulsalam@devolasolutions.com",
-    href: "mailto:abdulsalam@devolasolutions.com",
+    value: "devolasolutions@gmail.com",
+    href: "mailto:devolasolutions@gmail.com",
   },
   {
     icon: <BiLogoWhatsapp size={18} />,
@@ -127,9 +127,8 @@ export default function Contact() {
   return (
     <div className="bg-[#fafafa]">
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden px-5 md:px-10 pt-36 pb-14">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-50 pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto">
+      <section className="px-5 md:px-10 pt-36 pb-14">
+        <div className="max-w-7xl mx-auto">
           <nav className="flex items-center gap-1.5 text-xs text-slate-400 font-medium mb-12">
             <Link href="/" className="hover:text-[#FF5C00] transition-colors duration-200">Home</Link>
             <span className="text-slate-300">›</span>
@@ -138,10 +137,7 @@ export default function Contact() {
 
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white border border-orange-100 shadow-sm rounded-full px-4 py-1.5 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5C00] opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF5C00]" />
-              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00]" />
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF5C00]">
                 Responding within 24 hours
               </span>
@@ -332,11 +328,7 @@ export default function Contact() {
                 )}
 
                 <p className="text-center text-xs text-slate-400">
-                  By submitting you agree to our{" "}
-                  <Link href="/privacy" className="underline underline-offset-2 hover:text-slate-600 transition-colors duration-200">
-                    privacy policy
-                  </Link>
-                  . We never share your information.
+                  We never share your information.
                 </p>
               </form>
             )}
@@ -397,6 +389,12 @@ export default function Contact() {
                     </a>
                   ))}
                 </div>
+              </div>
+
+              <div className="border-t border-slate-100 mt-6 pt-5">
+                <p className="text-xs text-slate-400 font-medium">
+                  CAC Registered Business · RC 9717931
+                </p>
               </div>
             </div>
 

@@ -65,7 +65,6 @@ const services = [
 const schemeStyles = {
   light: {
     card: "bg-white border border-slate-100",
-    num: "text-slate-100",
     icon: "bg-orange-50 text-[#FF5C00]",
     title: "text-slate-900",
     desc: "text-slate-500",
@@ -77,7 +76,6 @@ const schemeStyles = {
   },
   orange: {
     card: "bg-[#FF5C00]",
-    num: "text-orange-400/25",
     icon: "bg-white/15 text-white",
     title: "text-white",
     desc: "text-orange-100",
@@ -89,7 +87,6 @@ const schemeStyles = {
   },
   dark: {
     card: "bg-slate-900",
-    num: "text-slate-800",
     icon: "bg-white/8 text-white",
     title: "text-white",
     desc: "text-slate-400",
@@ -130,22 +127,20 @@ const Services = () => (
           return (
             <div
               key={s.num}
-              className={`relative overflow-hidden rounded-[1.75rem] ${st.card} p-7 md:p-9 flex flex-col gap-7 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-500`}
+              className={`relative rounded-[1.75rem] ${st.card} p-7 md:p-9 flex flex-col gap-7 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-500`}
             >
-              {/* Decorative number */}
-              <span className={`absolute -top-3 -right-1 text-[8rem] font-black leading-none select-none pointer-events-none ${st.num}`}>
-                {s.num}
-              </span>
-
               {/* Icon + title + desc */}
-              <div className="relative z-10 flex items-start gap-4">
-                <div className={`w-11 h-11 rounded-xl ${st.icon} flex items-center justify-center text-lg shrink-0 mt-0.5`}>
-                  {s.icon}
+              <div className="relative z-10 flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className={`w-11 h-11 rounded-xl ${st.icon} flex items-center justify-center text-lg shrink-0 mt-0.5`}>
+                    {s.icon}
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-black tracking-tight mb-1.5 ${st.title}`}>{s.title}</h3>
+                    <p className={`text-sm leading-relaxed ${st.desc}`}>{s.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className={`text-xl font-black tracking-tight mb-1.5 ${st.title}`}>{s.title}</h3>
-                  <p className={`text-sm leading-relaxed ${st.desc}`}>{s.desc}</p>
-                </div>
+                <span className={`text-xs font-bold tabular-nums shrink-0 mt-1 ${st.label}`}>{s.num}</span>
               </div>
 
               <div className={`border-t ${st.divider}`} />

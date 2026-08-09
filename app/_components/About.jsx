@@ -43,34 +43,29 @@ const About = () => {
         </div>
 
         {/* Right: Stats */}
-        <div className="lg:col-span-5 relative">
-          <div className="absolute -inset-4 bg-[#fafafa] rounded-[2.5rem] -rotate-2 z-0" />
-
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-white p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-              <p className="text-[#FF5C00] font-black text-4xl mb-1.5 tracking-tighter leading-none">50+</p>
-              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-400">Projects Launched</h4>
+        <div className="lg:col-span-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-white p-7 rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300">
+              <p className="text-[#FF5C00] font-black text-2xl mb-1.5 tracking-tight leading-none">Full-Stack</p>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-400">Dev, Design & Legal</h4>
             </div>
 
-            <div className="bg-white p-7 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="bg-white p-7 rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-300">
               <p className="text-slate-900 font-black text-2xl mb-1.5 tracking-tight">Nigeria</p>
               <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-400">HQ Location</h4>
             </div>
 
-            <div className="bg-slate-900 p-7 rounded-3xl shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+            <div className="bg-slate-900 p-7 rounded-2xl hover:-translate-y-0.5 transition-all duration-300">
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
-                </span>
-                <p className="font-black text-2xl tracking-tight leading-none text-white">24/7</p>
+                <span className="w-2 h-2 rounded-full bg-green-500 shrink-0" />
+                <p className="font-black text-2xl tracking-tight leading-none text-white">Reachable</p>
               </div>
-              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Global Support</h4>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-slate-500">WhatsApp, Email & Call</h4>
             </div>
 
-            <div className="bg-orange-50 p-7 rounded-3xl border border-orange-100 hover:-translate-y-0.5 transition-all duration-300">
-              <p className="text-[#FF5C00] font-black text-4xl mb-1.5 tracking-tighter leading-none">99%</p>
-              <h4 className="text-[10px] uppercase tracking-widest font-bold text-orange-300">Client Success</h4>
+            <div className="bg-orange-50 p-7 rounded-2xl border border-orange-100 hover:-translate-y-0.5 transition-all duration-300">
+              <p className="text-[#FF5C00] font-black text-2xl mb-1.5 tracking-tight leading-none">Client-First</p>
+              <h4 className="text-[10px] uppercase tracking-widest font-bold text-orange-300">We Stay On After Launch</h4>
             </div>
           </div>
         </div>

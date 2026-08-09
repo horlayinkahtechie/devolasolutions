@@ -2,9 +2,9 @@ import { FaWhatsapp, FaEnvelope, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
 const trustStats = [
-  { value: "50+", label: "Projects" },
-  { value: "30+", label: "Clients" },
-  { value: "98%", label: "Satisfaction" },
+  { value: "Fixed Pricing", label: "No Hidden Fees" },
+  { value: "Fast Turnaround", label: "Weeks, Not Months" },
+  { value: "Ongoing Support", label: "Even After Launch" },
 ];
 
 const FinalCTA = () => {
@@ -19,10 +19,7 @@ const FinalCTA = () => {
           {/* LEFT */}
           <div>
             <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5C00] opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FF5C00]" />
-              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00]" />
               <span className="text-[#FF5C00] text-[11px] font-bold uppercase tracking-widest">
                 Available for New Projects
               </span>
@@ -73,10 +70,10 @@ const FinalCTA = () => {
               </a>
             </div>
 
-            <div className="flex items-center gap-8 pt-8 border-t border-white/8">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-white/8">
               {trustStats.map(({ value, label }) => (
                 <div key={label}>
-                  <div className="text-xl font-extrabold text-white">{value}</div>
+                  <div className="text-sm font-extrabold text-white">{value}</div>
                   <div className="text-[11px] text-slate-500 mt-0.5 font-medium">{label}</div>
                 </div>
               ))}

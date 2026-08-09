@@ -12,10 +12,9 @@ import {
   SiGooglecloud,
 } from "react-icons/si";
 import FinalCTA from "../_components/FinalCTA";
-import { BsLightningChargeFill } from "react-icons/bs";
+import { BsLightningChargeFill, BsBank } from "react-icons/bs";
 import { GiGlobe } from "react-icons/gi";
 import { HiOutlineDocumentText } from "react-icons/hi";
-import { MdNoEncryptionGmailerrorred } from "react-icons/md";
 import { RiShakeHandsFill } from "react-icons/ri";
 
 /* ─────────────────────────────────────────────
@@ -34,16 +33,16 @@ const SectionLabel = ({ text }) => (
    DATA
 ───────────────────────────────────────────── */
 const heroStats = [
-  { value: "5+", label: "Years Active" },
-  { value: "50+", label: "Projects Built" },
-  { value: "40+", label: "Happy Clients" },
-  { value: "98%", label: "Satisfaction Rate" },
+  { value: "Custom-Built", label: "No Templates, Ever" },
+  { value: "Full-Stack", label: "Dev, Design & Legal" },
+  { value: "Nigeria-Based", label: "Remote-Friendly" },
+  { value: "Client-First", label: "Support After Launch" },
 ];
 
 const milestones = [
   {
     year: "2022",
-    text: "Devola Solutions founded — first 2 clients onboarded.",
+    text: "Devola Solutions founded, ready to take on our first clients.",
   },
   {
     year: "2023",
@@ -59,11 +58,11 @@ const milestones = [
   },
   {
     year: "2026",
-    text: "Surpassed 40+ active clients; team grew to 8+ professionals.",
+    text: "Grew our active client roster and expanded the core team.",
   },
   {
     year: "2026",
-    text: "50+ projects delivered. Expanding into West African markets.",
+    text: "Continuing to deliver for businesses across Nigeria.",
   },
 ];
 
@@ -78,7 +77,7 @@ const differentiators = [
   {
     icon: <GiGlobe />,
     title: "Local Knowledge, Global Standards",
-    desc: "We understand the Nigerian and African market deeply while building products that meet international benchmarks.",
+    desc: "We understand the Nigerian, African and Global market deeply while building products that meet international benchmarks.",
     bg: "bg-slate-900",
     border: "border-slate-800",
     dark: true,
@@ -151,36 +150,36 @@ const techs = [
 
 const achievements = [
   {
-    value: "50+",
-    label: "Projects Delivered",
+    value: "End-to-End",
+    label: "Design to Launch",
     bg: "bg-white",
     text: "text-slate-900",
     sub: "text-slate-400",
   },
   {
-    value: "40+",
-    label: "Happy Clients",
+    value: "Client-First",
+    label: "Long-Term Partnerships",
     bg: "bg-[#FF5C00]",
     text: "text-white",
     sub: "text-orange-100",
   },
   {
-    value: "5+",
-    label: "Years of Experience",
+    value: "Proven Process",
+    label: "A Repeatable Workflow",
     bg: "bg-slate-900",
     text: "text-white",
     sub: "text-slate-500",
   },
   {
-    value: "98%",
-    label: "Client Satisfaction",
+    value: "Built to Last",
+    label: "Scalable Code & Design",
     bg: "bg-white",
     text: "text-slate-900",
     sub: "text-slate-400",
   },
   {
-    value: "100+",
-    label: "CAC Registrations",
+    value: "Legal Expertise",
+    label: "CAC, TIN & SCUML",
     bg: "bg-slate-900",
     text: "text-white",
     sub: "text-slate-500",
@@ -268,11 +267,8 @@ export default function Aboutus() {
       {/* ════════════════════════════════════
           1. HERO
       ════════════════════════════════════ */}
-      <section className="relative overflow-hidden px-6 md:px-12 pt-36 pb-24">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] opacity-50 pointer-events-none" />
-
-        <div className="relative z-10 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 pt-36 pb-24">
+        <div className="max-w-7xl mx-auto">
           <SectionLabel text="About Devola Solutions" />
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
@@ -284,10 +280,14 @@ export default function Aboutus() {
               </h1>
               <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
                 A team of passionate developers, designers, and strategists
-                building the digital backbone of African businesses, from
+                building the digital backbone of businesses, from
                 stunning websites and apps to the legal foundation that makes it
                 all official.
               </p>
+              <span className="inline-flex items-center gap-2 bg-white border border-slate-100 rounded-full px-4 py-2 mt-6 shadow-sm">
+                <BsBank className="text-slate-500 text-sm" />
+                <span className="text-xs font-bold text-slate-700">CAC Registered · RC 9717931</span>
+              </span>
             </div>
 
             {/* Breadcrumb */}
@@ -307,7 +307,7 @@ export default function Aboutus() {
                 key={label}
                 className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm"
               >
-                <div className="text-3xl font-extrabold text-slate-900">
+                <div className="text-xl font-extrabold text-slate-900">
                   {value}
                 </div>
                 <div className="text-xs text-slate-400 mt-1 font-medium uppercase tracking-wide">
@@ -341,10 +341,9 @@ export default function Aboutus() {
                 fast, and delivered quality without the runaround.
               </p>
               <p>
-                We started in 2022 with two clients and a clear conviction —
-                that world-class digital products shouldn&apos;t be out of reach
-                for African businesses. Today, 50+ projects later, that
-                conviction has only grown stronger.
+                We started in 2022 with a clear conviction — that world-class
+                digital products shouldn&apos;t be out of reach for businesses
+                and brands. That conviction has only grown stronger since.
               </p>
               <p>
                 We are a collective of developers, designers, and strategists
@@ -376,7 +375,7 @@ export default function Aboutus() {
             </h3>
             <div className="relative space-y-0">
               {milestones.map((m, i) => (
-                <div key={m.year} className="flex gap-5 group">
+                <div key={`${m.year}-${i}`} className="flex gap-5 group">
                   {/* Line + dot */}
                   <div className="flex flex-col items-center">
                     <div className="w-3 h-3 rounded-full bg-[#FF5C00] shrink-0 mt-1 group-hover:scale-125 transition-transform" />
@@ -413,44 +412,34 @@ export default function Aboutus() {
 
           <div className="grid md:grid-cols-2 gap-5">
             {/* Mission */}
-            <div className="bg-slate-900 rounded-3xl p-10 relative overflow-hidden">
-              <div className="absolute -top-8 -right-8 text-[8rem] font-black text-slate-800 leading-none select-none pointer-events-none">
-                M
-              </div>
-              <div className="relative z-10">
-                <span className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#FF5C00] mb-6">
-                  Mission
-                </span>
-                <p className="text-2xl md:text-3xl font-black text-white leading-[1.2]">
-                  To deliver world-class digital products that empower African
-                  businesses to compete globally.
-                </p>
-                <p className="text-slate-400 mt-6 leading-relaxed text-sm">
-                  We do this through high-quality engineering, intentional
-                  design, and a genuine commitment to our clients&apos;
-                  long-term success.
-                </p>
-              </div>
+            <div className="bg-slate-900 rounded-3xl p-10">
+              <span className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#FF5C00] mb-6">
+                Mission
+              </span>
+              <p className="text-2xl md:text-3xl font-black text-white leading-[1.2]">
+                To deliver world-class digital products that empower
+                businesses and brands to compete globally.
+              </p>
+              <p className="text-slate-400 mt-6 leading-relaxed text-sm">
+                We do this through high-quality engineering, intentional
+                design, and a genuine commitment to our clients&apos;
+                long-term success.
+              </p>
             </div>
 
             {/* Vision */}
-            <div className="bg-[#FF5C00] rounded-3xl p-10 relative overflow-hidden">
-              <div className="absolute -top-8 -right-8 text-[8rem] font-black text-orange-400/20 leading-none select-none pointer-events-none">
-                V
-              </div>
-              <div className="relative z-10">
-                <span className="inline-flex items-center gap-2 bg-white/20 border border-white/20 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white mb-6">
-                  Vision
-                </span>
-                <p className="text-2xl md:text-3xl font-black text-white leading-[1.2]">
-                  To become Africa&apos;s most trusted digital agency — known
-                  for speed, quality, and integrity.
-                </p>
-                <p className="text-orange-100 mt-6 leading-relaxed text-sm">
-                  A future where every ambitious African business has access to
-                  the digital tools and talent it deserves.
-                </p>
-              </div>
+            <div className="bg-[#FF5C00] rounded-3xl p-10">
+              <span className="inline-flex items-center gap-2 bg-white/20 border border-white/20 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white mb-6">
+                Vision
+              </span>
+              <p className="text-2xl md:text-3xl font-black text-white leading-[1.2]">
+                To become Africa&apos;s most trusted digital agency — known
+                for speed, quality, and integrity.
+              </p>
+              <p className="text-orange-100 mt-6 leading-relaxed text-sm">
+                A future where every ambitious business and brands has access to
+                the digital tools and talent it deserves.
+              </p>
             </div>
           </div>
         </div>
@@ -522,9 +511,9 @@ export default function Aboutus() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {team.map((m) => (
+            {team.map((m, i) => (
               <div
-                key={m.name}
+                key={`${m.name}-${i}`}
                 className="bg-white rounded-3xl border border-slate-100 p-7 flex flex-col gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group"
               >
                 {/* Avatar */}
@@ -592,11 +581,11 @@ export default function Aboutus() {
       <section className="py-24 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <SectionLabel text="Achievements" />
+            <SectionLabel text="What We Stand For" />
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-[1.05]">
-              Numbers That Tell
+              Principles That Guide
               <br />
-              Our Story
+              Every Project
             </h2>
           </div>
 
@@ -606,7 +595,7 @@ export default function Aboutus() {
                 key={label}
                 className={`${bg} rounded-3xl p-8 flex flex-col justify-between min-h-36 border border-slate-100`}
               >
-                <div className={`text-4xl font-extrabold ${text}`}>{value}</div>
+                <div className={`text-xl font-extrabold ${text}`}>{value}</div>
                 <div
                   className={`text-xs font-bold uppercase tracking-wider mt-4 ${sub}`}
                 >

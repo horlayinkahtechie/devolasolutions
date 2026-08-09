@@ -1,11 +1,9 @@
 const testimonials = [
   {
-    quote: "Devola turned our outdated website into a conversion machine. Within 3 months of launch, our inbound leads doubled.",
-    name: "Adebayo Okafor",
-    role: "CEO",
-    company: "PrimeTech Nigeria",
-    initials: "AO",
-    rating: 5,
+    quote: "I love the fact that you are very professional. You communicated effectively and help us achieve all we can't achieve on WordPress.",
+    name: "No Lans",
+    role: "Project Manager, Dwelcore",
+    initials: "NL",
     card: "bg-white border border-slate-100",
     text: "text-slate-800",
     muted: "text-slate-500",
@@ -13,12 +11,10 @@ const testimonials = [
     avatar: "bg-slate-100 text-slate-500",
   },
   {
-    quote: "The mobile app they built has over 10,000 downloads in just 6 months. Exceptional work from an exceptional team.",
-    name: "Chidinma Eze",
-    role: "Founder",
-    company: "That Local Girl",
-    initials: "CE",
-    rating: 5,
+    quote: "The website loads faster compared to our previous website. The image doesn't even take time to load. You also took your time to look into what we want and delivered exactly what we needed.",
+    name: "Mr Femi",
+    role: "IT Engineer, GTA Hotels Group",
+    initials: "FE",
     card: "bg-slate-900 border border-slate-800",
     text: "text-white",
     muted: "text-slate-400",
@@ -26,12 +22,43 @@ const testimonials = [
     avatar: "bg-slate-800 text-slate-300",
   },
   {
-    quote: "From business registration to a full web presence — they handled everything. Professional, fast, and reliable.",
-    name: "Emmanuel Nwosu",
-    role: "Director",
-    company: "GTA Hotels",
-    initials: "EN",
-    rating: 5,
+    quote: "I love the simplicity of the website design, and how fast you implemented the changes I requested. You also delivered the project on time.",
+    name: "Mr Sodiq",
+    role: "CEO, Ayora Tribe Limited",
+    initials: "SO",
+    card: "bg-[#FF5C00] border border-orange-400/20",
+    text: "text-white",
+    muted: "text-orange-100",
+    deco: "text-orange-400/20",
+    avatar: "bg-white/20 text-white",
+  },
+  {
+    quote: "I love the UI of my E-commerce website, the payment integration and the admin management system. And the fact I can add products myself.",
+    name: "Adebayo Lola",
+    role: "CEO, LolasElan",
+    initials: "AL",
+    card: "bg-white border border-slate-100",
+    text: "text-slate-800",
+    muted: "text-slate-500",
+    deco: "text-slate-100",
+    avatar: "bg-slate-100 text-slate-500",
+  },
+  {
+    quote: "I was referred to you by Mr. Vincent and honestly, you did not disappoint. The logo design was amazing and the website is very responsive. I love the fact that you are very professional and you delivered on time.",
+    name: "Yordson Apartments",
+    role: "CEO, Yordson Apartments",
+    initials: "SO",
+    card: "bg-slate-900 border border-slate-800",
+    text: "text-white",
+    muted: "text-slate-400",
+    deco: "text-slate-800",
+    avatar: "bg-slate-800 text-slate-300",
+  },
+  {
+    quote: "I love how fast you deliver the project and how everything works. I also love your fast response time.",
+    name: "AMZ",
+    role: "CEO, Amazon World",
+    initials: "AZ",
     card: "bg-[#FF5C00] border border-orange-400/20",
     text: "text-white",
     muted: "text-orange-100",
@@ -80,7 +107,7 @@ const Testimonials = () => (
             {/* Stars + person */}
             <div className="relative z-10">
               <div className="flex gap-0.5 mb-4">
-                {Array.from({ length: t.rating }).map((_, i) => (
+                {Array.from({ length: 5 }).map((_, i) => (
                   <span key={i} className="text-[#FF5C00] text-sm leading-none">★</span>
                 ))}
               </div>
@@ -90,7 +117,7 @@ const Testimonials = () => (
                 </div>
                 <div>
                   <div className={`text-sm font-bold leading-tight ${t.text}`}>{t.name}</div>
-                  <div className={`text-xs mt-0.5 ${t.muted}`}>{t.role}, {t.company}</div>
+                  <div className={`text-xs mt-0.5 ${t.muted}`}>{t.role}</div>
                 </div>
               </div>
             </div>
@@ -98,16 +125,10 @@ const Testimonials = () => (
         ))}
       </div>
 
-      {/* Aggregate rating */}
-      <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <div className="flex gap-0.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <span key={i} className="text-[#FF5C00] text-lg leading-none">★</span>
-          ))}
-        </div>
+      {/* Aggregate note */}
+      <div className="mt-10 pt-8 border-t border-slate-100 flex items-center justify-center">
         <p className="text-sm text-slate-400 font-medium">
-          <span className="text-slate-900 font-bold">5.0</span> average rating across{" "}
-          <span className="text-slate-900 font-bold">30+</span> client engagements
+          Every quote above is from a real client we&apos;ve worked with.
         </p>
       </div>
     </div>

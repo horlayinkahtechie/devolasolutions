@@ -98,17 +98,46 @@ const allProjects = [
   {
     id: 21,
     name: "Dwelcore",
-    category: "Web Design",
+    category: "Web Development",
     type: "web",
-    tools: "Figma",
+    tools: "Next.js · Tailwind · Firebase · Stripe · Figma · Resend",
     desc: "A platform that allows users browse home plans, purchase and modify home plans in the US. Supports multiple payment method.",
     image: "/dwelcore.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
     year: "2026",
     featured: true,
-    status: "In progress",
-    link: "https://www.figma.com/design/98X5zc8uXtdiqKXNv378Eh/Dwelcore-UI-Design?node-id=112-7&t=qN7dSWAQO7diQZU2-0",
+    status: "Completed",
+    link: "https://dwelcore.com",
+  },
+  {
+    id: 22,
+    name: "Yordson Apartments",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
+    desc: "A hotel website with room listings, booking system, and payment integration for a seamless user experience.",
+    image: "/yordsonapartments.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://yordsonapartments.com",
+  },
+  {
+    id: 23,
+    name: "Ayora Tribe Limited",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
+    desc: "An E-comerce website for a brand that sells natural, eco-friendly scent experiences and curated gifting for the homes, offices, and corporate spaces." ,   image: "/ayoratribelimited.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://ayoratribelimited.com",
   },
   {
     id: 7,
@@ -293,7 +322,6 @@ const allProjects = [
 ];
 
 const filters = [
-  { label: "All", value: "All" },
   { label: "Web Development", value: "Web Development" },
   { label: "Mobile App", value: "Mobile App" },
   { label: "Graphic Design", value: "Graphic Design" },
@@ -436,9 +464,9 @@ const ProjectCard = ({ project }) => (
 );
 
 const Portfolio = () => {
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState(filters[0].value);
 
-  const filtered = active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
+  const filtered = allProjects.filter((p) => p.category === active);
 
   return (
     <section className="py-24 px-5 md:px-10 bg-[#fafafa]">
@@ -506,7 +534,7 @@ const Portfolio = () => {
           <p className="text-sm text-slate-400 font-medium">
             Showing{" "}
             <span className="text-slate-900 font-bold">{filtered.length}</span>{" "}
-            {active === "All" ? "projects" : `${active} project${filtered.length !== 1 ? "s" : ""}`}
+            {active} project{filtered.length !== 1 ? "s" : ""}
           </p>
           <Link
             href="/portfolio"

@@ -103,17 +103,46 @@ const allProjects = [
   {
     id: 21,
     name: "Dwelcore",
-    category: "Web Design",
+    category: "Web Development",
     type: "web",
-    tools: "Figma",
+    tools: "Next.js · Tailwind · Firebase · Stripe · Figma · Resend",
     desc: "A platform that allows users browse home plans, purchase and modify home plans in the US. Supports multiple payment method.",
     image: "/dwelcore.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
     year: "2026",
     featured: true,
-    status: "In progress",
-    link: "https://www.figma.com/design/98X5zc8uXtdiqKXNv378Eh/Dwelcore-UI-Design?node-id=112-7&t=qN7dSWAQO7diQZU2-0",
+    status: "Completed",
+    link: "https://dwelcore.com",
+  },
+  {
+    id: 22,
+    name: "Yordson Apartments",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
+    desc: "A hotel website with room listings, booking system, and payment integration for a seamless user experience.",
+    image: "/yordsonapartments.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://yordsonapartments.com",
+  },
+  {
+    id: 23,
+    name: "Ayora Tribe Limited",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
+    desc: "An E-comerce website for a brand that sells natural, eco-friendly scent experiences and curated gifting for the homes, offices, and corporate spaces." ,   image: "/ayoratribelimited.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://ayoratribelimited.com",
   },
   {
     id: 7,
@@ -623,7 +652,7 @@ const FeaturedCard = ({ project }) => {
    MAIN PORTFOLIO PAGE
 ───────────────────────────────── */
 export default function Portfolio() {
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState("Web Development");
 
   const featured = allProjects.filter((p) => p.featured);
   const rest = allProjects.filter((p) => !p.featured);
@@ -639,9 +668,8 @@ export default function Portfolio() {
   return (
     <div className="bg-[#fafafa]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 md:px-12 pt-36 pb-20">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 pt-36 pb-20">
+        <div className="max-w-7xl mx-auto">
           <nav className="flex items-center gap-1.5 text-xs text-slate-400 font-medium mb-10">
             <Link href="/" className="hover:text-[#FF5C00] transition-colors duration-200">Home</Link>
             <span className="text-slate-300">›</span>
@@ -668,37 +696,37 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* Stats Metric Box */}
+            {/* Value Props Box */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 {
-                  stat: "40+",
-                  label: "Projects delivered",
+                  stat: "Real Projects",
+                  label: "Every Entry Is Live",
                   bg: "bg-white border border-slate-100",
                   num: "text-slate-900",
                 },
                 {
-                  stat: "4",
-                  label: "Service categories",
+                  stat: "Full-Service",
+                  label: "Web, Mobile, Design & Legal",
                   bg: "bg-[#FF5C00]",
                   num: "text-white",
                 },
                 {
-                  stat: "98%",
-                  label: "Client satisfaction",
+                  stat: "Client-First",
+                  label: "Long-Term Partnerships",
                   bg: "bg-slate-900",
                   num: "text-white",
                 },
                 {
-                  stat: "2022",
-                  label: "Year founded",
+                  stat: "Nigeria-Built",
+                  label: "Proudly Local",
                   bg: "bg-white border border-slate-100",
                   num: "text-slate-900",
                 },
               ].map(({ stat, label, bg, num }) => (
                 <div key={label} className={`rounded-3xl p-6 ${bg}`}>
                   <div
-                    className={`text-4xl font-black leading-none mb-1.5 ${num}`}
+                    className={`text-xl font-black leading-none mb-1.5 ${num}`}
                   >
                     {stat}
                   </div>

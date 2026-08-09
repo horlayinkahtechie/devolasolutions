@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "./_components/Hero";
+import TrustBar from "./_components/TrustBar";
 import Services from "./_components/Services";
 import WhyUs from "./_components/WhyUs";
 import FinalCTA from "./_components/FinalCTA";
@@ -61,10 +62,11 @@ export default function Home() {
     <main className="min-h-screen bg-[#F5F5F7]">
       <Navbar />
       <Hero />
+      <TrustBar />
       <About />
       <Services />
       <WhyUs />
-      <Portfolio />
+      <Portfolio  />
       <FAQs />
       <Testimonials />
       <FinalCTA />
