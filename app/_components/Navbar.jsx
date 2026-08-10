@@ -53,13 +53,14 @@ const Navbar = () => {
   const isPricingActive = pathname.startsWith("/pricing");
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-100 transition-all duration-500 ${
-        scrolled || isOpen
-          ? "bg-white/90 backdrop-blur-2xl py-3 shadow-sm shadow-slate-900/5 border-b border-slate-100/80"
-          : "bg-transparent py-5"
-      }`}
-    >
+    <>
+      <nav
+        className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
+          scrolled || isOpen
+            ? "bg-white/90 backdrop-blur-2xl py-3 shadow-sm shadow-slate-900/5 border-b border-slate-100/80"
+            : "bg-transparent py-5"
+        }`}
+      >
       <div className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="relative z-10 shrink-0 group">
@@ -162,10 +163,11 @@ const Navbar = () => {
           <span className={`block w-5 h-[2px] bg-slate-900 rounded-full transition-all duration-300 origin-center ${isOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
         </button>
       </div>
+    </nav>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white z-101 lg:hidden transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-white z-[101] lg:hidden transition-all duration-500 ease-in-out ${
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
@@ -259,7 +261,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 
