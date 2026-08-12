@@ -26,10 +26,10 @@ export const metadata = {
   creator: "Devola Solutions",
   publisher: "Devola Solutions",
   robots: { index: true, follow: true },
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/aboutus" },
   openGraph: {
     type: "website",
-    url: "https://devolasolutions.com/about",
+    url: "https://devolasolutions.com/aboutus",
     siteName: "Devola Solutions",
     title: "About Devola Solutions | Reliable Web & Mobile App Developers",
     description:
