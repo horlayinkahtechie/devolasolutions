@@ -4,23 +4,22 @@ import Aboutus from "./aboutus";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
-  title: "About Devola Solutions | Nigerian Digital Agency | Our Story, Mission & Team",
+  title: "About Devola Solutions | Reliable Web & Mobile App Developers in Nigeria",
   description:
-    "Devola Solutions is a Nigerian digital agency building websites, mobile apps, brand identities, and registering businesses. Learn who we are, what drives us, and why clients trust us.",
+    "Meet the Nigerian web and mobile app development team behind Devola Solutions — who we are, what drives us, and why businesses hire us to build and ship their projects.",
   keywords: [
+    "reliable web developer Nigeria",
+    "trusted mobile app developer Nigeria",
+    "hire a Nigerian web development team",
+    "experienced app developers Nigeria",
     "about Devola Solutions",
     "Nigerian digital agency",
     "web development agency Nigeria",
     "tech company Lagos Nigeria",
-    "software agency Nigeria",
     "who are Devola Solutions",
     "Nigeria website development team",
-    "digital agency story Nigeria",
-    "reliable web developer Nigeria",
     "trusted tech agency Lagos",
-    "Nigerian startup agency",
     "web and mobile agency Nigeria",
-    "Nigeria branding company",
     "best digital agency Nigeria",
   ],
   authors: [{ name: "Devola Solutions", url: "https://devolasolutions.com" }],
@@ -32,14 +31,14 @@ export const metadata = {
     type: "website",
     url: "https://devolasolutions.com/about",
     siteName: "Devola Solutions",
-    title: "About Devola Solutions | Nigerian Digital Agency",
+    title: "About Devola Solutions | Reliable Web & Mobile App Developers",
     description:
-      "We're a Nigerian digital agency building websites, apps, brands, and registering businesses — all under one roof. Meet the team behind the work.",
+      "We're a Nigerian digital agency building websites, apps, brands, and registering businesses — all under one roof. Meet the team behind the work before you hire us.",
     locale: "en_NG",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Devola Solutions | Nigerian Digital Agency",
+    title: "About Devola Solutions | Nigerian Web & Mobile App Developers",
     description:
       "Websites · Apps · Branding · CAC Registration. Nigerian team, world-class delivery. Learn who we are and how we work.",
     creator: "@devolasolutions",
