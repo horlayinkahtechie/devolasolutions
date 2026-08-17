@@ -202,21 +202,6 @@ const allProjects = [
   //   link: "https://looksclothing.netlify.app",
   // },
   {
-    id: 12,
-    name: "Haut Logistics (Web Design)",
-    category: "Web Development",
-    type: "web",
-    tools: "Figma",
-    desc: "A Website Redesign of an existing logistics company in Canada.",
-    image: "/looksclothing.png",
-    screenBg: "bg-amber-100",
-    tag: "bg-amber-50 text-amber-700",
-    year: "2026",
-    featured: true,
-    status: "Completed",
-    link: "https://hautlogistics.com",
-  },
-  {
     id: 8,
     name: "Mr Vincent Itodo",
     category: "Graphic Design",
@@ -436,8 +421,8 @@ const DesignMockup = ({ image, screenBg }) => (
   </div>
 );
 
-const ProjectCard = ({ project }) => (
-  <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-xl hover:shadow-slate-900/8 hover:-translate-y-1 transition-all duration-400 flex flex-col">
+const ProjectCardContent = ({ project }) => (
+  <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-xl hover:shadow-slate-900/8 hover:-translate-y-1 transition-all duration-400 flex flex-col h-full">
     <div className="relative h-52 overflow-hidden bg-slate-50">
       {project.type === "web" && <BrowserMockup image={project.image} screenBg={project.screenBg} />}
       {project.type === "mobile" && (
@@ -467,18 +452,27 @@ const ProjectCard = ({ project }) => (
       )}
 
       {project.link && (
-        <Link
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs font-bold text-[#FF5C00] hover:underline mt-auto"
-        >
+        <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FF5C00] mt-auto">
           View project →
-        </Link>
+        </span>
       )}
     </div>
   </div>
 );
+
+const ProjectCard = ({ project }) =>
+  project.link ? (
+    <Link
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block h-full"
+    >
+      <ProjectCardContent project={project} />
+    </Link>
+  ) : (
+    <ProjectCardContent project={project} />
+  );
 
 const Portfolio = () => {
   const [active, setActive] = useState(filters[0].value);
