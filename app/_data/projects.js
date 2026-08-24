@@ -304,6 +304,7 @@ export const projects = [
       },
     },
   },
+
   {
     id: 6,
     slug: "amazon-world",
@@ -367,6 +368,22 @@ export const projects = [
     featured: true,
     status: "Ongoing",
     link: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
+  },
+  {
+    id: 27,
+    slug: "amac-tax-mobile-app",
+    name: "AMAC Tax (Mobile App)",
+    category: "Mobile App",
+    type: "mobile",
+    tools: "Figma . React Native · Expo · Firebase . Resend",
+    desc: "A mobile app for tax filing and management for the Abuja Municipal Area Council (AMAC).",
+    image: "/amac-tax-app.png",
+    screenBg: "bg-green-100",
+    tag: "bg-green-50 text-green-600",
+    year: "2024",
+    featured: true,
+    status: "Ongoing",
+    link: "https://www.figma.com/design/qfsNXDrlonPqPJ3n7qm6r8/Untitled?node-id=28-9484&t=HNemgnPmuTgHUV9z-0",
   },
   {
     id: 9,
