@@ -10,6 +10,8 @@ const clients = [
   "PrimeTech Nigeria",
   "Yordson Apartments",
   "Ayora Tribe Limited",
+  "Peace Apartments",
+  "Campfleet",
   "Dwelcore", 
   "With Love by TLG",
   "Haut Logistics"
