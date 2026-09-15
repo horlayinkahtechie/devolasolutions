@@ -1,6 +1,7 @@
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import Portfolio from "./portfolio";
+import { alternateLocales } from "../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -40,6 +41,7 @@ export const metadata = {
     description:
       "Hotel booking systems, e-commerce stores, mobile apps, brand identities — real projects shipped for Nigerian businesses. Browse the work before you hire.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

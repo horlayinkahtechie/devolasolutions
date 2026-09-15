@@ -3,6 +3,10 @@ import { BsCheckLg, BsArrowRight } from "react-icons/bs";
 import { BiGlobe, BiPhone, BiFile } from "react-icons/bi";
 import { MdOutlineDesignServices } from "react-icons/md";
 import FinalCTA from "../_components/FinalCTA";
+import SolutionsCatalog from "../_components/SolutionsCatalog";
+import OwnershipNote from "../_components/OwnershipNote";
+import { formatPriceItem } from "../_lib/currency";
+import { getServerCurrency } from "../_lib/currency-server";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -23,7 +27,8 @@ const services = [
     tiers: [
       {
         tier: "Starter",
-        price: "From ₦200,000",
+        priceNGN: 200000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "Up to 5 pages",
@@ -36,7 +41,8 @@ const services = [
       },
       {
         tier: "Business",
-        price: "From ₦450,000",
+        priceNGN: 450000,
+        pricePrefix: "From ",
         highlight: true,
         features: [
           "Everything in tier 1",
@@ -51,7 +57,8 @@ const services = [
       },
       {
         tier: "Enterprise",
-        price: "From ₦800,000",
+        priceNGN: 800000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "Everything in tier 2",
@@ -77,7 +84,8 @@ const services = [
     tiers: [
       {
         tier: "Starter",
-        price: "From ₦1,500,000",
+        priceNGN: 1500000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "UI/UX Design",
@@ -92,7 +100,8 @@ const services = [
       },
       {
         tier: "Business",
-        price: "From ₦3,550,000",
+        priceNGN: 3550000,
+        pricePrefix: "From ",
         highlight: true,
         features: [
           "Everything in tier 1",
@@ -108,7 +117,7 @@ const services = [
       },
       {
         tier: "Enterprise",
-        price: "Custom Quote",
+        customPrice: "Custom Quote",
         highlight: false,
         features: [
           "Everything in tier 2",
@@ -133,7 +142,8 @@ const services = [
     tiers: [
       {
         tier: "Essential",
-        price: "From ₦35,000",
+        priceNGN: 35000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "1 design deliverable",
@@ -146,7 +156,8 @@ const services = [
       },
       {
         tier: "Brand Identity",
-        price: "From ₦100,000",
+        priceNGN: 100000,
+        pricePrefix: "From ",
         highlight: true,
         features: [
           "Logo (primary + variations)",
@@ -161,7 +172,7 @@ const services = [
       },
       {
         tier: "Full Suite",
-        price: "Custom Quote",
+        customPrice: "Custom Quote",
         highlight: false,
         features: [
           "Full brand identity",
@@ -185,7 +196,8 @@ const services = [
     tiers: [
       {
         tier: "Sole Proprietorship",
-        price: "From ₦25,000",
+        priceNGN: 25000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "Name availability search",
@@ -197,7 +209,8 @@ const services = [
       },
       {
         tier: "LLC",
-        price: "From ₦80,000",
+        priceNGN: 80000,
+        pricePrefix: "From ",
         highlight: true,
         features: [
           "Full CAC incorporation",
@@ -209,7 +222,8 @@ const services = [
       },
       {
         tier: "NGO / Non-Profit",
-        price: "From ₦120,000",
+        priceNGN: 120000,
+        pricePrefix: "From ",
         highlight: false,
         features: [
           "Incorporated Trustees",
@@ -231,12 +245,12 @@ const guarantees = [
     desc: "Service fees are fixed. Third-party costs are billed at exact cost — zero markup.",
   },
   {
-    title: "50% upfront, 50% on delivery",
+    title: "60% upfront, 40% on delivery",
     desc: "We never ask for full payment before you've seen a finished product.",
   },
   {
     title: "Full ownership on delivery",
-    desc: "All source code, design files, and assets transfer to you on final handover.",
+    desc: "Source code, design files, and every account — domain, hosting, database, storage — transfer to you on final handover.",
   },
   {
     title: "10% NGO & startup discount",
@@ -244,7 +258,8 @@ const guarantees = [
   },
 ];
 
-export default function Pricing() {
+export default async function Pricing() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -379,7 +394,7 @@ export default function Pricing() {
                     <p
                       className={`text-3xl font-extrabold ${t.highlight ? "text-white" : "text-slate-900"}`}
                     >
-                      {t.price}
+                      {formatPriceItem(t, currency)}
                     </p>
                   </div>
 
@@ -408,7 +423,7 @@ export default function Pricing() {
                         : "bg-white border border-slate-200 text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900"
                     }`}
                   >
-                    {t.price === "Custom" ? "Let's Talk →" : "Get Started →"}
+                    {t.customPrice ? "Let's Talk →" : "Get Started →"}
                   </Link>
                 </div>
               ))}
@@ -428,6 +443,17 @@ export default function Pricing() {
           </div>
         </section>
       ))}
+
+      {/* ══════════════════════════════
+          SOLUTION-TYPE CATALOG
+      ══════════════════════════════ */}
+      <div className="border-t border-slate-100">
+        <SolutionsCatalog
+          id="solutions"
+          heading="Pricing by Website & App Type"
+          subheading="Prefer a price for exactly what you're building? Every website and mobile-app type below has a fixed starting price and a full feature breakdown on its own page — nothing hidden behind a form."
+        />
+      </div>
 
       {/* ══════════════════════════════
           ALL-SERVICES OVERVIEW TABLE
@@ -470,22 +496,38 @@ export default function Pricing() {
               {
                 service: "Web Development",
                 link: "/pricing/web-development",
-                cols: ["From ₦200,000", "From ₦450,000", "Custom"],
+                cols: [
+                  { priceNGN: 200000, pricePrefix: "From " },
+                  { priceNGN: 450000, pricePrefix: "From " },
+                  { customPrice: "Custom" },
+                ],
               },
               {
                 service: "Mobile App",
                 link: "/pricing/mobile-development",
-                cols: ["From ₦1,500,000", "From ₦3,550,000", "Custom"],
+                cols: [
+                  { priceNGN: 1500000, pricePrefix: "From " },
+                  { priceNGN: 3550000, pricePrefix: "From " },
+                  { customPrice: "Custom" },
+                ],
               },
               {
                 service: "Graphic Design",
                 link: "/pricing/graphic-design",
-                cols: ["From ₦80,000", "From ₦200,000", "Custom"],
+                cols: [
+                  { priceNGN: 80000, pricePrefix: "From " },
+                  { priceNGN: 200000, pricePrefix: "From " },
+                  { customPrice: "Custom" },
+                ],
               },
               {
                 service: "Business Registration",
                 link: "/pricing/business-registration",
-                cols: ["From ₦25,000", "From ₦80,000", "From ₦120,000"],
+                cols: [
+                  { priceNGN: 25000, pricePrefix: "From " },
+                  { priceNGN: 80000, pricePrefix: "From " },
+                  { priceNGN: 120000, pricePrefix: "From " },
+                ],
               },
             ].map((row, i) => (
               <Link
@@ -506,7 +548,7 @@ export default function Pricing() {
                     key={ci}
                     className={`text-sm font-bold text-center ${ci === 1 ? "text-[#FF5C00]" : "text-slate-600"}`}
                   >
-                    {col}
+                    {formatPriceItem(col, currency)}
                   </span>
                 ))}
               </Link>
@@ -514,8 +556,8 @@ export default function Pricing() {
           </div>
 
           <p className="text-xs text-slate-400 text-center mt-6">
-            All prices in Nigerian Naira (₦). Third-party fees billed separately
-            at exact cost.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based
+            on your location. Third-party fees billed separately at exact cost.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
@@ -552,19 +594,19 @@ export default function Pricing() {
             <div className="space-y-5">
               {[
                 {
-                  step: "50%",
+                  step: "60%",
                   title: "Upfront to begin",
                   desc: "Paid after scope sign-off. This kickstarts design and development.",
                 },
                 {
-                  step: "50%",
+                  step: "40%",
                   title: "On final delivery",
                   desc: "Paid before handover of source code, files, and login credentials.",
                 },
                 {
                   step: "Alt",
-                  title: "Enterprise milestone billing",
-                  desc: "Larger projects use an agreed milestone schedule instead of 50/50.",
+                  title: "Milestone billing",
+                  desc: "Large custom projects use an agreed milestone schedule instead of 60/40.",
                 },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4">
@@ -581,6 +623,15 @@ export default function Pricing() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════
+          OWNERSHIP / ACCOUNT HANDOVER
+      ══════════════════════════════ */}
+      <section className="py-16 px-6 md:px-12 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <OwnershipNote />
         </div>
       </section>
 
@@ -614,7 +665,7 @@ export default function Pricing() {
               },
               {
                 q: "Do you offer payment in instalments?",
-                a: "Standard projects use 50% upfront and 50% on delivery. Enterprise projects use a milestone schedule. We don't offer open-ended instalment plans beyond the project agreement.",
+                a: "Standard projects use 60% upfront and 40% on delivery. Large custom projects use a milestone schedule. We don't offer open-ended instalment plans beyond the project agreement.",
               },
               {
                 q: "What happens if my project goes over scope?",

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "./_data/projects";
+import { solutions } from "./_data/solutions";
 
 const BASE_URL = "https://devolasolutions.com";
 
@@ -12,6 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     }));
+
+  const solutionRoutes: MetadataRoute.Sitemap = solutions.map((s) => ({
+    url: `${BASE_URL}/pricing/solutions/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -104,6 +112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.9,
     },
+    ...solutionRoutes,
     ...caseStudyRoutes,
   ];
 }

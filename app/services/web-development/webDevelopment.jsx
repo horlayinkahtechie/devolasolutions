@@ -11,6 +11,8 @@ import {
 } from "react-icons/si";
 import FAQs from "../../_components/FAQs";
 import FinalCTA from "../../_components/FinalCTA";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 import {
   BiChurch,
   BiHotel,
@@ -191,7 +193,8 @@ const process = [
 const pricing = [
   {
     tier: "Starter",
-    price: "From ₦200,000",
+    priceNGN: 200000,
+    pricePrefix: "From ",
     description:
       "Perfect for startups and small businesses that need a professional online presence.",
 
@@ -215,7 +218,8 @@ const pricing = [
 
   {
     tier: "Business",
-    price: "From ₦450,000",
+    priceNGN: 450000,
+    pricePrefix: "From ",
     description:
       "Ideal for growing businesses that need advanced functionality and content management.",
 
@@ -244,7 +248,8 @@ const pricing = [
 
   {
     tier: "Enterprise",
-    price: "From ₦800,000",
+    priceNGN: 800000,
+    pricePrefix: "From ",
     description:
       "Best for SaaS platforms, large businesses, and fully custom web applications.",
 
@@ -324,7 +329,8 @@ const testimonials = [
 /* ─────────────────────────────────
    PAGE
 ───────────────────────────────── */
-export default function WebDevelopment() {
+export default async function WebDevelopment() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -759,7 +765,7 @@ export default function WebDevelopment() {
                   <p
                     className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
                   >
-                    {p.price}
+                    {formatPriceItem(p, currency)}
                   </p>
                   <p
                     className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
@@ -802,7 +808,8 @@ export default function WebDevelopment() {
           </div>
 
           <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based on
+            your location. Final quote depends on scope.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"

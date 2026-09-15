@@ -1,6 +1,9 @@
 import Link from "next/link";
-import { BsCheckLg, BsDashLg } from "react-icons/bs";
 import FinalCTA from "../../_components/FinalCTA";
+import SolutionsCatalog from "../../_components/SolutionsCatalog";
+import OwnershipNote from "../../_components/OwnershipNote";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -11,120 +14,40 @@ const Label = ({ text }) => (
   </div>
 );
 
-const pricing = [
-  {
-    tier: "Starter",
-    price: "From ₦200,000",
-    description:
-      "Perfect for startups and small businesses that need a professional online presence.",
-
-    features: [
-      "Modern and mobile responsive design",
-      "Up to 5 pages",
-      "Contact form integration",
-      "WhatsApp integration",
-      "Basic SEO setup",
-      "Fast loading performance",
-      "Social media links integration",
-      "SSL security setup",
-      "Free deployment",
-      "2 weeks delivery",
-      "1 week post-launch support",
-    ],
-
-    cta: "Get Started",
-    highlight: false,
-  },
-
-  {
-    tier: "Business",
-    price: "From ₦450,000",
-    description:
-      "Ideal for growing businesses that need advanced functionality and content management.",
-
-    features: [
-      "Everything in Starter",
-      "Up to 15 pages",
-      "CMS / Blog integration",
-      "Payment gateway integration",
-      "Admin dashboard",
-      "Custom animations",
-      "Product management system",
-      "Up to 200 product uploads",
-      "Email notification system",
-      "User authentication",
-      "Advanced SEO optimization",
-      "Analytics integration",
-      "Database integration",
-      "1 currency support",
-      "Priority support",
-      "1 month post-launch support",
-    ],
-
-    cta: "Most Popular",
-    highlight: true,
-  },
-
-  {
-    tier: "Enterprise",
-    price: "From ₦800,000",
-    description:
-      "Best for SaaS platforms, large businesses, and fully custom web applications.",
-
-    features: [
-      "Everything in Business",
-      "Unlimited pages",
-      "Custom backend development",
-      "API integrations",
-      "Advanced authentication",
-      "Role-based access system",
-      "Multi-currency support",
-      "Custom dashboard & analytics",
-      "Booking or reservation systems",
-      "Scalable cloud database architecture",
-      "Advanced security implementation",
-      "Performance optimization",
-      "Third-party integrations",
-      "Dedicated project timeline",
-      "Ongoing maintenance & support",
-    ],
-
-    cta: "Let's Talk",
-    highlight: false,
-  },
-];
-
-const featureRows = Object.keys(pricing[0].features);
-
 const addOns = [
   {
     name: "Extra pages",
-    price: "₦15,000/page",
-    desc: "Additional pages beyond your tier limit.",
+    priceNGN: 15000,
+    priceSuffix: "/page",
+    desc: "Additional pages beyond what's listed for your website type.",
   },
   {
     name: "Logo & brand identity",
-    price: "From ₦80,000",
+    priceNGN: 80000,
+    pricePrefix: "From ",
     desc: "Full logo design and brand guidelines.",
   },
   {
     name: "Copywriting",
-    price: "From ₦30,000",
+    priceNGN: 30000,
+    pricePrefix: "From ",
     desc: "Professional copy for up to 5 pages.",
   },
   {
     name: "Extended support",
-    price: "₦25,000/month",
-    desc: "Beyond included support window.",
+    priceNGN: 25000,
+    priceSuffix: "/month",
+    desc: "Beyond the support window included with your build.",
   },
   {
     name: "Speed optimisation audit",
-    price: "₦40,000",
+    priceNGN: 40000,
     desc: "Detailed PageSpeed improvements on an existing site.",
   },
   {
     name: "Monthly maintenance",
-    price: "₦20,000/month",
+    priceNGN: 20000,
+    priceSuffix: "/month",
     desc: "Updates, security patches, and monitoring.",
   },
 ];
@@ -132,19 +55,19 @@ const addOns = [
 const faqs = [
   {
     q: "Are government or hosting fees included in the price?",
-    a: "No. The prices above are our service fees only. Domain registration, hosting (Vercel, Netlify, AWS), and third-party service subscriptions are billed separately at cost with no markup.",
+    a: "No. The prices shown are our build fees only. Domain registration, hosting (Vercel, Netlify, AWS), and third-party service subscriptions are billed separately at cost with no markup.",
   },
   {
     q: "What payment structure do you use?",
-    a: "We require 50% upfront to begin work and the remaining 50% before final delivery and handover. For Enterprise projects we agree on a milestone-based payment plan.",
+    a: "We collect 60% upfront to begin work and the remaining 40% before final delivery and handover. Large custom projects use a milestone-based payment plan agreed at the start.",
   },
   {
-    q: "Can I upgrade from Starter to Business later?",
-    a: "Yes. You can upgrade at any time by paying the difference. We never lock you into a tier.",
+    q: "The price listed doesn't cover everything I need — what happens?",
+    a: "Each price covers the exact scope listed on that website type's page. If you want features outside that scope, we quote them separately as add-ons and the total price increases accordingly — we'll always confirm this in writing before starting.",
   },
   {
-    q: "What if my project needs features from a higher tier?",
-    a: "We'll recommend the right tier during our discovery call. If a single feature from a higher tier is needed, we can often add it as an add-on to your chosen tier.",
+    q: "My website type isn't a perfect match — can you still help?",
+    a: "Yes. The listed types cover our most common builds. If yours is a mix of two types or something more specific, tell us during your discovery call and we'll quote it against the closest match plus any extra features.",
   },
   {
     q: "Do you offer discounts for NGOs or startups?",
@@ -152,7 +75,8 @@ const faqs = [
   },
 ];
 
-export default function WebDevelopmentPricing() {
+export default async function WebDevelopmentPricing() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -184,168 +108,33 @@ export default function WebDevelopmentPricing() {
               <span className="text-[#FF5C00]">Pricing.</span>
             </h1>
             <p className="text-lg text-slate-500 leading-relaxed">
-              No hidden fees. Government and hosting costs are always billed at
-              cost with zero markup.
+              No estimates, no ranges — a fixed price for every website type we
+              build. Pick yours below to see the exact price and everything
+              included. Government and hosting costs are always billed at cost
+              with zero markup.
             </p>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════
-          PRICING CARDS
+          PRICE BY WEBSITE TYPE
       ══════════════════════════════ */}
-      <section className="py-24 px-6 md:px-12 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-8">
-            <div>
-              <Label text="Pricing" />
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-[1.05]">
-                Clear Prices.
-                <br />
-                No Surprises.
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {pricing.map((p) => (
-              <div
-                key={p.tier}
-                className={`relative rounded-3xl flex flex-col gap-6 overflow-hidden ${
-                  p.highlight
-                    ? "bg-slate-900 p-8 ring-2 ring-[#FF5C00]"
-                    : "bg-white border border-slate-100 p-8"
-                }`}
-              >
-                {p.highlight && (
-                  <div className="absolute top-5 right-5 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-                    Popular
-                  </div>
-                )}
-                <div>
-                  <p
-                    className={`text-xs font-black uppercase tracking-widest mb-2 ${p.highlight ? "text-[#FF5C00]" : "text-slate-400"}`}
-                  >
-                    {p.tier}
-                  </p>
-                  <p
-                    className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
-                  >
-                    {p.price}
-                  </p>
-                  <p
-                    className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
-                  >
-                    {p.description}
-                  </p>
-                </div>
-
-                <ul className="space-y-2.5 flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm">
-                      <span
-                        className={`shrink-0 ${p.highlight ? "text-[#FF5C00]" : "text-slate-400"}`}
-                      >
-                        ✓
-                      </span>
-                      <span
-                        className={
-                          p.highlight ? "text-slate-300" : "text-slate-600"
-                        }
-                      >
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/contact"
-                  className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
-                    p.highlight
-                      ? "bg-[#FF5C00] text-white hover:bg-orange-500"
-                      : "bg-slate-100 text-slate-900 hover:bg-slate-900 hover:text-white"
-                  }`}
-                >
-                  {p.cta} →
-                </Link>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
-            <Link
-              href="/contact"
-              className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
-            >
-              Get a free custom quote →
-            </Link>
-          </p>
-        </div>
-      </section>
+      <div className="border-t border-slate-100">
+        <SolutionsCatalog
+          filter="web"
+          id="website-types"
+          heading="Website Pricing by Type"
+          subheading="Every website type has a fixed price and a full feature list on its own page. Click yours to see exactly what's included — portfolio, company, e-commerce, hotel, CRM, school, real estate and more."
+        />
+      </div>
 
       {/* ══════════════════════════════
-          FULL COMPARISON TABLE
+          OWNERSHIP / ACCOUNT HANDOVER
       ══════════════════════════════ */}
       <section className="py-16 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <Label text="Full Breakdown" />
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-              Compare Every Feature
-            </h2>
-          </div>
-
-          {/* Header row */}
-          <div className="grid grid-cols-4 gap-3 mb-2 sticky top-0 bg-[#fafafa] py-3 z-10">
-            <div />
-            {pricing.map((t) => (
-              <div
-                key={t.tier}
-                className={`rounded-xl py-3 text-center ${t.highlight ? "bg-slate-900" : "bg-slate-100"}`}
-              >
-                <span
-                  className={`text-xs font-black uppercase tracking-widest ${t.highlight ? "text-[#FF5C00]" : "text-slate-500"}`}
-                >
-                  {t.tier}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-1">
-            {featureRows.map((feature, i) => (
-              <div
-                key={feature}
-                className={`grid grid-cols-4 gap-3 items-center rounded-xl px-4 py-3.5 ${i % 2 === 0 ? "bg-white border border-slate-100" : ""}`}
-              >
-                <span className="text-sm text-slate-700 font-medium">
-                  {feature}
-                </span>
-                {pricing.map((t) => {
-                  const val = t.features[feature];
-                  return (
-                    <div key={t.tier} className="flex justify-center">
-                      {typeof val === "boolean" ? (
-                        val ? (
-                          <BsCheckLg className="text-green-500 text-base" />
-                        ) : (
-                          <BsDashLg className="text-slate-300 text-base" />
-                        )
-                      ) : (
-                        <span
-                          className={`text-xs font-bold text-center ${t.highlight ? "text-[#FF5C00]" : "text-slate-700"}`}
-                        >
-                          {val}
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
+          <OwnershipNote />
         </div>
       </section>
 
@@ -357,11 +146,12 @@ export default function WebDevelopmentPricing() {
           <div className="mb-12">
             <Label text="Optional Add-Ons" />
             <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-              Extend Any Package
+              Extend Any Website
             </h2>
             <p className="text-slate-500 mt-3">
-              Add individual services to any tier without jumping to a higher
-              package.
+              Add individual features to any website type without changing its
+              core scope. Any add-on you choose is added on top of that type&apos;s
+              listed price.
             </p>
           </div>
 
@@ -376,7 +166,7 @@ export default function WebDevelopmentPricing() {
                     {a.name}
                   </span>
                   <span className="text-sm font-black text-[#FF5C00] shrink-0">
-                    {a.price}
+                    {formatPriceItem(a, currency)}
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">
@@ -417,11 +207,11 @@ export default function WebDevelopmentPricing() {
           <div className="mt-10 bg-slate-900 rounded-3xl p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <p className="text-white font-black text-lg">
-                Not sure which tier fits?
+                Not sure which type fits?
               </p>
               <p className="text-slate-400 text-sm mt-1">
                 Book a free 20-minute discovery call and we&apos;ll recommend
-                the right package for your goals.
+                the right build for your goals.
               </p>
             </div>
             <Link

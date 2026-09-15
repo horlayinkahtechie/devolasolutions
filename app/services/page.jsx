@@ -1,12 +1,12 @@
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import ServicesPage from "./services";
+import { alternateLocales, internationalReach } from "../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
   title: "Services | Hire a Web Developer, Mobile App Developer & More | Devola Solutions",
-  description:
-    "Need to hire a web developer or mobile app developer in Nigeria? Devola Solutions offers web development, mobile apps, graphic design & CAC business registration — all under one roof, fixed prices.",
+  description: `Need to hire a web developer or mobile app developer? Devola Solutions offers web development, mobile apps, graphic design & CAC business registration — all under one roof, fixed prices. Working remotely with clients across ${internationalReach}.`,
   keywords: [
     "hire web developer Nigeria",
     "hire mobile app developer Nigeria",
@@ -32,6 +32,13 @@ export const metadata = {
     "startup digital agency",
     "web and mobile app agency",
     "digital product design and development",
+    "hire a web developer in the US",
+    "hire a web developer in the UK",
+    "hire a web developer in Canada",
+    "hire a web developer in Germany",
+    "hire a web developer in the Netherlands",
+    "hire a web developer in Spain",
+    "remote software development agency",
   ],
   authors: [{ name: "Devola Solutions", url: "https://devolasolutions.com" }],
   creator: "Devola Solutions",
@@ -43,15 +50,15 @@ export const metadata = {
     url: "https://devolasolutions.com/services",
     siteName: "Devola Solutions",
     title: "Hire a Web & Mobile App Developer | Services | Devola Solutions Nigeria",
-    description:
-      "Everything a Nigerian business needs to launch and grow — hire us for websites, apps, branding, and CAC registration. One agency, fixed prices.",
+    description: `Everything a business needs to launch and grow — hire us for websites, apps, branding, and CAC registration. One agency, fixed prices, serving clients across ${internationalReach}.`,
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",
     title: "Hire a Web & Mobile App Developer | Devola Solutions Services",
     description:
-      "Web development · Mobile apps · Graphic design · CAC registration. Nigeria's full-stack digital agency. Fixed prices, no hidden fees.",
+      "Web development · Mobile apps · Graphic design · CAC registration. Nigeria's full-stack digital agency, working remotely with clients in the US, UK, Canada, Germany, the Netherlands and Spain.",
     creator: "@devolasolutions",
   },
 };

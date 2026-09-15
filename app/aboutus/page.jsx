@@ -1,6 +1,7 @@
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import Aboutus from "./aboutus";
+import { alternateLocales } from "../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -35,6 +36,7 @@ export const metadata = {
     description:
       "We're a Nigerian digital agency building websites, apps, brands, and registering businesses — all under one roof. Meet the team behind the work before you hire us.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

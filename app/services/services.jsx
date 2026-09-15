@@ -5,6 +5,7 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 import Portfolio from "../_components/Portfolio";
 import FAQs from "../_components/FAQs";
 import FinalCTA from "../_components/FinalCTA";
+import SolutionsCatalog from "../_components/SolutionsCatalog";
 import { GiCheckMark } from "react-icons/gi";
 import { BsBank, BsLightningCharge, BsStarFill } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
@@ -358,6 +359,17 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* ════════════════════════════════════
+          2b. SOLUTIONS & PRICING CATALOG
+      ════════════════════════════════════ */}
+      <div className="border-t border-slate-100">
+        <SolutionsCatalog
+          id="solutions"
+          heading="Every Website & App Type We Build"
+          subheading="Each solution has a fixed starting price and a full feature list. Click any type to open its pricing page and see every detail — no forms, no waiting for a quote."
+        />
+      </div>
 
       {/* ════════════════════════════════════
           3. WHY CHOOSE US

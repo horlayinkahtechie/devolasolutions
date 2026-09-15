@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { alternateLocales, internationalReach } from "./_data/seo";
 import Hero from "./_components/Hero";
 import TrustBar from "./_components/TrustBar";
 import Services from "./_components/Services";
+import SolutionsCatalog from "./_components/SolutionsCatalog";
 import WhyUs from "./_components/WhyUs";
 import FinalCTA from "./_components/FinalCTA";
 import Navbar from "./_components/Navbar";
@@ -14,8 +16,7 @@ import Testimonials from "./_components/Testimonials";
 export const metadata: Metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
   title: "Devola Solutions | Hire a Web & Mobile App Developer in Nigeria",
-  description:
-    "Hire Devola Solutions to build your website or mobile app — a full-stack Nigerian dev team building fast websites, iOS & Android apps, brand identities, and handling CAC business registration at fixed, transparent prices.",
+  description: `Hire Devola Solutions to build your website or mobile app — a full-stack Nigerian dev team building fast websites, iOS & Android apps, brand identities, and handling CAC business registration at fixed, transparent prices. Serving clients across ${internationalReach}.`,
   keywords: [
     "hire web developer Nigeria",
     "hire mobile app developer Nigeria",
@@ -48,6 +49,21 @@ export const metadata: Metadata = {
     "Web Development Company in Canada",
     "Mobile App Development Company in Canada",
     "Digital Agency in Canada",
+    "Website Developer in Germany",
+    "Mobile App Developer in Germany",
+    "Web Development Company in Germany",
+    "Digital Agency in Germany",
+    "Website Developer in the Netherlands",
+    "Mobile App Developer in the Netherlands",
+    "Web Development Company in the Netherlands",
+    "Digital Agency in the Netherlands",
+    "Website Developer in Spain",
+    "Mobile App Developer in Spain",
+    "Web Development Company in Spain",
+    "Digital Agency in Spain",
+    "outsource web development to Nigeria",
+    "remote web developer for hire",
+    "international web development agency",
     "Professional Website Developer",
     "Professional Mobile App Developer",
     "Professional Web Development Company",
@@ -80,15 +96,15 @@ export const metadata: Metadata = {
     url: "https://devolasolutions.com",
     siteName: "Devola Solutions",
     title: "Devola Solutions | Hire a Web & Mobile App Developer in Nigeria",
-    description:
-      "Nigeria's full-stack digital agency — hire us for websites, apps, branding & business registration under one roof. Fixed prices, no hidden fees.",
+    description: `Nigeria's full-stack digital agency — hire us for websites, apps, branding & business registration under one roof. Fixed prices, no hidden fees. Working remotely with clients across ${internationalReach}.`,
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",
     title: "Hire a Web & Mobile App Developer | Devola Solutions Nigeria",
     description:
-      "Websites · Mobile apps · Brand identity · CAC Registration. Fixed prices, Nigerian team, world-class delivery.",
+      "Websites · Mobile apps · Brand identity · CAC Registration. Fixed prices, Nigerian team, world-class delivery — serving Nigeria, the US, UK, Canada, Germany, the Netherlands and Spain.",
     creator: "@devolasolutions",
     site: "@devolasolutions",
   },
@@ -102,6 +118,7 @@ export default function Home() {
       <TrustBar />
       <About />
       <Services />
+      <SolutionsCatalog />
       <WhyUs />
       <Portfolio  />
       <FAQs />

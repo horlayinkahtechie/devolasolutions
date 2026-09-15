@@ -55,7 +55,7 @@ const phases = [
       "Written project scope document",
       "Itemised pricing with no hidden fees",
       "Realistic milestone-based timeline",
-      "Clear payment schedule (50% upfront, 50% on delivery)",
+      "Clear payment schedule (60% upfront, 40% on delivery)",
       "Signed agreement before any work begins",
     ],
     outcome:

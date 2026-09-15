@@ -431,7 +431,7 @@ export const projects = [
     year: "2026",
     featured: false,
     status: "Ongoing",
-    link: null,
+    link: "https://www.figma.com/design/ljg3FABFfcP52lOtr3424k/Campfleet?node-id=0-1&p=f&t=JXPYGe4VhIsA9VGC-0",
   },
   {
     id: 8,

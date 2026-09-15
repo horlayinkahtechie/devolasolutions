@@ -1,6 +1,7 @@
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import AppDevelopment from "./app-development";
+import { alternateLocales } from "../../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -35,6 +36,13 @@ export const metadata = {
     "app prototype developer Nigeria",
     "native app developer Nigeria",
     "booking app developer Nigeria",
+    "hire a mobile app developer in the US",
+    "hire a mobile app developer in the UK",
+    "hire a mobile app developer in Canada",
+    "hire a mobile app developer in Germany",
+    "hire a mobile app developer in the Netherlands",
+    "hire a mobile app developer in Spain",
+    "outsource app development to Nigeria",
   ],
   authors: [{ name: "Devola Solutions", url: "https://devolasolutions.com" }],
   creator: "Devola Solutions",
@@ -47,8 +55,9 @@ export const metadata = {
     siteName: "Devola Solutions",
     title: "Mobile App Development Nigeria | iOS & Android | Devola Solutions",
     description:
-      "React Native apps for iOS & Android — one codebase, two platforms. Fintech, logistics, e-commerce & health apps. App Store & Play Store submission included.",
+      "React Native apps for iOS & Android — one codebase, two platforms. Fintech, logistics, e-commerce & health apps. App Store & Play Store submission included, delivered remotely to clients in Nigeria, the US, UK, Canada, Germany, the Netherlands and Spain.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

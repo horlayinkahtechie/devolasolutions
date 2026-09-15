@@ -1,6 +1,7 @@
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import WebDevelopment from "./webDevelopment";
+import { alternateLocales } from "../../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -39,6 +40,13 @@ export const metadata = {
     "booking website developer Nigeria",
     "real estate website developer Nigeria",
     "portfolio website design Nigeria",
+    "hire a web developer in the US",
+    "hire a web developer in the UK",
+    "hire a web developer in Canada",
+    "hire a web developer in Germany",
+    "hire a web developer in the Netherlands",
+    "hire a web developer in Spain",
+    "outsource website development to Nigeria",
   ],
   authors: [{ name: "Devola Solutions", url: "https://devolasolutions.com" }],
   creator: "Devola Solutions",
@@ -51,8 +59,9 @@ export const metadata = {
     siteName: "Devola Solutions",
     title: "Website Development Nigeria | Next.js & React | Devola Solutions",
     description:
-      "Fast, SEO-optimised websites built with Next.js for Nigerian businesses. Landing pages, e-commerce, hotels, schools & custom portals. Mobile-first by default.",
+      "Fast, SEO-optimised websites built with Next.js. Landing pages, e-commerce, hotels, schools & custom portals. Mobile-first by default, delivered remotely to clients in Nigeria, the US, UK, Canada, Germany, the Netherlands and Spain.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

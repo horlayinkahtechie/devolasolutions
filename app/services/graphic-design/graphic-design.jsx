@@ -15,6 +15,8 @@ import { BsStars, BsPrinter, BsPhone } from "react-icons/bs";
 import { HiSparkles } from "react-icons/hi";
 import FAQs from "../../_components/FAQs";
 import FinalCTA from "../../_components/FinalCTA";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 import { SiCanva, SiFigma } from "react-icons/si";
 import {
   TbBrandAdobeIllustrator,
@@ -167,7 +169,8 @@ const process = [
 const pricing = [
   {
     tier: "Essential",
-    price: "From ₦35,000",
+    priceNGN: 35000,
+    pricePrefix: "From ",
     description:
       "Perfect for businesses that need a professional design asset delivered quickly and affordably.",
 
@@ -187,7 +190,8 @@ const pricing = [
 
   {
     tier: "Brand Identity",
-    price: "From ₦100,000",
+    priceNGN: 100000,
+    pricePrefix: "From ",
     description:
       "A complete visual identity system for businesses that want a strong and consistent brand presence.",
 
@@ -212,7 +216,7 @@ const pricing = [
 
   {
     tier: "Full Brand Suite",
-    price: "Custom Quote",
+    customPrice: "Custom Quote",
     description:
       "A premium branding solution that combines identity design, UI/UX, marketing assets, and ongoing creative support.",
 
@@ -287,7 +291,8 @@ const testimonials = [
 /* ─────────────────────────────────
    PAGE
 ───────────────────────────────── */
-export default function GraphicDesign() {
+export default async function GraphicDesign() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -720,7 +725,7 @@ export default function GraphicDesign() {
                   <p
                     className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
                   >
-                    {p.price}
+                    {formatPriceItem(p, currency)}
                   </p>
                   <p
                     className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
@@ -763,7 +768,8 @@ export default function GraphicDesign() {
           </div>
 
           <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based on
+            your location. Final quote depends on scope.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"

@@ -1,6 +1,7 @@
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import GraphicDesign from "./graphic-design";
+import { alternateLocales } from "../../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -47,6 +48,7 @@ export const metadata = {
     description:
       "100% custom design — logos, brand identity, social media graphics, pitch decks & print. No templates. Source files and full ownership always included.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

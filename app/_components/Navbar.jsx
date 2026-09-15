@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import CurrencyToggle from "./CurrencyToggle";
 
 const pricingLinks = [
   { name: "Web Development", href: "/pricing/web-development" },
@@ -142,7 +143,8 @@ const Navbar = () => {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:block shrink-0">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <CurrencyToggle />
           <Link
             href="/contact"
             className="relative overflow-hidden bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 hover:bg-[#FF5C00] shadow-md shadow-slate-900/10 hover:shadow-orange-500/20 inline-flex items-center gap-2 group"
@@ -250,7 +252,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="mt-auto pt-6 border-t border-slate-100">
+          <div className="mt-auto pt-6 border-t border-slate-100 flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Currency</span>
+              <CurrencyToggle />
+            </div>
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}

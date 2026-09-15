@@ -1,8 +1,20 @@
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { name, email, phone, service, budget, source, message } =
-    await request.json();
+  const {
+    name, email, phone, service, budget, source, message,
+    websiteType, mobileAppType, typeOther,
+  } = await request.json();
+
+  const resolvedType = (val) =>
+    val === "Other (please specify)"
+      ? typeOther?.trim()
+        ? `Other — ${typeOther.trim()}`
+        : "Other"
+      : val;
+
+  const websiteTypeDisplay = websiteType ? resolvedType(websiteType) : null;
+  const mobileAppTypeDisplay = mobileAppType ? resolvedType(mobileAppType) : null;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -22,6 +34,8 @@ export async function POST(request) {
         <tr><td style="padding:8px 0;font-weight:bold">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
         <tr><td style="padding:8px 0;font-weight:bold">Phone / WhatsApp</td><td>${phone || "—"}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold">Service</td><td>${service}</td></tr>
+        ${websiteTypeDisplay ? `<tr><td style="padding:8px 0;font-weight:bold">Website Type</td><td>${websiteTypeDisplay}</td></tr>` : ""}
+        ${mobileAppTypeDisplay ? `<tr><td style="padding:8px 0;font-weight:bold">Mobile App Type</td><td>${mobileAppTypeDisplay}</td></tr>` : ""}
         <tr><td style="padding:8px 0;font-weight:bold">Budget</td><td>${budget || "—"}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold">How they found us</td><td>${source || "—"}</td></tr>
       </table>

@@ -16,6 +16,8 @@ import { FaHandshake, FaUniversity } from "react-icons/fa";
 import { BiTime } from "react-icons/bi";
 import FAQs from "../../_components/FAQs";
 import FinalCTA from "../../_components/FinalCTA";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 
 /* ─────────────────────────────────
    SHARED LABEL
@@ -147,7 +149,8 @@ const postRegistration = [
 const pricing = [
   {
     tier: "Sole Proprietorship",
-    price: "From ₦25,000",
+    priceNGN: 25000,
+    pricePrefix: "From ",
     description:
       "Perfect for freelancers, startups, and small businesses that want to register quickly and legally.",
 
@@ -168,7 +171,8 @@ const pricing = [
 
   {
     tier: "Limited Liability Co.",
-    price: "From ₦80,000",
+    priceNGN: 80000,
+    pricePrefix: "From ",
     description:
       "Complete company incorporation package for businesses that need a professional and scalable structure.",
 
@@ -193,7 +197,8 @@ const pricing = [
 
   {
     tier: "NGO / Non-Profit",
-    price: "From ₦120,000",
+    priceNGN: 120000,
+    pricePrefix: "From ",
     description:
       "Registration package for foundations, associations, clubs, and faith-based organisations.",
 
@@ -269,7 +274,8 @@ const testimonials = [
 /* ─────────────────────────────────
    PAGE
 ───────────────────────────────── */
-export default function BusinessRegistration() {
+export default async function BusinessRegistration() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -767,7 +773,7 @@ export default function BusinessRegistration() {
                   <p
                     className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
                   >
-                    {p.price}
+                    {formatPriceItem(p, currency)}
                   </p>
                   <p
                     className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
@@ -810,8 +816,8 @@ export default function BusinessRegistration() {
           </div>
 
           <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Government fees billed
-            separately at cost.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based on
+            your location. Government fees billed separately at cost.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"

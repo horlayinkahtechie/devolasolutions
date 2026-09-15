@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { BiEnvelope, BiPhone, BiLogoWhatsapp, BiMap } from "react-icons/bi";
 import { HiSparkles } from "react-icons/hi";
 import { BsInstagram, BsTwitterX, BsLinkedin } from "react-icons/bs";
+import { webSolutions, appSolutions } from "../_data/solutions";
+import { formatMoney } from "../_lib/currency";
+import { useCurrency } from "../_components/CurrencyProvider";
 
 const services = [
   "Web Development",
@@ -15,13 +19,27 @@ const services = [
   "Not sure yet — need advice",
 ];
 
-const budgets = [
-  "₦200,000 – ₦300,000",
-  "₦300,000 – ₦750,000",
-  "₦750,000 – ₦2,000,000",
-  "Above ₦2,000,000",
-  "Let's discuss",
+const OTHER_TYPE = "Other (please specify)";
+const websiteTypeOptions = [...webSolutions.map((s) => s.name), OTHER_TYPE];
+const mobileAppTypeOptions = [...appSolutions.map((s) => s.name), OTHER_TYPE];
+
+const budgetRanges = [
+  { minNGN: 200000, maxNGN: 300000 },
+  { minNGN: 300000, maxNGN: 750000 },
+  { minNGN: 750000, maxNGN: 2000000 },
+  { minNGN: 2000000, above: true },
 ];
+
+function budgetLabels(currency) {
+  return [
+    ...budgetRanges.map((r) =>
+      r.above
+        ? `Above ${formatMoney(r.minNGN, currency)}`
+        : `${formatMoney(r.minNGN, currency)} – ${formatMoney(r.maxNGN, currency)}`
+    ),
+    "Let's discuss",
+  ];
+}
 
 const sources = ["Instagram", "Twitter / X", "LinkedIn", "Google Search", "Referral from someone", "Other"];
 
@@ -71,10 +89,43 @@ const faqs = [
   },
 ];
 
+const emptyForm = {
+  name: "", email: "", phone: "", service: "", budget: "", source: "",
+  websiteType: "", mobileAppType: "", typeOther: "", message: "",
+};
+
+// Auto-fill from a "Start This Project" link, e.g.
+// /contact?service=Web+Development&type=Hotel+Website...&package=...&price=...
+function buildInitialForm(searchParams) {
+  const service = searchParams.get("service") || "";
+  const type = searchParams.get("type") || "";
+  const price = searchParams.get("price") || "";
+  const pkg = searchParams.get("package") || "";
+
+  const next = { ...emptyForm };
+  if (service) next.service = service;
+  if (type) {
+    if (service === "Mobile App Development") next.mobileAppType = type;
+    else next.websiteType = type;
+
+    if (type === OTHER_TYPE) {
+      const noun = service === "Mobile App Development" ? "app" : "website";
+      next.message = `Hi, the type of ${noun} I want to build isn't listed on your pricing page. Here's what I'm looking to build: `;
+    } else {
+      let msg = `I'm interested in the ${type}`;
+      if (pkg) msg += ` — ${pkg}`;
+      msg += price ? ` (${price}).` : ".";
+      next.message = `${msg} `;
+    }
+  }
+  return next;
+}
+
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "", email: "", phone: "", service: "", budget: "", source: "", message: "",
-  });
+  const searchParams = useSearchParams();
+  const { currency } = useCurrency();
+  const budgets = budgetLabels(currency);
+  const [form, setForm] = useState(() => buildInitialForm(searchParams));
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -93,7 +144,19 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm((prev) => {
+      const next = { ...prev, [name]: value };
+      // Switching service categories clears the other category's type selection
+      if (name === "service") {
+        if (value !== "Web Development") next.websiteType = "";
+        if (value !== "Mobile App Development") next.mobileAppType = "";
+        if (value !== "Web Development" && value !== "Mobile App Development") next.typeOther = "";
+      }
+      if (name === "websiteType" || name === "mobileAppType") {
+        if (value !== OTHER_TYPE) next.typeOther = "";
+      }
+      return next;
+    });
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
@@ -172,7 +235,7 @@ export default function Contact() {
                 <button
                   onClick={() => {
                     setSubmitted(false);
-                    setForm({ name: "", email: "", phone: "", service: "", budget: "", source: "", message: "" });
+                    setForm(emptyForm);
                   }}
                   className="mt-2 text-sm font-bold text-slate-500 hover:text-[#FF5C00] transition-colors duration-200"
                 >
@@ -252,6 +315,76 @@ export default function Contact() {
                     {errors.service && <p className="text-xs text-red-500 mt-1.5">{errors.service}</p>}
                   </div>
                 </div>
+
+                {/* Type of Website */}
+                {form.service === "Web Development" && (
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+                        Type of Website
+                      </label>
+                      <select
+                        name="websiteType"
+                        value={form.websiteType}
+                        onChange={handleChange}
+                        className={`${inputBase} ${inputNormal} appearance-none cursor-pointer`}
+                      >
+                        <option value="" disabled>Select a website type…</option>
+                        {websiteTypeOptions.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                    </div>
+                    {form.websiteType === OTHER_TYPE && (
+                      <div>
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+                          Tell Us the Website Type
+                        </label>
+                        <input
+                          type="text"
+                          name="typeOther"
+                          value={form.typeOther}
+                          onChange={handleChange}
+                          placeholder="e.g. Church website"
+                          className={`${inputBase} ${inputNormal}`}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Type of Mobile App */}
+                {form.service === "Mobile App Development" && (
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+                        Type of Mobile App
+                      </label>
+                      <select
+                        name="mobileAppType"
+                        value={form.mobileAppType}
+                        onChange={handleChange}
+                        className={`${inputBase} ${inputNormal} appearance-none cursor-pointer`}
+                      >
+                        <option value="" disabled>Select an app type…</option>
+                        {mobileAppTypeOptions.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                    </div>
+                    {form.mobileAppType === OTHER_TYPE && (
+                      <div>
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+                          Tell Us the App Type
+                        </label>
+                        <input
+                          type="text"
+                          name="typeOther"
+                          value={form.typeOther}
+                          onChange={handleChange}
+                          placeholder="e.g. Ride-hailing app"
+                          className={`${inputBase} ${inputNormal}`}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Budget + Source */}
                 <div className="grid sm:grid-cols-2 gap-5">

@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import Contact from "./contact";
+import { alternateLocales } from "../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -37,6 +39,7 @@ export const metadata = {
     description:
       "Tell us about your project — website, app, branding, or business registration. We'll respond within 24 hours with a clear quote and timeline.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",
@@ -51,7 +54,9 @@ export default function Page() {
   return (
     <div>
       <Navbar />
-      <Contact />
+      <Suspense fallback={null}>
+        <Contact />
+      </Suspense>
       <Footer />
     </div>
   );

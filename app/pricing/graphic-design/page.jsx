@@ -1,6 +1,7 @@
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import GraphicDesign from "./graphic-design";
+import { alternateLocales } from "../../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -36,6 +37,7 @@ export const metadata = {
     description:
       "Transparent design pricing for Nigerian businesses. Essential ₦80k, Brand Identity ₦200k, Full Suite custom. Source files included. 3 revision rounds guaranteed.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

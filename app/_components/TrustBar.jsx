@@ -1,4 +1,14 @@
-import { BsBank } from "react-icons/bs";
+import { BsBank, BsGlobe2 } from "react-icons/bs";
+
+const servedCountries = [
+  "🇳🇬 Nigeria",
+  "🇺🇸 United States",
+  "🇬🇧 United Kingdom",
+  "🇨🇦 Canada",
+  "🇩🇪 Germany",
+  "🇳🇱 Netherlands",
+  "🇪🇸 Spain",
+];
 
 const clients = [
   "GTA Hotels",
@@ -11,6 +21,7 @@ const clients = [
   "Yordson Apartments",
   "Ayora Tribe Limited",
   "Peace Apartments",
+  "Precious apartments",
   "Campfleet",
   "Dwelcore", 
   "With Love by TLG",
@@ -36,6 +47,25 @@ const TrustBar = () => (
             <span
               key={`${c}-${i}`}
               className="text-lg sm:text-xl font-black tracking-tight text-slate-300 shrink-0 whitespace-nowrap"
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-9 pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+        <span className="inline-flex items-center gap-2 shrink-0">
+          <BsGlobe2 className="text-slate-400 text-sm" />
+          <span className="text-sm text-slate-400 font-medium">
+            Remote-first — serving clients across:
+          </span>
+        </span>
+        <div className="flex flex-wrap gap-2">
+          {servedCountries.map((c) => (
+            <span
+              key={c}
+              className="text-xs font-bold text-slate-600 bg-slate-50 border border-slate-100 rounded-full px-3 py-1.5"
             >
               {c}
             </span>

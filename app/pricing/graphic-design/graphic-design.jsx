@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BsCheckLg, BsDashLg } from "react-icons/bs";
 import FinalCTA from "../../_components/FinalCTA";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -14,7 +16,8 @@ const Label = ({ text }) => (
 const pricing = [
   {
     tier: "Essential",
-    price: "From ₦35,000",
+    priceNGN: 35000,
+    pricePrefix: "From ",
     description:
       "Perfect for businesses that need a professional design asset delivered quickly and affordably.",
 
@@ -34,7 +37,8 @@ const pricing = [
 
   {
     tier: "Brand Identity",
-    price: "From ₦100,000",
+    priceNGN: 100000,
+    pricePrefix: "From ",
     description:
       "A complete visual identity system for businesses that want a strong and consistent brand presence.",
 
@@ -59,7 +63,7 @@ const pricing = [
 
   {
     tier: "Full Brand Suite",
-    price: "Custom Quote",
+    customPrice: "Custom Quote",
     description:
       "A premium branding solution that combines identity design, UI/UX, marketing assets, and ongoing creative support.",
 
@@ -86,32 +90,36 @@ const featureRows = Object.keys(pricing[0].features);
 const addOns = [
   {
     name: "Logo design only",
-    price: "From ₦60,000",
+    priceNGN: 60000,
+    pricePrefix: "From ",
     desc: "Standalone logo without a full brand identity package.",
   },
   {
     name: "Social media templates",
-    price: "From ₦40,000",
+    priceNGN: 40000,
+    pricePrefix: "From ",
     desc: "5 customisable post/story templates in Canva or Figma.",
   },
   {
     name: "Pitch deck design",
-    price: "From ₦80,000",
+    priceNGN: 80000,
+    pricePrefix: "From ",
     desc: "Up to 20 slides — layout, icons, and infographics.",
   },
   {
     name: "Extra revision round",
-    price: "₦10,000/round",
+    priceNGN: 10000,
+    priceSuffix: "/round",
     desc: "Additional round beyond what your package includes.",
   },
   {
     name: "Rush delivery",
-    price: "+50% of project fee",
+    customPrice: "+50% of project fee",
     desc: "Delivery within 3 business days.",
   },
   {
     name: "Print vendor management",
-    price: "₦20,000",
+    priceNGN: 20000,
     desc: "We liaise with a printer and manage your print production.",
   },
 ];
@@ -123,7 +131,7 @@ const faqs = [
   },
   {
     q: "What is the payment structure?",
-    a: "50% upfront to begin, 50% before final file delivery. For ongoing retainers, payment is monthly in advance.",
+    a: "60% upfront to begin, 40% before final file delivery. For ongoing retainers, payment is monthly in advance.",
   },
   {
     q: "What if I don't like the initial concepts?",
@@ -139,7 +147,8 @@ const faqs = [
   },
 ];
 
-export default function GraphicDesignPricing() {
+export default async function GraphicDesignPricing() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -227,7 +236,7 @@ export default function GraphicDesignPricing() {
                   <p
                     className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
                   >
-                    {p.price}
+                    {formatPriceItem(p, currency)}
                   </p>
                   <p
                     className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
@@ -270,7 +279,8 @@ export default function GraphicDesignPricing() {
           </div>
 
           <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based on your
+            location. Final quote depends on scope.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
@@ -371,7 +381,7 @@ export default function GraphicDesignPricing() {
                     {a.name}
                   </span>
                   <span className="text-sm font-black text-[#FF5C00] shrink-0">
-                    {a.price}
+                    {formatPriceItem(a, currency)}
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">

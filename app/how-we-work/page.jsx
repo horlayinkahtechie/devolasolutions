@@ -1,6 +1,7 @@
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import HowWeWork from "./HowWeWork";
+import { alternateLocales } from "../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
@@ -36,6 +37,7 @@ export const metadata = {
     description:
       "7 clear phases from discovery to post-launch — no black boxes, no surprises. See how we deliver websites, apps, branding, and CAC registration projects.",
     locale: "en_NG",
+    alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",

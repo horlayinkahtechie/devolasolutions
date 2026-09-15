@@ -11,7 +11,7 @@ const Hero = () => {
           We Build <span className="text-[#FF5C00]">Websites</span> &{" "}
           <span className="text-[#FF5C00]">Mobile Apps</span>
           <br />
-          <span className="text-slate-400 text-2xl md:text-3xl lg:text-4xl font-bold leading-snug block mt-2">
+          <span className="text-slate-900 text-2xl md:text-3xl lg:text-4xl font-bold leading-snug block mt-2">
             That Grow Businesses.
           </span>
         </h1>

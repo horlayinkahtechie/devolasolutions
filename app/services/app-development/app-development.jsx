@@ -21,6 +21,8 @@ import { FaGraduationCap, FaTruck } from "react-icons/fa";
 import { HiUsers } from "react-icons/hi";
 import FAQs from "../../_components/FAQs";
 import FinalCTA from "../../_components/FinalCTA";
+import { formatPriceItem } from "../../_lib/currency";
+import { getServerCurrency } from "../../_lib/currency-server";
 
 /* ─────────────────────────────────
    SHARED LABEL
@@ -185,7 +187,8 @@ const process = [
 const pricing = [
   {
     tier: "Starter",
-    price: "From ₦1,950,000",
+    priceNGN: 1950000,
+    pricePrefix: "From ",
     description:
       "Ideal for MVPs, startups, and businesses looking to launch a fast and functional mobile app.",
 
@@ -208,7 +211,8 @@ const pricing = [
 
   {
     tier: "Business",
-    price: "From ₦4,000,000",
+    priceNGN: 4000000,
+    pricePrefix: "From ",
     description:
       "Perfect for businesses that need advanced features, payments, and scalable app infrastructure.",
 
@@ -234,7 +238,7 @@ const pricing = [
 
   {
     tier: "Enterprise",
-    price: "Custom Pricing",
+    customPrice: "Custom Pricing",
     description:
       "Built for large-scale platforms, SaaS applications, and complex systems requiring advanced architecture.",
 
@@ -317,7 +321,8 @@ const testimonials = [
 /* ─────────────────────────────────
    PAGE
 ───────────────────────────────── */
-export default function AppDevelopment() {
+export default async function AppDevelopment() {
+  const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
       {/* ══════════════════════════════
@@ -816,7 +821,7 @@ export default function AppDevelopment() {
                   <p
                     className={`text-3xl font-extrabold ${p.highlight ? "text-white" : "text-slate-900"}`}
                   >
-                    {p.price}
+                    {formatPriceItem(p, currency)}
                   </p>
                   <p
                     className={`text-sm mt-3 leading-relaxed ${p.highlight ? "text-slate-400" : "text-slate-500"}`}
@@ -859,7 +864,8 @@ export default function AppDevelopment() {
           </div>
 
           <p className="text-center text-xs text-slate-400 mt-6">
-            All prices are in Nigerian Naira (₦). Final quote depends on scope.{" "}
+            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based on
+            your location. Final quote depends on scope.{" "}
             <Link
               href="/contact"
               className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
