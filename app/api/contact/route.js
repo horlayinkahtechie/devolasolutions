@@ -1,4 +1,6 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const NOTIFY_EMAIL = "devolasolutions@gmail.com";
 
 export async function POST(request) {
   const {
@@ -15,16 +17,6 @@ export async function POST(request) {
 
   const websiteTypeDisplay = websiteType ? resolvedType(websiteType) : null;
   const mobileAppTypeDisplay = mobileAppType ? resolvedType(mobileAppType) : null;
-
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
@@ -47,13 +39,19 @@ export async function POST(request) {
   `;
 
   try {
-    await transporter.sendMail({
-      from: `"Devola Solutions Contact" <${process.env.GMAIL_USER}>`,
-      to: "devolasolutions@gmail.com",
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is not set");
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: "Devola Solutions Contact <onboarding@resend.dev>",
+      to: NOTIFY_EMAIL,
       replyTo: email,
       subject: `New enquiry from ${name} — ${service}`,
       html,
     });
+
+    if (error) throw error;
 
     return Response.json({ success: true });
   } catch (err) {
