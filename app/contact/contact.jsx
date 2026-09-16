@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { BiEnvelope, BiPhone, BiLogoWhatsapp, BiMap } from "react-icons/bi";
 import { HiSparkles } from "react-icons/hi";
-import { BsInstagram, BsTwitterX, BsLinkedin } from "react-icons/bs";
+import { BsInstagram, BsTwitterX, BsLinkedin, BsCheckLg } from "react-icons/bs";
 import { webSolutions, appSolutions } from "../_data/solutions";
 import { formatMoney } from "../_lib/currency";
 import { useCurrency } from "../_components/CurrencyProvider";
@@ -225,7 +225,9 @@ export default function Contact() {
           <div className="bg-white border border-slate-100 rounded-3xl p-7 md:p-10 shadow-sm">
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-20 gap-5">
-                <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center text-4xl">🚀</div>
+                <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center text-4xl text-green-600">
+                  <BsCheckLg />
+                </div>
                 <div>
                   <h2 className="text-2xl font-black text-slate-900 mb-2">Message sent!</h2>
                   <p className="text-slate-500 leading-relaxed max-w-sm text-sm">

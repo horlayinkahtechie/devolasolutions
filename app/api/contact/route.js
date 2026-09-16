@@ -44,7 +44,7 @@ export async function POST(request) {
     }
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: "Devola Solutions Contact <onboarding@resend.dev>",
+      from: "Devola Solutions Contact <contact@devolasolutions.com>",
       to: NOTIFY_EMAIL,
       replyTo: email,
       subject: `New enquiry from ${name} — ${service}`,
