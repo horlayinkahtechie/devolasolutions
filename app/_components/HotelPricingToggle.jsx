@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsCheckLg } from "react-icons/bs";
-import { formatMoney } from "../_lib/currency";
+import { formatMoney, applyDiscount } from "../_lib/currency";
 import { useCurrency } from "./CurrencyProvider";
 
 export default function HotelPricingToggle({
@@ -15,10 +15,15 @@ export default function HotelPricingToggle({
   addonFeatures = [],
   serviceLabel,
   typeName,
+  discountPercent,
+  discountLabel,
 }) {
   const { currency } = useCurrency();
   const [withAddon, setWithAddon] = useState(false);
-  const price = withAddon ? withAddonPrice : basePrice;
+  const discountedBase = applyDiscount(basePrice, discountPercent);
+  const discountedWithAddon = applyDiscount(withAddonPrice, discountPercent);
+  const price = withAddon ? discountedWithAddon : discountedBase;
+  const originalPrice = withAddon ? withAddonPrice : basePrice;
   const features = withAddon ? [...baseFeatures, ...addonFeatures] : baseFeatures;
   const money = (n) => formatMoney(n, currency);
 
@@ -59,21 +64,33 @@ export default function HotelPricingToggle({
 
       {/* Price */}
       <div className="pt-8">
-        <p className="text-[#FF5C00] text-[10px] font-black uppercase tracking-widest mb-2">
-          {withAddon
-            ? "Hotel booking site + " + addonLabel
-            : "Hotel booking site"}
-        </p>
+        <div className="flex items-center gap-3 mb-2">
+          <p className="text-[#FF5C00] text-[10px] font-black uppercase tracking-widest">
+            {withAddon
+              ? "Hotel booking site + " + addonLabel
+              : "Hotel booking site"}
+          </p>
+          {discountPercent && (
+            <span className="bg-[#FF5C00] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shrink-0">
+              {discountLabel || `${discountPercent}% Off`}
+            </span>
+          )}
+        </div>
+        {discountPercent && (
+          <p className="text-slate-500 text-lg line-through leading-none mb-1.5">
+            {money(originalPrice)}
+          </p>
+        )}
         <p className="text-4xl md:text-5xl font-black text-white">
           {money(price)}
         </p>
         <p className="text-slate-400 text-sm mt-2">
           {withAddon
             ? `Includes the ${addonLabel.toLowerCase()} (+${money(
-                withAddonPrice - basePrice
+                discountedWithAddon - discountedBase
               )}).`
             : `Toggle above to add the ${addonLabel.toLowerCase()} for ${money(
-                withAddonPrice
+                discountedWithAddon
               )} total.`}
         </p>
       </div>

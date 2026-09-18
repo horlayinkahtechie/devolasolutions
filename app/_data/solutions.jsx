@@ -10,7 +10,7 @@ import {
 import { BsBuildings, BsBank2, BsTruck } from "react-icons/bs";
 import { MdPointOfSale, MdRealEstateAgent, MdReceiptLong } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
-import { formatPrice } from "../_lib/currency";
+import { formatPrice, applyDiscount } from "../_lib/currency";
 
 /* ─────────────────────────────────────────────
    SOLUTION CATALOG
@@ -176,6 +176,8 @@ const web = [
     icon: <BiHotel />,
     tagline: "Take direct bookings and payments — no middleman.",
     priceNGN: 500000,
+    discountPercent: 20,
+    discountLabel: "Limited-Time Offer",
     priceNote:
       "Start with the hotel booking site. Toggle below to add a full restaurant management system.",
     summary:
@@ -490,8 +492,15 @@ export function getSolution(slug) {
   return solutions.find((s) => s.slug === slug);
 }
 
-/* Render a solution's headline price in the visitor's currency. */
+/* Render a solution's headline price in the visitor's currency — discounted,
+   if the solution has a discountPercent set. */
 export function getDisplayPrice(solution, currency = "NGN") {
+  const amount = applyDiscount(solution.priceNGN, solution.discountPercent);
+  return formatPrice(amount, currency, { prefix: solution.pricePrefix || "" });
+}
+
+/* The pre-discount price, for a strikethrough next to getDisplayPrice(). */
+export function getOriginalDisplayPrice(solution, currency = "NGN") {
   return formatPrice(solution.priceNGN, currency, { prefix: solution.pricePrefix || "" });
 }
 

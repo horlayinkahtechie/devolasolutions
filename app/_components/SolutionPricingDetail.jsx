@@ -4,7 +4,7 @@ import { BsCheckLg, BsArrowRight } from "react-icons/bs";
 import FinalCTA from "./FinalCTA";
 import OwnershipNote from "./OwnershipNote";
 import HotelPricingToggle from "./HotelPricingToggle";
-import { scopeExpansionNote, getDisplayPrice, getTierDisplayPrice } from "../_data/solutions";
+import { scopeExpansionNote, getDisplayPrice, getOriginalDisplayPrice, getTierDisplayPrice } from "../_data/solutions";
 import { getServerCurrency } from "../_lib/currency-server";
 import { projects } from "../_data/projects";
 
@@ -136,12 +136,27 @@ export default async function SolutionPricingDetail({ solution: s }) {
             </div>
 
             {/* Price card */}
-            <div className="bg-slate-900 rounded-3xl p-8 ring-2 ring-[#FF5C00] lg:sticky lg:top-28">
+            <div className="relative bg-slate-900 rounded-3xl p-8 ring-2 ring-[#FF5C00] lg:sticky lg:top-28">
+              {s.discountPercent && (
+                <span className="absolute -top-3 right-8 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                  {s.discountLabel || `${s.discountPercent}% Off`}
+                </span>
+              )}
               <p className="text-[#FF5C00] text-[10px] font-black uppercase tracking-widest mb-2">
                 {s.tiers ? "Starting price" : "Fixed price"}
               </p>
+              {s.discountPercent && (
+                <p className="text-slate-500 text-base line-through leading-none mb-1.5">
+                  {getOriginalDisplayPrice(s, currency)}
+                </p>
+              )}
               <p className="text-4xl font-black text-white mb-3">
                 {displayPrice}
+                {s.discountPercent && (
+                  <span className="ml-2 align-middle text-xs font-bold text-[#FF5C00] uppercase tracking-wide">
+                    Save {s.discountPercent}%
+                  </span>
+                )}
               </p>
               {s.priceNote && (
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
@@ -195,6 +210,8 @@ export default async function SolutionPricingDetail({ solution: s }) {
               addonFeatures={s.toggle.addonFeatures}
               serviceLabel={serviceLabel}
               typeName={s.name}
+              discountPercent={s.discountPercent}
+              discountLabel={s.discountLabel}
             />
           </div>
         </section>

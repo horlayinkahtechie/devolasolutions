@@ -30,3 +30,9 @@ export function formatPriceItem(item, currency = "NGN") {
     suffix: item.priceSuffix || "",
   });
 }
+
+/* Applies a % discount to an NGN amount, rounded to the nearest naira. */
+export function applyDiscount(ngnAmount, discountPercent = 0) {
+  if (!discountPercent) return ngnAmount;
+  return Math.round(ngnAmount * (1 - discountPercent / 100));
+}

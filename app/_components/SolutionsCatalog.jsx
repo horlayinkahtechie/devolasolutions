@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMessageDetail } from "react-icons/bi";
-import { webSolutions, appSolutions, getDisplayPrice } from "../_data/solutions";
+import { webSolutions, appSolutions, getDisplayPrice, getOriginalDisplayPrice } from "../_data/solutions";
 import { formatMoney } from "../_lib/currency";
 import { getServerCurrency } from "../_lib/currency-server";
 
@@ -30,11 +30,21 @@ function Card({ s, currency }) {
       href={`/pricing/solutions/${s.slug}`}
       className="group relative flex flex-col gap-5 rounded-3xl bg-white border border-slate-100 p-7 hover:shadow-xl hover:-translate-y-0.5 hover:border-orange-100 transition-all duration-300"
     >
+      {s.discountPercent && (
+        <span className="absolute -top-2.5 -left-2.5 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+          {s.discountPercent}% Off
+        </span>
+      )}
       <div className="flex items-start justify-between gap-4">
         <div className="w-12 h-12 rounded-2xl bg-orange-50 text-[#FF5C00] flex items-center justify-center text-xl shrink-0">
           {s.icon}
         </div>
         <div className="text-right">
+          {s.discountPercent && (
+            <p className="text-xs text-slate-400 line-through leading-none mb-0.5">
+              {getOriginalDisplayPrice(s, currency)}
+            </p>
+          )}
           <p className="text-lg font-black text-slate-900 leading-none">
             {getDisplayPrice(s, currency)}
           </p>
