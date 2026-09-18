@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { BsCheckLg } from "react-icons/bs";
+import Image from "next/image";
+import { BsCheckLg, BsArrowRight } from "react-icons/bs";
 import FinalCTA from "./FinalCTA";
 import OwnershipNote from "./OwnershipNote";
 import HotelPricingToggle from "./HotelPricingToggle";
 import { scopeExpansionNote, getDisplayPrice, getTierDisplayPrice } from "../_data/solutions";
 import { getServerCurrency } from "../_lib/currency-server";
+import { projects } from "../_data/projects";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -56,6 +58,11 @@ export default async function SolutionPricingDetail({ solution: s }) {
     });
     return `/contact?${params.toString()}`;
   };
+
+  const isWebsite = s.category !== "mobile";
+  const featuredProjects = isWebsite
+    ? projects.filter((p) => p.type === "web" && p.featured && p.image).slice(0, 3)
+    : [];
 
   return (
     <div className="bg-[#fafafa]">
@@ -315,6 +322,62 @@ export default async function SolutionPricingDetail({ solution: s }) {
           <OwnershipNote />
         </div>
       </section>
+
+      {/* ── SEE OUR WORK ── */}
+      {isWebsite && (
+        <section className="py-20 px-5 md:px-10 border-t border-slate-100 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+              <div>
+                <Label text="Proof, Not Promises" />
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-[1.05]">
+                  See Websites We&apos;ve Actually Built.
+                </h2>
+                <p className="text-slate-500 text-sm mt-3 max-w-xl">
+                  Real client projects, live in production — not mockups.
+                  Browse the full portfolio to see more like this.
+                </p>
+              </div>
+              <Link
+                href="/portfolio"
+                className="shrink-0 inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#FF5C00] transition-all duration-300"
+              >
+                View All Projects <BsArrowRight />
+              </Link>
+            </div>
+
+            {featuredProjects.length > 0 && (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {featuredProjects.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href="/portfolio"
+                    className="group rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-sm font-black text-slate-900 group-hover:text-[#FF5C00] transition-colors">
+                        {p.name}
+                      </p>
+                      <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                        {p.desc}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ── NOTE ── */}
       <section className="pb-20 px-5 md:px-10">
