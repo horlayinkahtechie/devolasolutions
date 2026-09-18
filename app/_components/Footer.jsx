@@ -29,7 +29,7 @@ const Footer = () => (
               { icon: <BsTwitter size={15} />, href: "https://twitter.com/dev_olayinka" },
               { icon: <BsInstagram size={15} />, href: "https://instagram.com/dev_olayinka" },
               { icon: <FaTiktok size={14} />, href: "https://tiktok.com/@dev_olayinka" },
-              { icon: <BsWhatsapp size={15} />, href: "https://wa.me/08169415526" },
+              { icon: <BsWhatsapp size={15} />, href: "https://wa.me/2348169415526" },
             ].map(({ icon, href }, i) => (
               <a
                 key={i}

@@ -175,7 +175,7 @@ const web = [
     category: "web",
     icon: <BiHotel />,
     tagline: "Take direct bookings and payments — no middleman.",
-    priceNGN: 700000,
+    priceNGN: 500000,
     priceNote:
       "Start with the hotel booking site. Toggle below to add a full restaurant management system.",
     summary:
@@ -186,14 +186,15 @@ const web = [
       addonLabel: "Restaurant Management System",
       addonDescription:
         "Add full restaurant operations on top of the hotel booking site — menu, orders, tables and food & beverage reporting, with billing linked to room accounts.",
-      basePrice: 700000,
-      withAddonPrice: 1000000,
+      basePrice: 500000,
+      withAddonPrice: 800000,
       baseFeatures: [
         "Room types, galleries & rate management",
         "Real-time availability calendar",
         "Online booking engine with date search",
         "Online payment / deposit (Paystack / Flutterwave)",
         "Booking dashboard (check-in / check-out, status)",
+        "Admin management system",
         "Automated booking confirmation emails",
         "Guest enquiry & contact forms",
         "Amenities, gallery & location pages",

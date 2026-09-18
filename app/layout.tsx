@@ -4,6 +4,7 @@ import "./globals.css";
 import OrganizationSchema from "./_components/OrganizationSchema";
 import { CurrencyProvider } from "./_components/CurrencyProvider";
 import { getServerCurrency } from "./_lib/currency-server";
+import WhatsAppButton from "./_components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default async function RootLayout({
         <CurrencyProvider initialCurrency={currency}>
           {children}
         </CurrencyProvider>
+        <WhatsAppButton />
       </body>
     </html>
   );

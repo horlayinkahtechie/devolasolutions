@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BsCheckLg, BsArrowRight } from "react-icons/bs";
-import { BiGlobe, BiPhone, BiFile } from "react-icons/bi";
+import { BiGlobe, BiFile } from "react-icons/bi";
 import { MdOutlineDesignServices } from "react-icons/md";
 import FinalCTA from "../_components/FinalCTA";
 import SolutionsCatalog from "../_components/SolutionsCatalog";
@@ -17,122 +17,20 @@ const Label = ({ text }) => (
   </div>
 );
 
-const services = [
-  {
-    id: "web",
-    icon: <BiGlobe />,
-    iconBg: "bg-blue-50 text-blue-600",
-    label: "Web Development",
-    tagline: "Hand-coded. Fast. SEO-ready.",
-    tiers: [
-      {
-        tier: "Starter",
-        priceNGN: 200000,
-        pricePrefix: "From ",
-        highlight: false,
-        features: [
-          "Up to 5 pages",
-          "Mobile responsive",
-          "Basic SEO setup",
-          "Contact form",
-          "2 weeks delivery",
-          "1 week support",
-        ],
-      },
-      {
-        tier: "Business",
-        priceNGN: 450000,
-        pricePrefix: "From ",
-        highlight: true,
-        features: [
-          "Everything in tier 1",
-          "Up to 15 pages",
-          "CMS / Blog integration",
-          "Advanced SEO",
-          "Payment gateway",
-          "Custom animations",
-          "Admin management system",
-          "1 months support",
-        ],
-      },
-      {
-        tier: "Enterprise",
-        priceNGN: 800000,
-        pricePrefix: "From ",
-        highlight: false,
-        features: [
-          "Everything in tier 2",
-          "Unlimited pages",
-          "Custom backend / API",
-          "User authentication",
-          "Database design",
-          "Admin management system",
-          "Dedicated timeline",
-          "6 months support",
-        ],
-      },
-    ],
-    link: "/pricing/web-development",
-    serviceLink: "/services/web-development",
-  },
-  {
-    id: "app",
-    icon: <BiPhone />,
-    iconBg: "bg-orange-50 text-[#FF5C00]",
-    label: "Mobile App Development",
-    tagline: "iOS & Android. One codebase.",
-    tiers: [
-      {
-        tier: "Starter",
-        priceNGN: 1500000,
-        pricePrefix: "From ",
-        highlight: false,
-        features: [
-          "UI/UX Design",
-          "iOS & Android",
-          "Up to 15 screens",
-          "User auth (email/phone)",
-          "Basic push notifications",
-          "Basic Admin Management System",
-          "App Store submission",
-          "2 weeks support",
-        ],
-      },
-      {
-        tier: "Business",
-        priceNGN: 3550000,
-        pricePrefix: "From ",
-        highlight: true,
-        features: [
-          "Everything in tier 1",
-          "iOS & Android",
-          "Up to 40 screens",
-          "Social Sign up/Sign in",
-          "Payment integration",
-          "Real-time features",
-          "Advance push notifications",
-          "Complex Admin Management System",
-          "1 months support",
-        ],
-      },
-      {
-        tier: "Enterprise",
-        customPrice: "Custom Quote",
-        highlight: false,
-        features: [
-          "Everything in tier 2",
-          "Unlimited screens",
-          "Custom API / backend",
-          "Multi-role user system",
-          "Advanced analytics",
-          "Dedicated timeline",
-          "Ongoing support",
-        ],
-      },
-    ],
-    link: "/pricing/mobile-development",
-    serviceLink: "/services/app-development",
-  },
+const quickNav = [
+  { id: "solutions", icon: <BiGlobe />, label: "Websites & Apps" },
+  { id: "design", icon: <MdOutlineDesignServices />, label: "Graphic Design" },
+  { id: "reg", icon: <BiFile />, label: "Business Registration" },
+];
+
+/* Graphic Design and Business Registration aren't in the website/app type
+   catalog (SolutionsCatalog) below — their tiers ARE the type (Essential vs.
+   Brand Identity vs. Full Suite; Sole Proprietorship vs. LLC vs. NGO), so they
+   stay here as dedicated pricing blocks. Web Development and Mobile App
+   Development used to have a generic Starter/Business/Enterprise block here
+   too, but that's been replaced by the per-type catalog below — a real fixed
+   price per website/app type instead of a made-up generic package. */
+const packagedServices = [
   {
     id: "design",
     icon: <MdOutlineDesignServices />,
@@ -279,19 +177,20 @@ export default async function Pricing() {
           <div className="max-w-3xl">
             <Label text="Pricing" />
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.0] mb-6">
-              Transparent Pricing.
+              Priced by Type.
               <br />
-              <span className="text-[#FF5C00]">No Surprises.</span>
+              <span className="text-[#FF5C00]">No Guesswork.</span>
             </h1>
             <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
-              Fixed service fees across every offering. Third-party costs are
-              always billed at exact cost — no markups, ever.
+              No generic estimates — a fixed price for exactly what you&apos;re
+              building. Third-party costs are always billed at exact cost, no
+              markups, ever.
             </p>
           </div>
 
           {/* Quick nav pills */}
           <div className="flex flex-wrap gap-3 mt-10">
-            {services.map((s) => (
+            {quickNav.map((s) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
@@ -327,9 +226,18 @@ export default async function Pricing() {
       </section>
 
       {/* ══════════════════════════════
-          SERVICE PRICING BLOCKS
+          WEBSITE & APP PRICING BY TYPE
       ══════════════════════════════ */}
-      {services.map((s, si) => (
+      <SolutionsCatalog
+        id="solutions"
+        heading="Website & App Pricing by Type"
+        subheading="Every website and mobile-app type below has a fixed starting price and a full feature breakdown on its own page — no forms, nothing hidden."
+      />
+
+      {/* ══════════════════════════════
+          DESIGN & REGISTRATION PRICING
+      ══════════════════════════════ */}
+      {packagedServices.map((s, si) => (
         <section
           key={s.id}
           id={s.id}
@@ -416,7 +324,7 @@ export default async function Pricing() {
                   </ul>
 
                   <Link
-                    href="/contact"
+                    href={`/contact?service=${encodeURIComponent(s.label)}`}
                     className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 ${
                       t.highlight
                         ? "bg-[#FF5C00] text-white hover:bg-orange-500"
@@ -443,130 +351,6 @@ export default async function Pricing() {
           </div>
         </section>
       ))}
-
-      {/* ══════════════════════════════
-          SOLUTION-TYPE CATALOG
-      ══════════════════════════════ */}
-      <div className="border-t border-slate-100">
-        <SolutionsCatalog
-          id="solutions"
-          heading="Pricing by Website & App Type"
-          subheading="Prefer a price for exactly what you're building? Every website and mobile-app type below has a fixed starting price and a full feature breakdown on its own page — nothing hidden behind a form."
-        />
-      </div>
-
-      {/* ══════════════════════════════
-          ALL-SERVICES OVERVIEW TABLE
-      ══════════════════════════════ */}
-      <section className="py-24 px-6 md:px-12 border-t border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <Label text="At a Glance" />
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-[1.05]">
-              All Services, One View.
-            </h2>
-            <p className="text-slate-500 mt-4 max-w-md mx-auto">
-              Starting prices for every service. Click any row for the full
-              breakdown.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-4 gap-3 mb-2">
-            <div />
-            {[
-              "Starter / Essential",
-              "Business / Identity",
-              "Enterprise / Custom",
-            ].map((h, i) => (
-              <div
-                key={h}
-                className={`rounded-xl py-3 text-center ${i === 1 ? "bg-slate-900" : "bg-slate-100"}`}
-              >
-                <span
-                  className={`text-[10px] font-black uppercase tracking-widest px-2 block ${i === 1 ? "text-[#FF5C00]" : "text-slate-500"}`}
-                >
-                  {h}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-2">
-            {[
-              {
-                service: "Web Development",
-                link: "/pricing/web-development",
-                cols: [
-                  { priceNGN: 200000, pricePrefix: "From " },
-                  { priceNGN: 450000, pricePrefix: "From " },
-                  { customPrice: "Custom" },
-                ],
-              },
-              {
-                service: "Mobile App",
-                link: "/pricing/mobile-development",
-                cols: [
-                  { priceNGN: 1500000, pricePrefix: "From " },
-                  { priceNGN: 3550000, pricePrefix: "From " },
-                  { customPrice: "Custom" },
-                ],
-              },
-              {
-                service: "Graphic Design",
-                link: "/pricing/graphic-design",
-                cols: [
-                  { priceNGN: 80000, pricePrefix: "From " },
-                  { priceNGN: 200000, pricePrefix: "From " },
-                  { customPrice: "Custom" },
-                ],
-              },
-              {
-                service: "Business Registration",
-                link: "/pricing/business-registration",
-                cols: [
-                  { priceNGN: 25000, pricePrefix: "From " },
-                  { priceNGN: 80000, pricePrefix: "From " },
-                  { priceNGN: 120000, pricePrefix: "From " },
-                ],
-              },
-            ].map((row, i) => (
-              <Link
-                key={row.service}
-                href={row.link}
-                className={`grid grid-cols-4 gap-3 items-center rounded-2xl px-5 py-4 group transition-all duration-200 hover:shadow-md ${
-                  i % 2 === 0
-                    ? "bg-white border border-slate-100 hover:border-slate-200"
-                    : "bg-[#fafafa] border border-transparent hover:bg-white hover:border-slate-100"
-                }`}
-              >
-                <span className="text-sm font-black text-slate-900 group-hover:text-[#FF5C00] transition-colors flex items-center gap-2">
-                  {row.service}
-                  <BsArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity text-xs" />
-                </span>
-                {row.cols.map((col, ci) => (
-                  <span
-                    key={ci}
-                    className={`text-sm font-bold text-center ${ci === 1 ? "text-[#FF5C00]" : "text-slate-600"}`}
-                  >
-                    {formatPriceItem(col, currency)}
-                  </span>
-                ))}
-              </Link>
-            ))}
-          </div>
-
-          <p className="text-xs text-slate-400 text-center mt-6">
-            Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (₦1,500 = $1)"} based
-            on your location. Third-party fees billed separately at exact cost.{" "}
-            <Link
-              href="/contact"
-              className="text-slate-700 font-bold hover:text-[#FF5C00] transition-colors"
-            >
-              Get a custom quote →
-            </Link>
-          </p>
-        </div>
-      </section>
 
       {/* ══════════════════════════════
           PAYMENT TERMS
@@ -653,15 +437,15 @@ export default async function Pricing() {
             {[
               {
                 q: "Are these prices fixed or can they change?",
-                a: "Prices shown are starting points. Final pricing is scoped to your project — complexity, feature count, and timeline all factor in. We provide a fixed written quote before any work begins.",
+                a: "Website and app-type prices are fixed for the exact scope listed on that type's page — no vague estimates. Graphic Design and Business Registration prices are starting points that can vary with complexity. Either way, you get a written quote before any work begins.",
               },
               {
                 q: "What's not included in the service fee?",
                 a: "Domain registration, web hosting, Apple/Google developer account fees, CAC government filing fees, and any third-party software subscriptions are billed separately at exact cost with zero markup.",
               },
               {
-                q: "Can I start with a smaller package and upgrade later?",
-                a: "Yes. You can upgrade from any tier by paying the difference. We structure code and design files with growth in mind so upgrades don't require starting from scratch.",
+                q: "Can I add features or upgrade later?",
+                a: "For website and app types, additional features beyond the listed scope are quoted separately and added on top of the price. For Graphic Design and Business Registration, you can move up to a higher tier at any time by paying the difference.",
               },
               {
                 q: "Do you offer payment in instalments?",
