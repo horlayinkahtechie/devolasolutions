@@ -4,7 +4,13 @@ import { BsCheckLg, BsArrowRight } from "react-icons/bs";
 import FinalCTA from "./FinalCTA";
 import OwnershipNote from "./OwnershipNote";
 import HotelPricingToggle from "./HotelPricingToggle";
-import { scopeExpansionNote, getDisplayPrice, getOriginalDisplayPrice, getTierDisplayPrice } from "../_data/solutions";
+import {
+  scopeExpansionNote,
+  getDisplayPrice,
+  getOriginalDisplayPrice,
+  getTierDisplayPrice,
+  getOriginalTierDisplayPrice,
+} from "../_data/solutions";
 import { getServerCurrency } from "../_lib/currency-server";
 import { projects } from "../_data/projects";
 
@@ -245,6 +251,11 @@ export default async function SolutionPricingDetail({ solution: s }) {
                       Popular
                     </div>
                   )}
+                  {t.discountPercent && (
+                    <div className="absolute -top-2.5 -left-2.5 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                      {t.discountPercent}% Off
+                    </div>
+                  )}
                   <div>
                     <p
                       className={`text-xs font-black uppercase tracking-widest mb-2 ${
@@ -253,6 +264,15 @@ export default async function SolutionPricingDetail({ solution: s }) {
                     >
                       {t.name}
                     </p>
+                    {t.discountPercent && (
+                      <p
+                        className={`text-sm line-through leading-none mb-1 ${
+                          t.highlight ? "text-slate-500" : "text-slate-400"
+                        }`}
+                      >
+                        {getOriginalTierDisplayPrice(t, currency)}
+                      </p>
+                    )}
                     <p
                       className={`text-3xl font-extrabold ${
                         t.highlight ? "text-white" : "text-slate-900"

@@ -52,6 +52,8 @@ const web = [
     icon: <BiUser />,
     tagline: "Show your work. Win the client.",
     priceNGN: 250000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
     summary:
       "A clean, fast personal or studio site that puts your work front and centre and turns visitors into enquiries.",
@@ -78,6 +80,8 @@ const web = [
     icon: <BsBuildings />,
     tagline: "The credible home base for your business.",
     priceNGN: 250000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
     summary:
       "A professional multi-page website that explains what you do, builds trust, and captures leads for your team.",
@@ -106,6 +110,8 @@ const web = [
     tagline: "An online store built to sell.",
     priceNGN: 350000,
     pricePrefix: "From ",
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "Three tiers — pick the one that matches your catalogue and features.",
     summary:
       "A full online store with catalogue, cart, checkout and payments. Choose Basic, Standard, or a fully customised build.",
@@ -121,6 +127,7 @@ const web = [
       {
         name: "Basic",
         priceNGN: 350000,
+        discountPercent: 30,
         description: "Everything you need to start selling online.",
         features: [
           "Up to 50 products",
@@ -137,6 +144,7 @@ const web = [
       {
         name: "Standard",
         priceNGN: 580000,
+        discountPercent: 30,
         highlight: true,
         description: "For stores with a real catalogue and repeat customers.",
         features: [
@@ -155,6 +163,7 @@ const web = [
       {
         name: "Fully Customised",
         priceNGN: 950000,
+        discountPercent: 30,
         description: "A store shaped entirely around how your business works.",
         features: [
           "Everything in Standard",
@@ -176,7 +185,7 @@ const web = [
     icon: <BiHotel />,
     tagline: "Take direct bookings and payments — no middleman.",
     priceNGN: 500000,
-    discountPercent: 20,
+    discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote:
       "Start with the hotel booking site. Toggle below to add a full restaurant management system.",
@@ -219,6 +228,8 @@ const web = [
     icon: <BiGroup />,
     tagline: "Every lead, deal and follow-up in one place.",
     priceNGN: 800000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Hosted on your own accounts after handover.",
     summary:
       "A custom customer-relationship system your team actually uses — pipeline, reminders, and reporting built around your process.",
@@ -245,6 +256,8 @@ const web = [
     icon: <BiRestaurant />,
     tagline: "Fill more tables, take deposits upfront.",
     priceNGN: 550000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
     summary:
       "A restaurant site with a digital menu, table reservations and online payments, plus optional pickup / delivery ordering.",
@@ -270,6 +283,8 @@ const web = [
     icon: <MdPointOfSale />,
     tagline: "Ring up sales and know your stock in real time.",
     priceNGN: 750000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Runs on desktop & tablet.",
     summary:
       "A point-of-sale and inventory system for shops and outlets — sales, stock, suppliers and reports in one tool.",
@@ -296,6 +311,8 @@ const web = [
     icon: <FaSchool />,
     tagline: "Run the whole school from one dashboard.",
     priceNGN: 1500000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Parent, student and staff portals included.",
     summary:
       "An end-to-end school platform — students, staff, results, fees and communication — with portals for every role.",
@@ -323,6 +340,8 @@ const web = [
     icon: <MdRealEstateAgent />,
     tagline: "List properties, capture serious buyers.",
     priceNGN: 350000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
     summary:
       "A property listing website with search, filters, maps and agent enquiry forms, plus an admin dashboard to manage listings.",
@@ -348,6 +367,8 @@ const web = [
     icon: <BiRocket />,
     tagline: "One focused page built to convert.",
     priceNGN: 100000,
+    discountPercent: 30,
+    discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fastest way to launch.",
     summary:
       "A single high-converting page for a product, campaign or event — designed to capture leads and drive one action.",
@@ -504,8 +525,15 @@ export function getOriginalDisplayPrice(solution, currency = "NGN") {
   return formatPrice(solution.priceNGN, currency, { prefix: solution.pricePrefix || "" });
 }
 
-/* Render one e-commerce-style tier's price in the visitor's currency. */
+/* Render one e-commerce-style tier's price in the visitor's currency —
+   discounted, if the tier has a discountPercent set. */
 export function getTierDisplayPrice(tier, currency = "NGN") {
+  const amount = applyDiscount(tier.priceNGN, tier.discountPercent);
+  return formatPrice(amount, currency);
+}
+
+/* The pre-discount tier price, for a strikethrough next to getTierDisplayPrice(). */
+export function getOriginalTierDisplayPrice(tier, currency = "NGN") {
   return formatPrice(tier.priceNGN, currency);
 }
 
