@@ -211,6 +211,38 @@ export const projects = [
         role: "CEO, Yordson Apartments",
       },
     },
+  },  {
+    id: 21,
+    slug: "tom-de-best",
+    name: "Tom De Best",
+    category: "Web Development",
+    type: "web",
+    tools: "Next.js · Tailwind ",
+    desc: "A business website for a brand that sells, import and export phone assessories and other electronics products.",
+    image: "/tomdebest.png",
+    screenBg: "bg-blue-100",
+    tag: "bg-blue-50 text-blue-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "tomdebest.com",
+    caseStudy: {
+      challenge:
+        "Tom De Best needed a business website that could showcase their phone accessories and electronics products effectively.",
+      solutions: [
+        "Built a modern business website with detailed product listings",
+        "Implemented a responsive design for optimal viewing on all devices",
+        "Added a contact form for customer inquiries",
+        "Optimized the website for SEO to increase visibility",
+      ],
+      gallery: ["/tomdebest.png"],
+      testimonial: {
+        quote:
+          "I saw his ads and I messaged him and he responded immediately and I paid a upfront payment and he delivered in just 3 days.",
+        name: "Tom De Best",
+        role: "Owner, Tom De Best",
+      },
+    },
   },
   {
     id: 29,
