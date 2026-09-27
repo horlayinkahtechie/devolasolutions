@@ -285,7 +285,7 @@ const web = [
           "Menu & menu category management",
           "Kitchen order management with basic Kitchen Display System (KDS)",
           "Order status tracking (Preparing / Ready / Completed)",
-          "Cash, card & bank transfer payments, with split bills & discounts",
+          "Cash, card & bank transfer payments, with discounts",
           "Basic customer management & digital receipts",
           "Daily, weekly & monthly sales reports, by payment method & staff",
           "Cloud database with basic backup",
@@ -302,6 +302,7 @@ const web = [
           "Everything in Starter, plus the operational features to properly manage inventory, purchasing and food costs. Up to 10 staff accounts, 2 POS terminals.",
         features: [
           "Everything in Starter",
+          "Split bills",
           "Ingredient inventory — stock-in/out, adjustments, movement history & low-stock alerts",
           "Wastage recording & stock discrepancy tracking",
           "Recipe management with exact ingredient quantities & automatic stock deduction per sale",
