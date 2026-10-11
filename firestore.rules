@@ -1,0 +1,54 @@
+rules_version = '2';
+
+// Default-deny Firestore rules for the education platform.
+//
+// Design: almost everything sensitive (enrollments, payments, progress,
+// users, audit logs) is read/written exclusively through our own Route
+// Handlers using the Admin SDK, which BYPASSES these rules entirely and
+// does its own auth + ownership checks in trusted server code (see
+// app/edu/_lib/auth.js). These rules are defense-in-depth for that: even
+// if a bug ever let client code reach Firestore directly, sensitive
+// collections stay sealed, and the client SDK is only trusted for the
+// narrow, genuinely-public case below.
+//
+// Deploy with: firebase deploy --only firestore:rules
+// (requires the Firebase CLI and project to be set up — see .env.example).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Published courses are the one thing meant to be publicly readable
+    // (course landing pages, SEO). Draft/archived courses are invisible
+    // to the client SDK entirely — the admin course builder reads those
+    // via the Admin SDK instead.
+    match /eduCourses/{courseId} {
+      allow get, list: if resource.data.status == 'published';
+      allow write: if false;
+    }
+
+    match /eduModules/{moduleId} {
+      allow get, list: if true; // curriculum outline is public; video access is separate (signed tokens).
+      allow write: if false;
+    }
+
+    match /eduLessons/{lessonId} {
+      // Title/order/duration/isPreview are fine to expose publicly for the
+      // curriculum display — the actual video playback token is NEVER a
+      // Firestore field the client reads; it's minted per-request by a
+      // Route Handler after verifying enrollment (Phase 5 / video infra).
+      allow get, list: if true;
+      allow write: if false;
+    }
+
+    match /eduCategories/{categoryId} {
+      allow get, list: if true;
+      allow write: if false;
+    }
+
+    // Everything else — users, enrollments, payments, progress, audit
+    // logs, rate limits, login tokens, marketing preferences — is
+    // Admin-SDK-only. No client reads, no client writes.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
