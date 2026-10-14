@@ -87,10 +87,10 @@ const Footer = () => (
             <h4 className="font-bold mb-6 uppercase tracking-widest text-[10px] text-[#FF5C00]">Work With Us</h4>
             <p className="text-slate-400 text-sm mb-4 font-medium">Have a project in mind?</p>
             <a
-              href="mailto:devolasolutions@gmail.com"
+              href="mailto:contact@devolasolutions.com"
               className="text-base font-bold border-b-2 border-[#FF5C00]/40 hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all duration-300 pb-1 inline-block"
             >
-              devolasolutions@gmail.com
+              contact@devolasolutions.com
             </a>
           </div>
         </div>

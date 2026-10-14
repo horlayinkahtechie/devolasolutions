@@ -13,7 +13,7 @@ export default function OrganizationSchema() {
     image: "https://devolasolutions.com/devola-solutions-logo.png",
     description:
       "Devola Solutions is a Nigeria-based web & mobile app development agency working remotely with clients in Nigeria, the United States, the United Kingdom, Canada, Germany, the Netherlands, Spain and beyond.",
-    email: "devolasolutions@gmail.com",
+    email: "contact@devolasolutions.com",
     telephone: "+2348169415526",
     address: {
       "@type": "PostalAddress",

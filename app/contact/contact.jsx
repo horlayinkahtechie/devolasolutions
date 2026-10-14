@@ -47,8 +47,8 @@ const contactInfo = [
   {
     icon: <BiEnvelope size={18} />,
     label: "Email us",
-    value: "devolasolutions@gmail.com",
-    href: "mailto:devolasolutions@gmail.com",
+    value: "contact@devolasolutions.com",
+    href: "mailto:contact@devolasolutions.com",
   },
   {
     icon: <BiLogoWhatsapp size={18} />,

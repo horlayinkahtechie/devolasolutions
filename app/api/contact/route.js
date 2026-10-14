@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const NOTIFY_EMAIL = "devolasolutions@gmail.com";
+const NOTIFY_EMAIL = "contact@devolasolutions.com";
 
 export async function POST(request) {
   const {

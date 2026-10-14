@@ -55,7 +55,7 @@ const FinalCTA = () => {
               </a>
 
               <a
-                href="mailto:devolasolutions@gmail.com"
+                href="mailto:contact@devolasolutions.com"
                 className="flex items-center gap-4 group w-fit"
               >
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shrink-0">
@@ -64,7 +64,7 @@ const FinalCTA = () => {
                 <div>
                   <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Email</div>
                   <div className="text-white font-bold text-sm md:text-base break-all group-hover:text-blue-400 transition-colors duration-200">
-                    devolasolutions@gmail.com
+                    contact@devolasolutions.com
                   </div>
                 </div>
               </a>
