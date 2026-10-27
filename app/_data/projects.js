@@ -517,7 +517,7 @@ export const projects = [
     year: "2026",
     featured: false,
     status: "Ongoing",
-    link: "https://www.figma.com/design/ljg3FABFfcP52lOtr3424k/Campfleet?node-id=0-1&p=f&t=JXPYGe4VhIsA9VGC-0",
+    link: "https://expo.dev/accounts/horlayinkah/projects/campfleets/builds/a01f7524-6bf4-4744-977d-7e3d62ef6cc4",
   },
   {
     id: 8,
