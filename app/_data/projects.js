@@ -250,7 +250,7 @@ export const projects = [
     link: "https://preciousapartments.com",
   },
   {
-    id: 21,
+    id: 33,
     slug: "tom-de-best",
     name: "Tom De Best",
     category: "Web Development",
