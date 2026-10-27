@@ -75,31 +75,39 @@ const BrowserMockup = ({ image, screenBg }) => (
     </div>
   </div>
 );
-const IPhoneMockup = (
-  { image, screenBg, width = 90 }, // Added width prop defaulting to 90
-) => (
-  <div className="relative mx-auto" style={{ width: width }}>
-    <div className="bg-slate-900 rounded-[2.2rem] p-1.25 shadow-2xl relative">
+const IPhoneMockup = ({ image, screenBg, width = 80 }) => (
+  <div className="relative mx-auto" style={{ width }}>
+    {/* Side buttons — protrude slightly off the frame, like a real device */}
+    <div className="absolute -left-[2px] top-[15%] w-[2px] h-[4%] bg-slate-700 rounded-l-sm" /> {/* Action button */}
+    <div className="absolute -left-[2px] top-[23%] w-[2px] h-[8%] bg-slate-700 rounded-l-sm" /> {/* Volume up */}
+    <div className="absolute -left-[2px] top-[33%] w-[2px] h-[8%] bg-slate-700 rounded-l-sm" /> {/* Volume down */}
+    <div className="absolute -right-[2px] top-[20%] w-[2px] h-[11%] bg-slate-700 rounded-r-sm" /> {/* Power button */}
+
+    {/* Frame */}
+    <div className="bg-gradient-to-br from-slate-700 via-slate-900 to-slate-950 rounded-[1.2rem] p-[3px] shadow-2xl relative ring-1 ring-black/40">
       <div
-        className={`rounded-[1.8rem] overflow-hidden relative ${screenBg}`}
-        style={{ aspectRatio: "9 / 19" }}
+        className={`rounded-[0.9rem] overflow-hidden relative ${screenBg} ring-1 ring-inset ring-white/10`}
+        style={{ aspectRatio: "9 / 19.5" }}
       >
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-slate-900 rounded-full z-10" />
+        {/* Dynamic Island */}
+        <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[32%] aspect-[11/3] bg-black rounded-full z-10" />
+
         {image ? (
           <Image
             src={image}
             alt="product image"
             fill
-            sizes={`${width}px`} // Pass the dynamic width to sizes
+            sizes={`${width}px`}
             className="object-cover"
           />
         ) : (
           <div className="pt-7 px-2 space-y-1.5">{/* skeleton code */}</div>
         )}
-        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-slate-900/30 rounded-full" />
+
+        {/* Home indicator */}
+        <div className="absolute bottom-[1.6%] left-1/2 -translate-x-1/2 w-[32%] h-[1.2%] bg-white/60 rounded-full z-10" />
       </div>
     </div>
-    {/* static buttons lines */}
   </div>
 );
 
@@ -174,7 +182,7 @@ const ProjectCardContent = ({ project }) => (
           <IPhoneMockup
             image={project.image}
             screenBg={project.screenBg}
-            width={160}
+            width={80}
           />
         </div>
       )}
@@ -268,7 +276,7 @@ const FeaturedCardContent = ({ project }) => (
           <IPhoneMockup
             image={project.image}
             screenBg={project.screenBg}
-            width={160}
+            width={80}
           />
         </div>
       )}
