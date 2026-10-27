@@ -192,7 +192,7 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind · Supabase",
-    desc: "A company website for a construction firm — showcasing services, completed projects and company profile, with a contact form for new project enquiries.",
+    desc: "A company website for a construction, real estate and plastic production firm — showcasing services, completed projects and company profile, with a contact form for new project enquiries.",
     image: "/braten-investment-ltd.png",
     screenBg: "bg-green-100",
     tag: "bg-green-50 text-green-600",
