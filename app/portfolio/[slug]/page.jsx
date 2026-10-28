@@ -127,6 +127,55 @@ export default async function CaseStudyPage({ params }) {
           </section>
         )}
 
+        {/* Demo access */}
+        {caseStudy.demoCredentials && (
+          <section className="px-6 md:px-12 pb-20">
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-flex items-center gap-2.5 mb-5">
+                <span className="w-6 h-0.5 bg-[#FF5C00] rounded-full" />
+                <span className="text-[#FF5C00] text-[11px] font-bold uppercase tracking-widest">Try It Yourself</span>
+              </div>
+              <p className="text-slate-600 leading-relaxed mb-6 max-w-2xl">
+                The live demo is fully interactive — sign in as any role below
+                {caseStudy.demoCredentials.password && (
+                  <>
+                    {" "}using the password{" "}
+                    <code className="bg-slate-100 text-slate-800 text-sm font-mono px-1.5 py-0.5 rounded">
+                      {caseStudy.demoCredentials.password}
+                    </code>
+                  </>
+                )}
+                .
+              </p>
+              <div className="rounded-2xl border border-slate-100 bg-white overflow-hidden overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-slate-50 text-left text-[11px] uppercase tracking-widest text-slate-400">
+                      <th className="px-5 py-3 font-bold whitespace-nowrap">Role</th>
+                      <th className="px-5 py-3 font-bold whitespace-nowrap">Sign in with</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {caseStudy.demoCredentials.accounts.map((account) => (
+                      <tr key={account.role}>
+                        <td className="px-5 py-3.5 font-semibold text-slate-700 whitespace-nowrap">
+                          {account.role}
+                        </td>
+                        <td className="px-5 py-3.5 font-mono text-slate-600">
+                          {account.signIn}
+                          {account.note && (
+                            <span className="ml-2 text-xs text-slate-400 font-sans">({account.note})</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Challenge + What We Solved */}
         <section className="px-6 md:px-12 pb-20">
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
