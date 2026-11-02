@@ -10,6 +10,10 @@ import {
   getOriginalDisplayPrice,
   getTierDisplayPrice,
   getOriginalTierDisplayPrice,
+  getDiscountPercent,
+  getDiscountLabel,
+  internationalDiscountPercent,
+  internationalDiscountLabel,
 } from "../_data/solutions";
 import { getServerCurrency } from "../_lib/currency-server";
 import { projects } from "../_data/projects";
@@ -46,6 +50,8 @@ function FeatureGrid({ features }) {
 export default async function SolutionPricingDetail({ solution: s }) {
   const currency = await getServerCurrency();
   const displayPrice = getDisplayPrice(s, currency);
+  const discountPercent = getDiscountPercent(s, currency);
+  const discountLabel = getDiscountLabel(s, currency);
   const parentHref =
     s.category === "mobile"
       ? "/pricing/mobile-development"
@@ -143,24 +149,24 @@ export default async function SolutionPricingDetail({ solution: s }) {
 
             {/* Price card */}
             <div className="relative bg-slate-900 rounded-3xl p-8 ring-2 ring-[#FF5C00] lg:sticky lg:top-28">
-              {s.discountPercent && (
+              {discountPercent && (
                 <span className="absolute -top-3 right-8 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
-                  {s.discountLabel || `${s.discountPercent}% Off`}
+                  {discountLabel || `${discountPercent}% Off`}
                 </span>
               )}
               <p className="text-[#FF5C00] text-[10px] font-black uppercase tracking-widest mb-2">
                 {s.tiers ? "Starting price" : "Fixed price"}
               </p>
-              {s.discountPercent && (
+              {discountPercent && (
                 <p className="text-slate-500 text-base line-through leading-none mb-1.5">
                   {getOriginalDisplayPrice(s, currency)}
                 </p>
               )}
               <p className="text-4xl font-black text-white mb-3">
                 {displayPrice}
-                {s.discountPercent && (
+                {discountPercent && (
                   <span className="ml-2 align-middle text-xs font-bold text-[#FF5C00] uppercase tracking-wide">
-                    Save {s.discountPercent}%
+                    Save {discountPercent}%
                   </span>
                 )}
               </p>
@@ -210,6 +216,8 @@ export default async function SolutionPricingDetail({ solution: s }) {
             <HotelPricingToggle
               basePrice={s.toggle.basePrice}
               withAddonPrice={s.toggle.withAddonPrice}
+              basePriceUSD={s.toggle.basePriceUSD}
+              withAddonPriceUSD={s.toggle.withAddonPriceUSD}
               addonLabel={s.toggle.addonLabel}
               addonDescription={s.toggle.addonDescription}
               baseFeatures={s.toggle.baseFeatures}
@@ -237,7 +245,12 @@ export default async function SolutionPricingDetail({ solution: s }) {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {s.tiers.map((t) => (
+              {s.tiers.map((t) => {
+                const tierDiscountPercent =
+                  currency === "USD" ? internationalDiscountPercent : t.discountPercent;
+                const tierDiscountLabel =
+                  currency === "USD" ? internationalDiscountLabel : null;
+                return (
                 <div
                   key={t.name}
                   className={`relative rounded-3xl flex flex-col gap-6 p-8 ${
@@ -251,9 +264,9 @@ export default async function SolutionPricingDetail({ solution: s }) {
                       Popular
                     </div>
                   )}
-                  {t.discountPercent && (
+                  {tierDiscountPercent && (
                     <div className="absolute -top-2.5 -left-2.5 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
-                      {t.discountPercent}% Off
+                      {tierDiscountLabel || `${tierDiscountPercent}% Off`}
                     </div>
                   )}
                   <div>
@@ -264,7 +277,7 @@ export default async function SolutionPricingDetail({ solution: s }) {
                     >
                       {t.name}
                     </p>
-                    {t.discountPercent && (
+                    {tierDiscountPercent && (
                       <p
                         className={`text-sm line-through leading-none mb-1 ${
                           t.highlight ? "text-slate-500" : "text-slate-400"
@@ -319,7 +332,8 @@ export default async function SolutionPricingDetail({ solution: s }) {
                     Get Started →
                   </Link>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -421,7 +435,7 @@ export default async function SolutionPricingDetail({ solution: s }) {
         <div className="max-w-5xl mx-auto">
           <p className="text-xs text-slate-400 leading-relaxed">
             Price shown is a one-time build fee, in{" "}
-            {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (converted at ₦1,500 = $1)"}{" "}
+            {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars ($)"}{" "}
             based on your location — switch it from the menu at any time. Domain,
             hosting, developer accounts and third-party subscriptions are billed
             separately at exact cost with zero markup. Final quote is confirmed

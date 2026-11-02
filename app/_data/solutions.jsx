@@ -11,19 +11,21 @@ import {
 import { BsBuildings, BsBank2, BsTruck } from "react-icons/bs";
 import { MdPointOfSale, MdRealEstateAgent, MdReceiptLong } from "react-icons/md";
 import { FaSchool } from "react-icons/fa";
-import { formatPrice, applyDiscount } from "../_lib/currency";
+import { formatNative, applyDiscount } from "../_lib/currency";
 
 /* ─────────────────────────────────────────────
    SOLUTION CATALOG
    One source of truth for every website / app
    type, its price, and its full feature list.
 
-   Prices are stored as raw Naira numbers
-   (`priceNGN`) rather than formatted strings so
-   they can be rendered in NGN or USD depending on
-   the visitor's detected location — use
-   getDisplayPrice() / getTierDisplayPrice() to
-   render them, never `priceNGN` directly.
+   Local and international pricing are independent
+   — `priceNGN` is the Naira price for Nigeria-based
+   clients (eligible for the web discountPercent),
+   `priceUSD` is the flat international price for
+   everyone else. There is no exchange-rate link
+   between the two any more — use getDisplayPrice() /
+   getTierDisplayPrice() to render them, never
+   `priceNGN` / `priceUSD` directly.
 
    Consumed by:
      - app/_components/SolutionsCatalog.jsx  (home / services / pricing)
@@ -53,6 +55,7 @@ const web = [
     icon: <BiUser />,
     tagline: "Show your work. Win the client.",
     priceNGN: 250000,
+    priceUSD: 250,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
@@ -81,6 +84,7 @@ const web = [
     icon: <BsBuildings />,
     tagline: "The credible home base for your business.",
     priceNGN: 250000,
+    priceUSD: 400,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
@@ -110,6 +114,7 @@ const web = [
     icon: <BiShoppingBag />,
     tagline: "An online store built to sell.",
     priceNGN: 350000,
+    priceUSD: 450,
     pricePrefix: "From ",
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
@@ -128,6 +133,7 @@ const web = [
       {
         name: "Basic",
         priceNGN: 350000,
+        priceUSD: 450,
         discountPercent: 30,
         description: "Everything you need to start selling online.",
         features: [
@@ -145,6 +151,7 @@ const web = [
       {
         name: "Standard",
         priceNGN: 580000,
+        priceUSD: 900,
         discountPercent: 30,
         highlight: true,
         description: "For stores with a real catalogue and repeat customers.",
@@ -164,6 +171,7 @@ const web = [
       {
         name: "Fully Customised",
         priceNGN: 950000,
+        priceUSD: 1600,
         discountPercent: 30,
         description: "A store shaped entirely around how your business works.",
         features: [
@@ -186,6 +194,7 @@ const web = [
     icon: <BiHotel />,
     tagline: "Take direct bookings and payments — no middleman.",
     priceNGN: 500000,
+    priceUSD: 700,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote:
@@ -200,6 +209,8 @@ const web = [
         "Add full restaurant operations on top of the hotel booking site — menu, orders, tables and food & beverage reporting, with billing linked to room accounts.",
       basePrice: 500000,
       withAddonPrice: 800000,
+      basePriceUSD: 700,
+      withAddonPriceUSD: 1100,
       baseFeatures: [
         "Room types, galleries & rate management",
         "Real-time availability calendar",
@@ -229,6 +240,7 @@ const web = [
     icon: <BiGroup />,
     tagline: "Every lead, deal and follow-up in one place.",
     priceNGN: 800000,
+    priceUSD: 1500,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Hosted on your own accounts after handover.",
@@ -257,6 +269,7 @@ const web = [
     icon: <BiRestaurant />,
     tagline: "From order-taking to full restaurant operations.",
     priceNGN: 400000,
+    priceUSD: 400,
     pricePrefix: "From ",
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
@@ -276,6 +289,7 @@ const web = [
       {
         name: "Starter",
         priceNGN: 400000,
+        priceUSD: 400,
         discountPercent: 30,
         description:
           "A usable restaurant POS for restaurants that mainly need order-taking, tables and basic reporting. Up to 5 staff accounts, 1 POS terminal.",
@@ -297,6 +311,7 @@ const web = [
       {
         name: "Business",
         priceNGN: 550000,
+        priceUSD: 700,
         discountPercent: 30,
         highlight: true,
         description:
@@ -319,6 +334,7 @@ const web = [
       {
         name: "Enterprise",
         priceNGN: 850000,
+        priceUSD: 900,
         discountPercent: 30,
         description:
           "The complete restaurant management solution — everything in Business, plus multi-terminal, multi-branch and offline-ready operations. Up to 25 staff accounts, 5 POS terminals, 2 branches.",
@@ -346,6 +362,7 @@ const web = [
     icon: <MdPointOfSale />,
     tagline: "Ring up sales and know your stock in real time.",
     priceNGN: 385000,
+    priceUSD: 500,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Runs on desktop & tablet.",
@@ -374,6 +391,7 @@ const web = [
     icon: <FaSchool />,
     tagline: "Run the whole school from one dashboard.",
     priceNGN: 400000,
+    priceUSD: 2500,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time build. Parent, student and staff portals included.",
@@ -403,6 +421,7 @@ const web = [
     icon: <MdRealEstateAgent />,
     tagline: "List properties, capture serious buyers.",
     priceNGN: 350000,
+    priceUSD: 450,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fully owned by you after handover.",
@@ -430,6 +449,7 @@ const web = [
     icon: <BiRocket />,
     tagline: "One focused page built to convert.",
     priceNGN: 100000,
+    priceUSD: 160,
     discountPercent: 30,
     discountLabel: "Limited-Time Offer",
     priceNote: "One-time. Fastest way to launch.",
@@ -460,6 +480,7 @@ const mobile = [
     icon: <BiMobileAlt />,
     tagline: "Your store on iOS, Android and the web — one system.",
     priceNGN: 1500000,
+    priceUSD: 1500,
     pricePrefix: "From ",
     priceNote:
       "Three tiers — pick the one that matches your store's scope. Final pricing depends on any additional features or custom implementation you want added.",
@@ -477,6 +498,7 @@ const mobile = [
       {
         name: "Starter",
         priceNGN: 1500000,
+        priceUSD: 1500,
         description: "A focused mobile storefront — iOS, Android, and the essentials to start selling. Up to 100 products.",
         features: [
           "iOS & Android app (React Native)",
@@ -493,6 +515,7 @@ const mobile = [
       {
         name: "Standard",
         priceNGN: 2800000,
+        priceUSD: 3500,
         highlight: true,
         description: "Everything in Starter, plus a matching web app and the tools to manage a growing catalogue.",
         features: [
@@ -510,6 +533,7 @@ const mobile = [
       {
         name: "Advanced",
         priceNGN: 4500000,
+        priceUSD: 5500,
         description: "The full commerce platform — unlimited products, multi-vendor admin, and delivery operations built in.",
         features: [
           "Everything in Standard",
@@ -530,6 +554,7 @@ const mobile = [
     icon: <MdReceiptLong />,
     tagline: "Airtime, data, power, TV — paid in seconds.",
     priceNGN: 3500000,
+    priceUSD: 3000,
     priceNote: "Includes the mobile app and the admin / reconciliation dashboard.",
     summary:
       "A VTU / bills app with a wallet system, biller integrations, transaction history and a full admin back office.",
@@ -556,6 +581,7 @@ const mobile = [
     icon: <BsBank2 />,
     tagline: "Wallets, transfers, cards and more — built to scale.",
     priceNGN: 15000000,
+    priceUSD: 8000,
     pricePrefix: "Up to ",
     priceNote:
       "Final price depends on scope, regulatory requirements and third-party / licensing integrations.",
@@ -585,6 +611,7 @@ const mobile = [
     icon: <BsTruck />,
     tagline: "Customer app, driver app and dispatch — connected.",
     priceNGN: 10000000,
+    priceUSD: 15000,
     priceNote:
       "Final pricing depends on fleet size and the additional features or custom implementation you want added.",
     payment: "Milestone-based",
@@ -614,6 +641,7 @@ const mobile = [
     icon: <BiChat />,
     tagline: "Profiles, feeds and real-time connection — built to scale.",
     priceNGN: 10000000,
+    priceUSD: 10000,
     pricePrefix: "Up to ",
     priceNote:
       "Final pricing depends on the specific features, integrations and implementation you want added.",
@@ -648,28 +676,87 @@ export function getSolution(slug) {
   return solutions.find((s) => s.slug === slug);
 }
 
-/* Render a solution's headline price in the visitor's currency — discounted,
-   if the solution has a discountPercent set. */
+/* Current site-wide promo for every visitor seeing USD pricing (i.e.
+   everyone outside Nigeria — see proxy.ts) — independent of the NGN-only
+   discountPercent set on individual web solutions above. Shown via
+   PromoModal on landing and reflected in every USD price on the site, not
+   just claimed in the modal copy. Change/remove this in one place to
+   end the promo. */
+export const internationalDiscountPercent = 20;
+export const internationalDiscountLabel = "International Offer";
+
+/* The current NGN promo — every web solution above carries this exact
+   discountPercent/discountLabel individually (not mobile — mobile NGN
+   pricing isn't discounted). Exported as a constant purely so PromoModal's
+   copy can reference the right number without hardcoding it a second
+   place; if you ever change the web discountPercent values, update this
+   too so the modal doesn't drift out of sync with the real prices. */
+export const localDiscountPercent = 30;
+export const localDiscountLabel = "Limited-Time Offer";
+
+/* Whichever discount currently applies to this solution in this currency —
+   the per-item NGN discountPercent, or the flat international one for USD.
+   Returns 0/undefined (falsy) when neither applies, so call sites can use
+   it directly as a conditional. */
+export function getDiscountPercent(solution, currency = "NGN") {
+  return currency === "USD" ? internationalDiscountPercent : solution.discountPercent;
+}
+
+export function getDiscountLabel(solution, currency = "NGN") {
+  if (currency === "USD") return internationalDiscountLabel;
+  return solution.discountLabel || null;
+}
+
+/* Render a solution's headline price in the visitor's currency, with
+   whichever discount currently applies (see getDiscountPercent above). */
 export function getDisplayPrice(solution, currency = "NGN") {
-  const amount = applyDiscount(solution.priceNGN, solution.discountPercent);
-  return formatPrice(amount, currency, { prefix: solution.pricePrefix || "" });
+  const base = currency === "USD" ? solution.priceUSD : solution.priceNGN;
+  const amount = applyDiscount(base, getDiscountPercent(solution, currency));
+  return formatNative(amount, currency, { prefix: solution.pricePrefix || "" });
 }
 
-/* The pre-discount price, for a strikethrough next to getDisplayPrice(). */
+/* The pre-discount price in the given currency, for a strikethrough next to
+   getDisplayPrice(). */
 export function getOriginalDisplayPrice(solution, currency = "NGN") {
-  return formatPrice(solution.priceNGN, currency, { prefix: solution.pricePrefix || "" });
+  const base = currency === "USD" ? solution.priceUSD : solution.priceNGN;
+  return formatNative(base, currency, { prefix: solution.pricePrefix || "" });
 }
 
-/* Render one e-commerce-style tier's price in the visitor's currency —
-   discounted, if the tier has a discountPercent set. */
+/* Render one e-commerce-style tier's price in the visitor's currency — same
+   discount logic as getDisplayPrice(), using the tier's own NGN
+   discountPercent for NGN. */
 export function getTierDisplayPrice(tier, currency = "NGN") {
-  const amount = applyDiscount(tier.priceNGN, tier.discountPercent);
-  return formatPrice(amount, currency);
+  const base = currency === "USD" ? tier.priceUSD : tier.priceNGN;
+  const pct = currency === "USD" ? internationalDiscountPercent : tier.discountPercent;
+  return formatNative(applyDiscount(base, pct), currency);
 }
 
-/* The pre-discount tier price, for a strikethrough next to getTierDisplayPrice(). */
+/* The pre-discount tier price in the given currency, for a strikethrough
+   next to getTierDisplayPrice(). */
 export function getOriginalTierDisplayPrice(tier, currency = "NGN") {
-  return formatPrice(tier.priceNGN, currency);
+  const base = currency === "USD" ? tier.priceUSD : tier.priceNGN;
+  return formatNative(base, currency);
+}
+
+/* The cheapest headline price across a list of solutions, in the visitor's
+   currency — used for "From $X" rollup labels so they never drift out of
+   sync with the catalog again. */
+export function getLowestPrice(list, currency = "NGN") {
+  const priceOf = (s) => {
+    if (s.tiers) {
+      return Math.min(
+        ...s.tiers.map((t) =>
+          currency === "USD"
+            ? applyDiscount(t.priceUSD, internationalDiscountPercent)
+            : applyDiscount(t.priceNGN, t.discountPercent)
+        )
+      );
+    }
+    return currency === "USD"
+      ? applyDiscount(s.priceUSD, internationalDiscountPercent)
+      : applyDiscount(s.priceNGN, s.discountPercent);
+  };
+  return Math.min(...list.map(priceOf));
 }
 
 /* The price shown for every type covers exactly the scope listed on that

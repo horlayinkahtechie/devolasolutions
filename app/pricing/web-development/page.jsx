@@ -5,24 +5,25 @@ import { alternateLocales } from "../../_data/seo";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
-  title: "Website Development Cost in Nigeria 2025 | From ₦100k | Devola Solutions",
+  title: "Website Development Cost 2026 | From $160 (₦100k) | Devola Solutions",
   description:
-    "How much does a website cost in Nigeria? Fixed prices by type — landing page ₦100k, portfolio & company sites ₦250k, e-commerce from ₦350k, hotel booking ₦700k, school system ₦1.5M. Next.js & React.",
+    "How much does a website cost? Fixed prices by type, in USD for international clients and Naira for Nigeria — landing page $160, portfolio & company sites $250–$400, e-commerce from $450, hotel booking $700, school system $2,500. Next.js & React, delivered remotely worldwide.",
   keywords: [
-    "website development cost Nigeria",
-    "how much does a website cost in Nigeria",
-    "web development pricing Nigeria",
-    "website price Nigeria 2025",
-    "Next.js developer Nigeria price",
-    "React developer cost Nigeria",
-    "landing page cost Nigeria",
-    "e-commerce website price Nigeria",
-    "business website cost Nigeria",
-    "Lagos web developer price",
-    "custom website Nigeria affordable",
-    "SEO website development Nigeria",
-    "web development agency rates Nigeria",
+    "website development cost",
+    "how much does a website cost",
+    "website development company for international clients",
+    "web development pricing in USD",
+    "hire a web developer remotely",
+    "Next.js developer price",
+    "React developer cost",
+    "landing page development cost",
+    "e-commerce website development price",
+    "business website development cost",
+    "custom website development affordable",
+    "SEO website development agency",
+    "web development agency rates",
     "Devola web development pricing",
+    "website development cost Nigeria",
     "website development cost for US clients",
     "website development cost for UK clients",
     "website development cost for Canada clients",
@@ -40,17 +41,17 @@ export const metadata = {
     type: "website",
     url: "https://devolasolutions.com/pricing/web-development",
     siteName: "Devola Solutions",
-    title: "Website Development Pricing Nigeria | From ₦100k | Devola Solutions",
+    title: "Website Development Pricing | From $160 | Devola Solutions",
     description:
-      "Fixed website pricing by type — no generic estimates. Landing pages, portfolios, e-commerce, hotel booking, CRM, school systems and more. Built with Next.js, delivered remotely to clients worldwide.",
+      "Fixed website pricing by type — no generic estimates. Landing pages, portfolios, e-commerce, hotel booking, CRM, school systems and more. Built with Next.js, delivered remotely to clients worldwide, priced in your currency.",
     locale: "en_NG",
     alternateLocale: alternateLocales,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Website Development Cost Nigeria | Devola Solutions",
+    title: "Website Development Cost | Devola Solutions",
     description:
-      "A fixed price for every website type — from ₦100k landing pages to ₦1.5M school management systems. Next.js websites — fast, SEO-optimised, mobile-ready.",
+      "A fixed price for every website type — from $160 landing pages to $2,500 school management systems. Next.js websites — fast, SEO-optimised, mobile-ready.",
     creator: "@devolasolutions",
   },
 };
@@ -59,7 +60,9 @@ export default function Page() {
   return (
     <div>
       <Navbar />
-      <WebDevelopment />
+      <main>
+        <WebDevelopment />
+      </main>
       <Footer />
     </div>
   );

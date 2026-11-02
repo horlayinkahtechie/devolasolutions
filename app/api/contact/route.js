@@ -5,7 +5,7 @@ const NOTIFY_EMAIL = "contact@devolasolutions.com";
 export async function POST(request) {
   const {
     name, email, phone, service, budget, source, message,
-    websiteType, mobileAppType, typeOther,
+    websiteType, mobileAppType, typeOther, utm,
   } = await request.json();
 
   const resolvedType = (val) =>
@@ -17,6 +17,16 @@ export async function POST(request) {
 
   const websiteTypeDisplay = websiteType ? resolvedType(websiteType) : null;
   const mobileAppTypeDisplay = mobileAppType ? resolvedType(mobileAppType) : null;
+
+  // Ad-attribution data captured client-side on landing (see
+  // _lib/analytics.js) — lets you see exactly which campaign/keyword a lead
+  // came from, not just the generic "Google Ads" dropdown choice.
+  const utmDisplay =
+    utm && Object.keys(utm).length > 0
+      ? Object.entries(utm)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join(" · ")
+      : null;
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
@@ -30,6 +40,7 @@ export async function POST(request) {
         ${mobileAppTypeDisplay ? `<tr><td style="padding:8px 0;font-weight:bold">Mobile App Type</td><td>${mobileAppTypeDisplay}</td></tr>` : ""}
         <tr><td style="padding:8px 0;font-weight:bold">Budget</td><td>${budget || "—"}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold">How they found us</td><td>${source || "—"}</td></tr>
+        ${utmDisplay ? `<tr><td style="padding:8px 0;font-weight:bold">Ad attribution</td><td>${utmDisplay}</td></tr>` : ""}
       </table>
       <h3 style="color:#FF5C00;margin-top:24px">Message</h3>
       <p style="white-space:pre-wrap;background:#f9f9f9;padding:16px;border-radius:8px">${message}</p>

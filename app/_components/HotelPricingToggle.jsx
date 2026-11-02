@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsCheckLg } from "react-icons/bs";
-import { formatMoney, applyDiscount } from "../_lib/currency";
+import { formatNative, applyDiscount } from "../_lib/currency";
 import { useCurrency } from "./CurrencyProvider";
+import { internationalDiscountPercent, internationalDiscountLabel } from "../_data/solutions";
 
 export default function HotelPricingToggle({
   basePrice,
   withAddonPrice,
+  basePriceUSD,
+  withAddonPriceUSD,
   addonLabel,
   addonDescription,
   baseFeatures = [],
@@ -20,12 +23,25 @@ export default function HotelPricingToggle({
 }) {
   const { currency } = useCurrency();
   const [withAddon, setWithAddon] = useState(false);
-  const discountedBase = applyDiscount(basePrice, discountPercent);
-  const discountedWithAddon = applyDiscount(withAddonPrice, discountPercent);
+  const isUSD = currency === "USD";
+
+  // USD gets the current flat international promo; NGN keeps its own
+  // per-item discountPercent.
+  const effectiveDiscountPercent = isUSD ? internationalDiscountPercent : discountPercent;
+  const effectiveDiscountLabel = isUSD ? internationalDiscountLabel : discountLabel;
+  const discountedBase = isUSD
+    ? applyDiscount(basePriceUSD, internationalDiscountPercent)
+    : applyDiscount(basePrice, discountPercent);
+  const discountedWithAddon = isUSD
+    ? applyDiscount(withAddonPriceUSD, internationalDiscountPercent)
+    : applyDiscount(withAddonPrice, discountPercent);
   const price = withAddon ? discountedWithAddon : discountedBase;
-  const originalPrice = withAddon ? withAddonPrice : basePrice;
+  const originalPrice = isUSD
+    ? (withAddon ? withAddonPriceUSD : basePriceUSD)
+    : (withAddon ? withAddonPrice : basePrice);
   const features = withAddon ? [...baseFeatures, ...addonFeatures] : baseFeatures;
-  const money = (n) => formatMoney(n, currency);
+  const showDiscount = !!effectiveDiscountPercent;
+  const money = (n) => formatNative(n, currency);
 
   const contactHref = `/contact?${new URLSearchParams({
     service: serviceLabel || "Web Development",
@@ -70,13 +86,13 @@ export default function HotelPricingToggle({
               ? "Hotel booking site + " + addonLabel
               : "Hotel booking site"}
           </p>
-          {discountPercent && (
+          {showDiscount && (
             <span className="bg-[#FF5C00] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shrink-0">
-              {discountLabel || `${discountPercent}% Off`}
+              {effectiveDiscountLabel || `${effectiveDiscountPercent}% Off`}
             </span>
           )}
         </div>
-        {discountPercent && (
+        {showDiscount && (
           <p className="text-slate-500 text-lg line-through leading-none mb-1.5">
             {money(originalPrice)}
           </p>

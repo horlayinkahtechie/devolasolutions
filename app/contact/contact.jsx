@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { isValidPhoneNumber } from "libphonenumber-js/min";
 import { BiEnvelope, BiPhone, BiLogoWhatsapp, BiMap } from "react-icons/bi";
 import { HiSparkles } from "react-icons/hi";
 import { BsInstagram, BsTwitterX, BsLinkedin, BsCheckLg } from "react-icons/bs";
 import { webSolutions, appSolutions } from "../_data/solutions";
-import { formatMoney } from "../_lib/currency";
+import { formatNative } from "../_lib/currency";
 import { useCurrency } from "../_components/CurrencyProvider";
+import FaqSchema from "../_components/FaqSchema";
+import { getStoredUtm, isGoogleAdsLead, trackEvent, trackLeadConversion } from "../_lib/analytics";
 
 const services = [
   "Web Development",
@@ -23,25 +26,29 @@ const OTHER_TYPE = "Other (please specify)";
 const websiteTypeOptions = [...webSolutions.map((s) => s.name), OTHER_TYPE];
 const mobileAppTypeOptions = [...appSolutions.map((s) => s.name), OTHER_TYPE];
 
+// Independent local vs. international buckets — not an NGN<->USD conversion
+// of each other, since the catalog's NGN and USD prices aren't linked either.
 const budgetRanges = [
-  { minNGN: 200000, maxNGN: 300000 },
-  { minNGN: 300000, maxNGN: 750000 },
-  { minNGN: 750000, maxNGN: 2000000 },
-  { minNGN: 2000000, above: true },
+  { minNGN: 200000, maxNGN: 300000, minUSD: 150, maxUSD: 500 },
+  { minNGN: 300000, maxNGN: 750000, minUSD: 500, maxUSD: 1500 },
+  { minNGN: 750000, maxNGN: 2000000, minUSD: 1500, maxUSD: 5000 },
+  { minNGN: 2000000, minUSD: 5000, above: true },
 ];
 
 function budgetLabels(currency) {
+  const lo = (r) => (currency === "USD" ? r.minUSD : r.minNGN);
+  const hi = (r) => (currency === "USD" ? r.maxUSD : r.maxNGN);
   return [
     ...budgetRanges.map((r) =>
       r.above
-        ? `Above ${formatMoney(r.minNGN, currency)}`
-        : `${formatMoney(r.minNGN, currency)} – ${formatMoney(r.maxNGN, currency)}`
+        ? `Above ${formatNative(lo(r), currency)}`
+        : `${formatNative(lo(r), currency)} – ${formatNative(hi(r), currency)}`
     ),
     "Let's discuss",
   ];
 }
 
-const sources = ["Instagram", "Twitter / X", "LinkedIn", "Google Search", "Referral from someone", "Other"];
+const sources = ["Instagram", "Twitter / X", "LinkedIn", "Google Search", "Google Ads", "Referral from someone", "Other"];
 
 const contactInfo = [
   {
@@ -126,6 +133,20 @@ export default function Contact() {
   const { currency } = useCurrency();
   const budgets = budgetLabels(currency);
   const [form, setForm] = useState(() => buildInitialForm(searchParams));
+  // sessionStorage isn't available during server/first-client render, so
+  // this can't be folded into buildInitialForm's initial state without the
+  // server and client disagreeing on it (which React's hydration can't
+  // reliably resync for a <select>'s selected option). Applying it as a
+  // state update after mount sidesteps that entirely.
+  useEffect(() => {
+    if (isGoogleAdsLead(getStoredUtm())) {
+      // Syncing from sessionStorage, which doesn't exist during render on
+      // the server or the client's first pass — there's no earlier point
+      // this can run.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setForm((prev) => (prev.source ? prev : { ...prev, source: "Google Ads" }));
+    }
+  }, []);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -136,6 +157,8 @@ export default function Contact() {
     if (!form.name.trim()) e.name = "Please enter your name.";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email))
       e.email = "Please enter a valid email address.";
+    if (form.phone.trim() && !isValidPhoneNumber(form.phone.trim()))
+      e.phone = "Enter a valid number with country code, e.g. +1 212 555 0100.";
     if (!form.service) e.service = "Please select a service.";
     if (!form.message.trim() || form.message.trim().length < 20)
       e.message = "Please write at least 20 characters about your project.";
@@ -170,10 +193,12 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, utm: getStoredUtm() }),
       });
       const data = await res.json();
       if (!data.success) throw new Error();
+      trackEvent("generate_lead", { service: form.service });
+      trackLeadConversion();
       setSubmitted(true);
     } catch {
       setSubmitError("Something went wrong. Please try again or email us directly.");
@@ -189,6 +214,7 @@ export default function Contact() {
 
   return (
     <div className="bg-[#fafafa]">
+      <FaqSchema faqs={faqs} />
       {/* ── HERO ── */}
       <section className="px-5 md:px-10 pt-36 pb-14">
         <div className="max-w-7xl mx-auto">
@@ -296,10 +322,16 @@ export default function Contact() {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+234 800 000 0000"
-                      className={`${inputBase} ${inputNormal}`}
+                      placeholder="+1 212 555 0100"
+                      className={`${inputBase} ${errors.phone ? inputError : inputNormal}`}
                     />
-                    <p className="text-[10px] text-slate-400 mt-1.5">Optional — for WhatsApp follow-ups only.</p>
+                    {errors.phone ? (
+                      <p className="text-xs text-red-500 mt-1.5">{errors.phone}</p>
+                    ) : (
+                      <p className="text-[10px] text-slate-400 mt-1.5">
+                        Optional — but if entered, the country code is required (e.g. +44, +1, +234).
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
@@ -482,6 +514,7 @@ export default function Contact() {
                       href={c.href}
                       target={c.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
+                      onClick={() => trackEvent("contact_link_click", { label: c.label })}
                       className="flex items-center gap-3.5 group"
                     >
                       <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-orange-50 group-hover:text-[#FF5C00] group-hover:border-orange-100 transition-all duration-200 shrink-0">

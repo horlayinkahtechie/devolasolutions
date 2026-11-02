@@ -2,6 +2,11 @@
    Server and Client Components (no next/headers here, see currency-server.js
    for the request-aware helper). */
 
+/* Legacy fallback rate — NOT used for solution/service pricing any more.
+   Local (NGN) and international (USD) prices are now set independently per
+   item (see solutions.jsx's priceNGN / priceUSD). This conversion only
+   backstops the handful of smaller items that were never given their own
+   USD figure (pricing-page add-ons, contact-form budget buckets). */
 export const NGN_PER_USD = 1500;
 
 export function ngnToUsd(ngn) {
@@ -29,6 +34,17 @@ export function formatPriceItem(item, currency = "NGN") {
     prefix: item.pricePrefix || "",
     suffix: item.priceSuffix || "",
   });
+}
+
+/* Formats an amount that is ALREADY denominated in the target currency's own
+   units — no NGN<->USD conversion applied. Use this for anything priced
+   independently per currency (solutions.jsx's priceNGN / priceUSD pair). */
+export function formatNative(amount, currency = "NGN", { prefix = "", suffix = "" } = {}) {
+  const money =
+    currency === "USD"
+      ? `$${Math.round(amount).toLocaleString("en-US")}`
+      : `₦${Math.round(amount).toLocaleString("en-NG")}`;
+  return `${prefix}${money}${suffix}`;
 }
 
 /* Applies a % discount to an NGN amount, rounded to the nearest naira. */

@@ -26,16 +26,17 @@ const Footer = () => (
           </p>
           <div className="flex gap-3">
             {[
-              { icon: <BsTwitter size={15} />, href: "https://twitter.com/dev_olayinka" },
-              { icon: <BsInstagram size={15} />, href: "https://instagram.com/dev_olayinka" },
-              { icon: <FaTiktok size={14} />, href: "https://tiktok.com/@dev_olayinka" },
-              { icon: <BsWhatsapp size={15} />, href: "https://wa.me/2348169415526" },
-            ].map(({ icon, href }, i) => (
+              { icon: <BsTwitter size={15} />, href: "https://twitter.com/dev_olayinka", label: "Twitter" },
+              { icon: <BsInstagram size={15} />, href: "https://instagram.com/dev_olayinka", label: "Instagram" },
+              { icon: <FaTiktok size={14} />, href: "https://tiktok.com/@dev_olayinka", label: "TikTok" },
+              { icon: <BsWhatsapp size={15} />, href: "https://wa.me/2348169415526", label: "WhatsApp" },
+            ].map(({ icon, href, label }, i) => (
               <a
                 key={i}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={label}
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-[#FF5C00] hover:text-[#FF5C00] hover:bg-[#FF5C00]/8 transition-all duration-300"
               >
                 {icon}

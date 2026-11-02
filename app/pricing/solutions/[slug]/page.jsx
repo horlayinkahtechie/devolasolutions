@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Navbar from "../../../_components/Navbar";
 import Footer from "../../../_components/Footer";
 import SolutionPricingDetail from "../../../_components/SolutionPricingDetail";
+import SolutionSchema from "../../../_components/SolutionSchema";
 import { solutions, getSolution, getDisplayPrice } from "../../../_data/solutions";
 import { alternateLocales } from "../../../_data/seo";
 
@@ -19,11 +20,15 @@ export async function generateMetadata({ params }) {
     return { title: "Not found | Devola Solutions" };
   }
 
-  // Metadata always quotes the canonical Naira price — it's crawled once,
-  // not per-visitor, so it shouldn't flip with the on-page currency toggle.
-  const displayPrice = getDisplayPrice(s, "NGN");
-  const title = `${s.name} Cost | ${displayPrice} | Devola Solutions`;
-  const description = `${s.summary} ${displayPrice}, fixed price. Full feature breakdown, ${s.timeline} timeline. Every account handed over to you after launch. Built in Nigeria, delivered remotely worldwide.`;
+  // Metadata always quotes the canonical prices — it's crawled once, not
+  // per-visitor, so it shouldn't flip with the on-page currency toggle.
+  // Both NGN and USD are shown since local and international pricing are
+  // now independent of each other.
+  const ngnPrice = getDisplayPrice(s, "NGN");
+  const usdPrice = getDisplayPrice(s, "USD");
+  const displayPrice = usdPrice;
+  const title = `${s.name} Cost | ${usdPrice} (${ngnPrice} in Nigeria) | Devola Solutions`;
+  const description = `${s.summary} ${usdPrice} for international clients, ${ngnPrice} in Nigeria — fixed price. Full feature breakdown, ${s.timeline} timeline. Every account handed over to you after launch. Built in Nigeria, delivered remotely worldwide.`;
   const url = `https://devolasolutions.com/pricing/solutions/${s.slug}`;
   const keywords = [
     `${s.name} cost`,
@@ -66,6 +71,7 @@ export default async function Page({ params }) {
 
   return (
     <div>
+      <SolutionSchema solution={solution} />
       <Navbar />
       <SolutionPricingDetail solution={solution} />
       <Footer />

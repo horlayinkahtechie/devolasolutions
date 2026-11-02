@@ -2,6 +2,7 @@ import Link from "next/link";
 import FinalCTA from "../../_components/FinalCTA";
 import SolutionsCatalog from "../../_components/SolutionsCatalog";
 import OwnershipNote from "../../_components/OwnershipNote";
+import FaqSchema from "../../_components/FaqSchema";
 import { formatPriceItem } from "../../_lib/currency";
 import { getServerCurrency } from "../../_lib/currency-server";
 
@@ -79,13 +80,14 @@ export default async function WebDevelopmentPricing() {
   const currency = await getServerCurrency();
   return (
     <div className="bg-[#fafafa]">
+      <FaqSchema faqs={faqs} />
       {/* ══════════════════════════════
           HERO
       ══════════════════════════════ */}
       <section className="relative overflow-hidden px-6 md:px-12 pt-36 pb-20">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-orange-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm text-slate-400 font-medium mb-10">
+          <div className="flex items-center gap-2 text-sm text-slate-500 font-medium mb-10">
             <Link href="/" className="hover:text-[#FF5C00] transition-colors">
               Home
             </Link>

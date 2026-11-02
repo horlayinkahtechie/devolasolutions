@@ -48,7 +48,7 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Supabase · Tailwind · Stripe · Carrier · Resend . Google Maps API . Multiple Payment Methods . Multicurrency Support",
-    desc: "E-commerce mobile app with product listings, cart, Stripe payment integration, Carrier integration, real-time shipping fee calculation, and order tracking.",
+    desc: "E-commerce platform for a Canada-based African groceries brand — product listings, cart, Stripe payment integration, Carrier integration, real-time shipping fee calculation, and order tracking.",
     image: "/thatlocalgirl.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
@@ -58,7 +58,7 @@ export const projects = [
     link: "https://thatlocalgirl.com",
     caseStudy: {
       challenge:
-        "That Local Girl needed a proper e-commerce storefront that could handle real logistics — accurate shipping costs, multiple currencies for a cross-border customer base, and a checkout that just works.",
+        "That Local Girl, a Canada-based African groceries brand, needed a proper e-commerce storefront that could handle real logistics — accurate shipping costs, multiple currencies for a cross-border customer base, and a checkout that just works.",
       solutions: [
         "Migrated the client off WordPress to a fully custom e-commerce platform built with Next.js, Firebase, and Tailwind CSS",
         "Built product listings, cart, and checkout with Stripe, supporting multiple payment methods and multi-currency",
@@ -87,17 +87,17 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Firebase · Tailwind . ALAT Payment Integration . Resend . Automated Email Notifications . Admin Management System",
-    desc: "Full hotel booking system with room management, availability calendar, online reservations, and payment integration.",
+    desc: "Full hotel booking system with room management, availability calendar, online reservations, and payment integration — for a hotel group in Lagos, Nigeria.",
     image: "/gta-hotel.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
     year: "2026",
     featured: true,
     status: "Completed",
-    link: "https://gtahotelikeja.com",
+    link: "https://www.gtahotelikeja.com",
     caseStudy: {
       challenge:
-        "GTA Hotels needed to move off manual, phone-based bookings and give guests a fast, reliable way to check room availability and pay online — without losing the polish expected from a hospitality brand.",
+        "GTA Hotels, a hotel group in Lagos, Nigeria, needed to move off manual, phone-based bookings and give guests a fast, reliable way to check room availability and pay online — without losing the polish expected from a hospitality brand.",
       solutions: [
         "Redesigned the client's static WordPress site into a dynamic, fully functional hotel management system",
         "Built a full booking system with real-time room availability checking",
@@ -120,13 +120,29 @@ export const projects = [
     },
   },
   {
+    id: 29,
+    slug: "apex-pc-repairs",
+    name: "Apex PC Repairs",
+    category: "Web Development",
+    type: "web",
+    tools: "Figma . React · Next.js . Resend",
+    desc: "A business website for a PC repair service based in Noma Linda city in San Bernardino County, California, United States.",
+    image: "/apex-pc-repairs.png",
+    screenBg: "bg-green-100",
+    tag: "bg-green-50 text-green-600",
+    year: "2026",
+    featured: true,
+    status: "Completed",
+    link: "https://apexpcrepairs.com",
+  },
+  {
     id: 25,
     slug: "gta-restaurant-management-system",
     name: "GTA Restaurant Management System",
     category: "Web Development",
     type: "web",
     tools: "Next.js · Firebase · Tailwind . ALAT Payment Integration . Resend . Automated Email Notifications . Admin Management System",
-    desc: "Full restaurant management system with menu management, order processing, online reservations, and payment integration.",
+    desc: "Full restaurant management system with menu management, order processing, online reservations, and payment integration — for a restaurant group in Lagos, Nigeria.",
     image: "/gtaRestaurant.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
@@ -136,7 +152,7 @@ export const projects = [
     link: "https://restaurant.gtahotelikeja.com",
     caseStudy: {
       challenge:
-        "As a sister property to GTA Hotels, the restaurant team needed the same level of digital reliability — a way to manage the menu, take orders, and handle reservations online instead of juggling it manually.",
+        "As a sister property to GTA Hotels in Lagos, Nigeria, the restaurant team needed the same level of digital reliability — a way to manage the menu, take orders, and handle reservations online instead of juggling it manually.",
       solutions: [
         "Built a restaurant management system covering menu and menu category management",
         "Added QR code menu access for guests to browse and order",
@@ -249,7 +265,7 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
-    desc: "A hotel website with room listings, booking system, and payment integration for a seamless user experience.",
+    desc: "A hotel website with room listings, booking system, and payment integration for a seamless user experience — for a hotel in Lagos, Nigeria.",
     image: "/yordsonapartments.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
@@ -259,7 +275,7 @@ export const projects = [
     link: "https://yordsonapartments.com",
     caseStudy: {
       challenge:
-        "Yordson Apartments needed a hotel website that could showcase rooms properly and let guests book and pay without back-and-forth over phone or email.",
+        "Yordson Apartments, a hotel in Lagos, Nigeria, needed a hotel website that could showcase rooms properly and let guests book and pay without back-and-forth over phone or email.",
       solutions: [
         "Built a hotel website with detailed room listings",
         "Added a full booking system with payment integration via Paystack",
@@ -297,17 +313,17 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind ",
-    desc: "A business website for a brand that sells, import and export phone assessories and other electronics products.",
+    desc: "A business website for a Lagos, Nigeria-based brand that sells, imports and exports phone accessories and other electronics products.",
     image: "/tomdebest.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
     year: "2026",
     featured: true,
     status: "Completed",
-    link: "tomdebest.com",
+    link: "https://www.tomdebest.com",
     caseStudy: {
       challenge:
-        "Tom De Best needed a business website that could showcase their phone accessories and electronics products effectively.",
+        "Tom De Best, a Lagos-based phone accessories and electronics import/export business, needed a business website that could showcase their products effectively.",
       solutions: [
         "Built a modern business website with detailed product listings",
         "Implemented a responsive design for optimal viewing on all devices",
@@ -378,7 +394,7 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Supabase · Tailwind . Paystack · Resend",
-    desc: "An Hotel Management System with booking integration, real-time room availability check, payment integration, authentication and admin management system.",
+    desc: "An Hotel Management System with booking integration, real-time room availability check, payment integration, authentication and admin management system — for a hotel in Badagry, Lagos, Nigeria.",
     image: "/royalmosshotel.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
@@ -388,7 +404,7 @@ export const projects = [
     link: "https://royalmoss.org",
     caseStudy: {
       challenge:
-        "Royal Moss Hotel needed a real hotel management system, not just a brochure site — something that could handle live room availability, bookings, and payments end to end.",
+        "Royal Moss Hotel, a hotel in Badagry, Lagos, needed a real hotel management system, not just a brochure site — something that could handle live room availability, bookings, and payments end to end.",
       solutions: [
         "Built a full hotel management system with booking integration",
         "Added real-time room availability checking",
@@ -437,7 +453,7 @@ export const projects = [
     category: "Web Development",
     type: "web",
     tools: "Next.js · Tailwind · Firebase · Paystack  · Resend",
-    desc: "An E-comerce website for a brand that sells natural, eco-friendly scent experiences and curated gifting for the homes, offices, and corporate spaces.",
+    desc: "An E-commerce website for a Lagos, Nigeria-based brand that sells natural, eco-friendly scent experiences and curated gifting for homes, offices, and corporate spaces.",
     image: "/ayoratribelimited.png",
     screenBg: "bg-blue-100",
     tag: "bg-blue-50 text-blue-600",
@@ -447,7 +463,7 @@ export const projects = [
     link: "https://ayoratribelimited.com",
     caseStudy: {
       challenge:
-        "Ayora Tribe needed an e-commerce site that matched the premium, natural feel of their scent and gifting products — fast, clean, and easy for them to keep updated.",
+        "Ayora Tribe, a Lagos-based gifting and home fragrance brand, needed an e-commerce site that matched the premium, natural feel of their scent and gifting products — fast, clean, and easy for them to keep updated.",
       solutions: [
         "Built a Next.js e-commerce website for their scent and gifting product line",
         "Integrated Paystack for payments",
@@ -494,7 +510,7 @@ export const projects = [
     year: "2025",
     featured: true,
     status: "Completed",
-    link: "https://shoplolaselan.uk",
+    link: "lolaselan.netlify.app",
   },
   {
     id: 12,

@@ -1,8 +1,16 @@
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { BiMessageDetail } from "react-icons/bi";
-import { webSolutions, appSolutions, getDisplayPrice, getOriginalDisplayPrice } from "../_data/solutions";
-import { formatMoney } from "../_lib/currency";
+import {
+  webSolutions,
+  appSolutions,
+  getDisplayPrice,
+  getOriginalDisplayPrice,
+  getLowestPrice,
+  getDiscountPercent,
+  getDiscountLabel,
+} from "../_data/solutions";
+import { formatNative } from "../_lib/currency";
 import { getServerCurrency } from "../_lib/currency-server";
 
 const OTHER_TYPE = "Other (please specify)";
@@ -24,15 +32,16 @@ function preview(s) {
 function Card({ s, currency }) {
   const items = preview(s);
   const extra = (s.highlights || s.features || []).length - items.length;
+  const discountPercent = getDiscountPercent(s, currency);
 
   return (
     <Link
       href={`/pricing/solutions/${s.slug}`}
       className="group relative flex flex-col gap-5 rounded-3xl bg-white border border-slate-100 p-7 hover:shadow-xl hover:-translate-y-0.5 hover:border-orange-100 transition-all duration-300"
     >
-      {s.discountPercent && (
+      {discountPercent && (
         <span className="absolute -top-2.5 -left-2.5 bg-[#FF5C00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
-          {s.discountPercent}% Off
+          {getDiscountLabel(s, currency) || `${discountPercent}% Off`}
         </span>
       )}
       <div className="flex items-start justify-between gap-4">
@@ -40,7 +49,7 @@ function Card({ s, currency }) {
           {s.icon}
         </div>
         <div className="text-right">
-          {s.discountPercent && (
+          {discountPercent && (
             <p className="text-xs text-slate-400 line-through leading-none mb-0.5">
               {getOriginalDisplayPrice(s, currency)}
             </p>
@@ -48,7 +57,7 @@ function Card({ s, currency }) {
           <p className="text-lg font-black text-slate-900 leading-none">
             {getDisplayPrice(s, currency)}
           </p>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">
             {s.timeline}
           </p>
         </div>
@@ -69,7 +78,7 @@ function Card({ s, currency }) {
           </li>
         ))}
         {extra > 0 && (
-          <li className="text-xs font-bold text-slate-400 pl-4">
+          <li className="text-xs font-bold text-slate-500 pl-4">
             + {extra} more included
           </li>
         )}
@@ -150,8 +159,8 @@ export default async function SolutionsCatalog({
                 Websites &amp; Web Apps
               </h3>
               <span className="h-px flex-1 bg-slate-200" />
-              <span className="text-xs font-bold text-slate-400">
-                From {formatMoney(100000, currency)}
+              <span className="text-xs font-bold text-slate-500">
+                From {formatNative(getLowestPrice(webSolutions, currency), currency)}
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -170,8 +179,8 @@ export default async function SolutionsCatalog({
                 Mobile Applications
               </h3>
               <span className="h-px flex-1 bg-slate-200" />
-              <span className="text-xs font-bold text-slate-400">
-                From {formatMoney(3500000, currency)}
+              <span className="text-xs font-bold text-slate-500">
+                From {formatNative(getLowestPrice(appSolutions, currency), currency)}
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -183,8 +192,8 @@ export default async function SolutionsCatalog({
           </div>
         )}
 
-        <p className="text-xs text-slate-400 mt-12 max-w-2xl">
-          Prices shown in {currency === "NGN" ? "Nigerian Naira (₦)" : "US Dollars (converted at ₦1,500 = $1)"}{" "}
+        <p className="text-xs text-slate-500 mt-12 max-w-2xl">
+          Prices shown in {currency === "NGN" ? "Nigerian Naira (₦) for local clients" : "US Dollars ($) for international clients"}{" "}
           based on your location — use the currency switch in the menu to change it. All prices are
           one-time build fees; domain, hosting and third-party subscriptions are billed separately at
           exact cost. After development and deployment, every account is handed over to you in your

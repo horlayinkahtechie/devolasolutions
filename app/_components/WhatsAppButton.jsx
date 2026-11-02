@@ -1,4 +1,7 @@
+"use client";
+
 import { FaWhatsapp } from "react-icons/fa";
+import { trackEvent } from "../_lib/analytics";
 
 const WHATSAPP_NUMBER = "2348169415526"; // +234 816 941 5526
 const WHATSAPP_MESSAGE = "Hi Devola Solutions, I'd like to talk about a project.";
@@ -14,6 +17,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
+      onClick={() => trackEvent("whatsapp_click", { placement: "floating_button" })}
       className="fixed bottom-5 right-5 z-50 group"
     >
       <span className="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping" />
