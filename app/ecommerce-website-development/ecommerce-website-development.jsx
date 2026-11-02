@@ -126,12 +126,22 @@ export default async function EcommerceWebsiteDevelopment() {
     .map((s) => s.project.caseStudy?.testimonial)
     .filter(Boolean);
 
-  // Everything else worth showing — real web case studies not already in
-  // the flagship showcase above.
-  const featuredSlugs = new Set(showcase.map((s) => s.slug));
-  const moreProjects = projects.filter(
-    (p) => p.type === "web" && p.caseStudy && p.image && !featuredSlugs.has(p.slug)
-  );
+  // A fixed, hand-picked set — in this exact order. Most of these have no
+  // case-study write-up, so they route through resolveHref the same way
+  // the showcase above does (straight to the live site when there is no
+  // case study to read instead).
+  const moreProjectSlugs = [
+    "apex-pc-repairs",
+    "feberto-techniques",
+    "braten-investment-ltd",
+    "precious-apartments",
+    "gta-hotels",
+    "gta-restaurant-management-system",
+  ];
+  const moreProjects = moreProjectSlugs
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean)
+    .map((p) => ({ project: p, ...resolveHref(p) }));
 
   return (
     <div className="bg-[#fafafa]">
@@ -268,15 +278,17 @@ export default async function EcommerceWebsiteDevelopment() {
                 href="/portfolio"
                 className="shrink-0 inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#FF5C00] transition-all duration-300"
               >
-                View Full Portfolio <BsArrowRight />
+                View More <BsArrowRight />
               </Link>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {moreProjects.map((p) => (
+              {moreProjects.map(({ project: p, href, external }) => (
                 <Link
                   key={p.slug}
-                  href={`/portfolio/${p.slug}`}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   className="group rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
