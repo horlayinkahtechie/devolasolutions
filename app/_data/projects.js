@@ -67,6 +67,9 @@ export const projects = [
         "Connected a carrier integration for real-time shipping fee calculation, with the Google Maps API for accurate delivery addresses",
         "Added order, product, and review management",
         "Built a points and referral system — customers earn points and redeem them toward purchases",
+        "Added coupon code management — create, assign, and track discount codes",
+        "Added referral code management, tied into the points and referral system",
+        "Built a POS and inventory management system to run stock and in-person sales alongside the online store",
         "Added analytics and an AI-powered support system",
         "Implemented detailed SEO and image optimization",
         "Delivered a fully responsive, mobile-friendly design with Role-Based Access Control (RBAC)",
@@ -78,6 +81,13 @@ export const projects = [
           "I love the UI of my E-commerce website, the payment integration and the admin management system. And the fact I can add products myself. And also the support of multiple currencies.",
         name: "Olusanya Rofiat",
         role: "Founder, That Local Girl",
+      },
+      // No live store listing yet — this points to the mobile app's design
+      // file (same as the separate "That Local Girl (Mobile App)" portfolio
+      // entry) until the real Android/iOS builds ship.
+      appLinks: {
+        android: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
+        ios: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
       },
     },
   },
@@ -106,9 +116,10 @@ export const projects = [
         "Integrated ALAT for secure online payments",
         "Added room, booking, user, and review management, including the ability for guests to leave reviews",
         "Let guests book as a guest or a signed-in account — no compulsory sign-up required",
+        "Built a buffet booking system with its own admin management and automated notification system",
         "Implemented SEO and image optimization",
         "Delivered a responsive, clean, modern UI/UX",
-        "Added Role-Based Access Control (RBAC)",
+        "Added Role-Based Access Control (RBAC) with dedicated roles for chef, kitchen staff, admin, and regular users",
         "Automated booking confirmations and notifications via Resend",
         "Delivered an admin dashboard for staff to manage rooms, rates, and reservations without developer help",
       ],

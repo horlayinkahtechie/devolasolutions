@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { FaAndroid, FaApple } from "react-icons/fa";
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import FinalCTA from "../../_components/FinalCTA";
@@ -97,6 +98,30 @@ export default async function CaseStudyPage({ params }) {
                   className="inline-flex items-center gap-2 bg-slate-900 text-white font-bold text-sm px-6 py-3 rounded-full hover:bg-[#FF5C00] transition-colors duration-300"
                 >
                   Visit Live Site
+                  <span>↗</span>
+                </Link>
+              )}
+              {caseStudy.appLinks?.android && (
+                <Link
+                  href={caseStudy.appLinks.android}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-full hover:border-slate-300 transition-colors duration-300"
+                >
+                  <FaAndroid className="text-green-600" />
+                  Android App
+                  <span>↗</span>
+                </Link>
+              )}
+              {caseStudy.appLinks?.ios && (
+                <Link
+                  href={caseStudy.appLinks.ios}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-full hover:border-slate-300 transition-colors duration-300"
+                >
+                  <FaApple />
+                  iOS App
                   <span>↗</span>
                 </Link>
               )}
