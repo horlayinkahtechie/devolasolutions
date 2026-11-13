@@ -73,13 +73,16 @@ export default function PromoModal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /* Blocks background scroll while open. Closing is deliberately limited to
+     the X icon or one of the two buttons below — no Escape key, no
+     click-outside — so the promo can't be dismissed by accident. */
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   if (!open) return null;
@@ -96,12 +99,8 @@ export default function PromoModal() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="promo-modal-title"
-      onClick={close}
     >
-      <div
-        className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl">
         <button
           type="button"
           onClick={close}

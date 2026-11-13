@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { projects as allProjects } from "../_data/projects";
+import ProjectImage from "./ProjectImage";
 
 const filters = [
   { label: "Web Development", value: "Web Development" },
@@ -12,107 +12,10 @@ const filters = [
   { label: "Business Registration", value: "Business Registration" },
 ];
 
-const BrowserMockup = ({ image, screenBg }) => (
-  <div className="w-full h-full flex flex-col overflow-hidden">
-    <div className="flex items-center gap-2 px-3 py-2 bg-slate-200/80 shrink-0">
-      <div className="flex gap-1.5 shrink-0">
-        <div className="w-2 h-2 rounded-full bg-red-400" />
-        <div className="w-2 h-2 rounded-full bg-yellow-400" />
-        <div className="w-2 h-2 rounded-full bg-green-400" />
-      </div>
-      <div className="flex-1 bg-white rounded-md h-4 flex items-center px-2">
-        <div className="w-1/3 h-1.5 bg-slate-200 rounded-full" />
-      </div>
-    </div>
-    <div className={`flex-1 ${screenBg} relative overflow-hidden`}>
-      {image ? (
-        <Image
-          src={image}
-          alt="Project screenshot"
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-top"
-        />
-      ) : (
-        <div className="p-4 space-y-2">
-          <div className="h-3 bg-white/60 rounded-full w-1/2" />
-          <div className="h-2 bg-white/40 rounded-full w-full" />
-          <div className="h-2 bg-white/40 rounded-full w-4/5" />
-          <div className="mt-3 h-14 bg-white/35 rounded-xl" />
-          <div className="grid grid-cols-2 gap-2">
-            <div className="h-9 bg-white/35 rounded-lg" />
-            <div className="h-9 bg-white/35 rounded-lg" />
-          </div>
-        </div>
-      )}
-    </div>
-  </div>
-);
-
-const IPhoneMockup = ({ image, screenBg }) => (
-  <div className="relative mx-auto" style={{ width: 110 }}>
-    <div
-      className="relative rounded-[2.4rem] shadow-2xl shadow-black/40"
-      style={{
-        background: "linear-gradient(160deg, #4a4a4a 0%, #1c1c1e 50%, #3a3a3a 100%)",
-        padding: "2px",
-      }}
-    >
-      <div className="rounded-[2.2rem] overflow-hidden" style={{ background: "#0a0a0a", padding: "6px 5px" }}>
-        <div
-          className={`rounded-[1.8rem] overflow-hidden relative ${screenBg}`}
-          style={{ aspectRatio: "9 / 19.5" }}
-        >
-          <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-8 h-2.5 bg-black rounded-full z-30" />
-          {image ? (
-            <Image src={image} alt="App screenshot" fill sizes="110px" className="object-cover" />
-          ) : (
-            <div className="pt-8 px-2 space-y-1.5">
-              <div className="h-2 bg-white/50 rounded-full w-3/4 mx-auto" />
-              <div className="h-1.5 bg-white/35 rounded-full w-full" />
-              <div className="mt-2 h-12 bg-white/30 rounded-lg" />
-              <div className="h-7 bg-white/30 rounded-lg" />
-            </div>
-          )}
-          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-7 h-1 bg-black/20 rounded-full z-20" />
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const DesignMockup = ({ image, screenBg }) => (
-  <div className={`w-full h-full flex items-center justify-center ${screenBg}`}>
-    {image ? (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={image} alt="" className="w-full h-full object-cover" />
-    ) : (
-      <div className="relative">
-        <div className="w-28 h-20 bg-white rounded-xl shadow-lg flex items-center justify-center">
-          <div className="space-y-1.5 w-3/4">
-            <div className="h-2 bg-violet-200 rounded-full" />
-            <div className="h-2 bg-violet-100 rounded-full w-4/5" />
-            <div className="h-7 bg-violet-100 rounded-lg mt-2" />
-          </div>
-        </div>
-        <div className="absolute -bottom-3 -right-4 w-20 h-14 bg-white rounded-xl shadow-md flex items-center justify-center rotate-6">
-          <div className="w-10 h-7 bg-orange-100 rounded-lg" />
-        </div>
-      </div>
-    )}
-  </div>
-);
-
 const ProjectCardContent = ({ project }) => (
   <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-xl hover:shadow-slate-900/8 hover:-translate-y-1 transition-all duration-400 flex flex-col h-full">
     <div className="relative h-52 overflow-hidden bg-slate-50">
-      {project.type === "web" && <BrowserMockup image={project.image} screenBg={project.screenBg} />}
-      {project.type === "mobile" && (
-        <div className="h-full flex items-center justify-center py-3">
-          <IPhoneMockup image={project.image} screenBg={project.screenBg} />
-        </div>
-      )}
-      {project.type === "design" && <DesignMockup image={project.image} screenBg={project.screenBg} />}
+      <ProjectImage project={project} />
     </div>
 
     <div className="p-5 flex flex-col gap-2.5 flex-1">

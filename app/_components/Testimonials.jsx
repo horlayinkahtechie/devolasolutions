@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const testimonials = [
   {
     quote: "I love the fact that you are very professional. You communicated effectively and help us achieve all we can't achieve on WordPress.",
@@ -126,10 +128,17 @@ const Testimonials = () => (
       </div>
 
       {/* Aggregate note */}
-      <div className="mt-10 pt-8 border-t border-slate-100 flex items-center justify-center">
+      <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col items-center justify-center gap-4">
         <p className="text-sm text-slate-400 font-medium">
           Every quote above is from a real client we&apos;ve worked with.
         </p>
+        <Link
+          href="/reviews"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group"
+        >
+          See All Reviews
+          <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+        </Link>
       </div>
     </div>
   </section>

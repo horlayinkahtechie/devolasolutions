@@ -5,6 +5,7 @@ import { BiTime, BiDollar, BiShield } from "react-icons/bi";
 import FinalCTA from "../_components/FinalCTA";
 import SolutionsCatalog from "../_components/SolutionsCatalog";
 import FaqSchema from "../_components/FaqSchema";
+import ProofTabs from "../_components/ProofTabs";
 import { projects } from "../_data/projects";
 
 const Label = ({ text }) => (
@@ -34,13 +35,14 @@ const trustPoints = [
   },
 ];
 
-const proof = [
+const webProof = [
   {
     name: "Dwelcore",
     desc: "A home-plan platform for US customers to browse, customize, and buy home plans online — migrated off WordPress onto a custom Next.js build with Stripe multi-currency payments.",
     image: "/dwelcore.png",
     href: "/portfolio/dwelcore",
     external: false,
+    ctaLabel: "Read the case study",
   },
   {
     name: "Apex PC Repairs",
@@ -48,13 +50,35 @@ const proof = [
     image: "/apex-pc-repairs.png",
     href: "https://apexpcrepairs.com",
     external: true,
+    ctaLabel: "Visit live site",
+  },
+  {
+    name: "That Local Girl",
+    desc: "Multi-currency e-commerce platform with real shipping-cost calculation and a full admin system — built for a Canada-based African groceries brand selling cross-border.",
+    image: "/thatlocalgirl.png",
+    href: "/portfolio/that-local-girl",
+    external: false,
+    ctaLabel: "Read the case study",
+  },
+];
+
+// No live app-store listing yet — TODO: once the Expo APK download link is
+// provided, swap `href` to it and `ctaLabel` to "Download APK".
+const mobileProof = [
+  {
+    name: "That Local Girl (Mobile App)",
+    desc: "The companion e-commerce mobile app for That Local Girl — product listings, cart, Paystack checkout, and order tracking, built with React Native and Expo.",
+    image: "/thatlocalgirlmobileapp.jpg",
+    href: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
+    external: true,
+    ctaLabel: "View App Design",
   },
 ];
 
 // The rest of the live, real-client web portfolio — pulled from the same
 // data every other portfolio section uses, so it can't drift out of sync.
-// Excludes the two flagship US case studies already featured above.
-const alreadyFeatured = ["dwelcore", "apex-pc-repairs"];
+// Excludes the flagship US/cross-border case studies already featured above.
+const alreadyFeatured = ["dwelcore", "apex-pc-repairs", "that-local-girl"];
 const moreProjects = projects.filter(
   (p) => p.type === "web" && p.caseStudy && p.image && !alreadyFeatured.includes(p.slug)
 );
@@ -155,43 +179,13 @@ export default function WebDevelopmentUSA() {
       ══════════════════════════════ */}
       <section className="py-20 px-6 md:px-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-10">
             <Label text="Proof, Not Promises" />
             <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-[1.05]">
               Already Built for US Clients.
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {proof.map((p) => (
-              <Link
-                key={p.name}
-                href={p.href}
-                target={p.external ? "_blank" : undefined}
-                rel={p.external ? "noopener noreferrer" : undefined}
-                className="group rounded-3xl overflow-hidden bg-white border border-slate-100 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
-                  <Image
-                    src={p.image}
-                    alt={p.name}
-                    fill
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-base font-black text-slate-900 group-hover:text-[#FF5C00] transition-colors mb-2">
-                    {p.name}
-                  </p>
-                  <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 group-hover:text-[#FF5C00] transition-colors">
-                    {p.external ? "Visit live site" : "Read the case study"}
-                    <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <ProofTabs webProof={webProof} mobileProof={mobileProof} />
         </div>
       </section>
 

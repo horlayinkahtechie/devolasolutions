@@ -5,6 +5,7 @@ import { FaAndroid, FaApple } from "react-icons/fa";
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import FinalCTA from "../../_components/FinalCTA";
+import { MobilePhoneFrame } from "../../_components/ProjectImage";
 import { projects } from "../../_data/projects";
 
 const caseStudyProjects = projects.filter((p) => p.caseStudy);
@@ -138,17 +139,31 @@ export default async function CaseStudyPage({ params }) {
         {/* Hero image */}
         {project.image && (
           <section className="px-6 md:px-12 pb-20">
-            <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-100 bg-white">
-              <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
-                <Image
-                  src={project.image}
-                  alt={`${project.name} screenshot`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="object-contain"
-                />
+            {project.type === "mobile" ? (
+              <div className="max-w-sm mx-auto rounded-3xl overflow-hidden border border-slate-100 bg-white">
+                <div className="relative w-full h-[560px]">
+                  <MobilePhoneFrame
+                    image={project.image}
+                    alt={`${project.name} screenshot`}
+                    category={project.category}
+                    screenBg={project.screenBg}
+                    sizes="(max-width: 1024px) 100vw, 384px"
+                  />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-100 bg-white">
+                <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            )}
           </section>
         )}
 
@@ -258,6 +273,16 @@ export default async function CaseStudyPage({ params }) {
                     <div className="text-xs text-slate-500 mt-0.5">{caseStudy.testimonial.role}</div>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-6 flex items-center justify-center">
+                <Link
+                  href="/reviews"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group"
+                >
+                  Read More Client Reviews
+                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+                </Link>
               </div>
             </div>
           </section>

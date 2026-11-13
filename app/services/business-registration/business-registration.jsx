@@ -868,6 +868,16 @@ export default async function BusinessRegistration() {
               </div>
             ))}
           </div>
+
+          <div className="mt-10 flex items-center justify-center">
+            <Link
+              href="/reviews"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group"
+            >
+              See All Reviews
+              <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 

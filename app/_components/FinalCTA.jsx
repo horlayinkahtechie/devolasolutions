@@ -7,7 +7,7 @@ const trustStats = [
   { value: "Ongoing Support", label: "Even After Launch" },
 ];
 
-const FinalCTA = () => {
+const FinalCTA = ({ hideBookCall = false } = {}) => {
   return (
     <section className="py-16 md:py-24 px-4 md:px-10 bg-[#fafafa]">
       <div className="max-w-7xl mx-auto bg-slate-900 rounded-3xl md:rounded-[2.5rem] p-7 sm:p-10 md:p-14 relative overflow-hidden shadow-2xl shadow-slate-900/20">
@@ -99,6 +99,14 @@ const FinalCTA = () => {
               Contact Us
               <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
+            {!hideBookCall && (
+              <Link
+                href="/book-a-call"
+                className="text-xs font-bold text-slate-400 hover:text-[#FF5C00] transition-colors duration-200"
+              >
+                or Book a Call Instead →
+              </Link>
+            )}
             <p className="text-[11px] text-slate-600">
               No commitment · Free consultation · 24h response
             </p>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import FinalCTA from "../_components/FinalCTA";
-import Image from "next/image";
+import ProjectImage from "../_components/ProjectImage";
 import { projects as allProjects } from "../_data/projects";
 
 /* ─────────────────────────────────
@@ -36,162 +36,13 @@ const StatusBadge = ({ status }) => {
 };
 
 /* ─────────────────────────────────
-   MOCKUPS
-───────────────────────────────── */
-const BrowserMockup = ({ image, screenBg }) => (
-  <div className="w-full h-full flex flex-col overflow-hidden">
-    <div className="flex items-center gap-2 px-3 py-2 bg-slate-200 shrink-0">
-      <div className="flex gap-1 shrink-0">
-        <div className="w-2 h-2 rounded-full bg-red-400" />
-        <div className="w-2 h-2 rounded-full bg-yellow-400" />
-        <div className="w-2 h-2 rounded-full bg-green-400" />
-      </div>
-      <div className="flex-1 bg-white rounded-md h-4 flex items-center px-2">
-        <div className="w-1/3 h-1.5 bg-slate-300 rounded-full" />
-      </div>
-    </div>
-    <div className={`flex-1 ${screenBg} relative overflow-hidden`}>
-      {image ? (
-        <Image
-          src={image}
-          alt="Product Image"
-          fill
-          sizes="(max-w-7xl) 33vw, 50vw"
-          className="object-cover object-top"
-        />
-      ) : (
-        <div className="p-4 space-y-2.5">
-          <div className="h-3 bg-white/70 rounded-full w-1/2" />
-          <div className="h-2 bg-white/50 rounded-full w-full" />
-          <div className="h-2 bg-white/50 rounded-full w-4/5" />
-          <div className="h-2 bg-white/50 rounded-full w-3/5" />
-          <div className="mt-3 h-16 bg-white/40 rounded-xl" />
-          <div className="grid grid-cols-2 gap-2">
-            <div className="h-10 bg-white/40 rounded-lg" />
-            <div className="h-10 bg-white/40 rounded-lg" />
-          </div>
-        </div>
-      )}
-    </div>
-  </div>
-);
-const IPhoneMockup = ({ image, screenBg, width = 80 }) => (
-  <div className="relative mx-auto" style={{ width }}>
-    {/* Side buttons — protrude slightly off the frame, like a real device */}
-    <div className="absolute -left-[2px] top-[15%] w-[2px] h-[4%] bg-slate-700 rounded-l-sm" /> {/* Action button */}
-    <div className="absolute -left-[2px] top-[23%] w-[2px] h-[8%] bg-slate-700 rounded-l-sm" /> {/* Volume up */}
-    <div className="absolute -left-[2px] top-[33%] w-[2px] h-[8%] bg-slate-700 rounded-l-sm" /> {/* Volume down */}
-    <div className="absolute -right-[2px] top-[20%] w-[2px] h-[11%] bg-slate-700 rounded-r-sm" /> {/* Power button */}
-
-    {/* Frame */}
-    <div className="bg-gradient-to-br from-slate-700 via-slate-900 to-slate-950 rounded-[1.2rem] p-[3px] shadow-2xl relative ring-1 ring-black/40">
-      <div
-        className={`rounded-[0.9rem] overflow-hidden relative ${screenBg} ring-1 ring-inset ring-white/10`}
-        style={{ aspectRatio: "9 / 19.5" }}
-      >
-        {/* Dynamic Island */}
-        <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[32%] aspect-[11/3] bg-black rounded-full z-10" />
-
-        {image ? (
-          <Image
-            src={image}
-            alt="product image"
-            fill
-            sizes={`${width}px`}
-            className="object-cover"
-          />
-        ) : (
-          <div className="pt-7 px-2 space-y-1.5">{/* skeleton code */}</div>
-        )}
-
-        {/* Home indicator */}
-        <div className="absolute bottom-[1.6%] left-1/2 -translate-x-1/2 w-[32%] h-[1.2%] bg-white/60 rounded-full z-10" />
-      </div>
-    </div>
-  </div>
-);
-
-const DesignMockup = ({ image, screenBg }) => (
-  <div
-    className={`w-full h-full flex items-center justify-center relative ${screenBg}`}
-  >
-    {image ? (
-      <Image
-        src={image}
-        alt="Product Image"
-        fill
-        sizes="(max-w-7xl) 33vw, 50vw"
-        className="object-cover"
-      />
-    ) : (
-      <div className="relative">
-        <div className="w-28 h-20 bg-white rounded-xl shadow-lg border border-white/60 flex items-center justify-center">
-          <div className="space-y-1.5 w-3/4">
-            <div className="h-2 bg-violet-200 rounded-full" />
-            <div className="h-2 bg-violet-100 rounded-full w-4/5" />
-            <div className="h-8 bg-violet-100 rounded-lg mt-2" />
-          </div>
-        </div>
-        <div className="absolute -bottom-3 -right-4 w-20 h-14 bg-white rounded-xl shadow-md border border-white/60 flex items-center justify-center rotate-6">
-          <div className="w-10 h-8 bg-orange-100 rounded-lg" />
-        </div>
-      </div>
-    )}
-  </div>
-);
-
-const RegistrationMockup = ({ screenBg }) => (
-  <div
-    className={`w-full h-full flex items-center justify-center ${screenBg} p-6`}
-  >
-    <div className="relative w-full max-w-[160px]">
-      <div className="bg-white rounded-xl shadow-lg border border-white/60 p-4 space-y-2">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-6 h-6 rounded-full bg-teal-400 flex items-center justify-center">
-            <div className="w-3 h-3 border-2 border-white rounded-full" />
-          </div>
-          <div className="h-2 bg-slate-200 rounded-full flex-1" />
-        </div>
-        <div className="h-1.5 bg-slate-100 rounded-full w-full" />
-        <div className="h-1.5 bg-slate-100 rounded-full w-4/5" />
-        <div className="h-1.5 bg-slate-100 rounded-full w-3/5" />
-        <div className="mt-3 pt-2 border-t border-slate-100 flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-green-400" />
-          <div className="h-1.5 bg-green-100 rounded-full flex-1" />
-        </div>
-      </div>
-      <div className="absolute -bottom-2 -right-2 w-14 h-10 bg-white rounded-lg shadow-md border border-white/60 rotate-6 flex items-center justify-center">
-        <div className="w-6 h-6 rounded-full bg-teal-50 border-2 border-teal-300" />
-      </div>
-    </div>
-  </div>
-);
-
-/* ─────────────────────────────────
    PROJECT CARD
 ───────────────────────────────── */
 const ProjectCardContent = ({ project }) => (
   <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 flex flex-col h-full">
-    {/* Mockup Container */}
+    {/* Image */}
     <div className="relative h-56 overflow-hidden bg-slate-50">
-      {project.type === "web" && (
-        <BrowserMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "mobile" && (
-        <div className="h-full flex items-center justify-center py-6">
-          <IPhoneMockup
-            image={project.image}
-            screenBg={project.screenBg}
-            width={80}
-          />
-        </div>
-      )}
-      {project.type === "design" && (
-        <DesignMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "registration" && (
-        <RegistrationMockup screenBg={project.screenBg} />
-      )}
+      <ProjectImage project={project} />
 
       {/* Badges on Top of Images */}
       <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
@@ -266,23 +117,9 @@ const ProjectCard = ({ project }) => {
 ───────────────────────────────── */
 const FeaturedCardContent = ({ project }) => (
   <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 grid md:grid-cols-2 h-full">
-    {/* Mockup Container */}
+    {/* Image */}
     <div className="relative h-64 md:h-auto overflow-hidden bg-slate-50">
-      {project.type === "web" && (
-        <BrowserMockup image={project.image} screenBg={project.screenBg} />
-      )}
-      {project.type === "mobile" && (
-        <div className="h-full flex items-center justify-center py-6">
-          <IPhoneMockup
-            image={project.image}
-            screenBg={project.screenBg}
-            width={80}
-          />
-        </div>
-      )}
-      {project.type === "design" && (
-        <DesignMockup image={project.image} screenBg={project.screenBg} />
-      )}
+      <ProjectImage project={project} />
 
       {/* Left Side Badges */}
       <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">

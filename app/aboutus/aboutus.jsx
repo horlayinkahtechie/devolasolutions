@@ -10,7 +10,11 @@ import {
   SiVercel,
   SiExpo,
   SiGooglecloud,
+  SiFlutter,
+  SiSupabase,
+  SiClaude,
 } from "react-icons/si";
+import { TbAutomation } from "react-icons/tb";
 import FinalCTA from "../_components/FinalCTA";
 import { BsLightningChargeFill, BsBank } from "react-icons/bs";
 import { GiGlobe } from "react-icons/gi";
@@ -146,6 +150,10 @@ const techs = [
   { icon: <SiExpo />, name: "Expo", color: "text-slate-700" },
   { icon: <SiVercel />, name: "Vercel", color: "text-slate-900" },
   { icon: <SiGooglecloud />, name: "Google Cloud", color: "text-blue-500" },
+  { icon: <SiFlutter />, name: "Flutter", color: "text-sky-500" },
+  { icon: <SiSupabase />, name: "Supabase", color: "text-emerald-500" },
+  { icon: <SiClaude />, name: "Claude", color: "text-orange-600" },
+  { icon: <TbAutomation />, name: "Automation", color: "text-slate-600" },
 ];
 
 const achievements = [
@@ -336,7 +344,7 @@ export default function Aboutus() {
             <div className="space-y-5 text-slate-500 leading-relaxed text-base">
               <p>
                 Devola Solutions was born from a simple frustration: too many
-                Nigerian businesses had brilliant ideas but struggled to find a
+                businesses had brilliant ideas but struggled to find a
                 reliable technical partner who understood their market, moved
                 fast, and delivered quality without the runaround.
               </p>
@@ -433,7 +441,7 @@ export default function Aboutus() {
                 Vision
               </span>
               <p className="text-2xl md:text-3xl font-black text-white leading-[1.2]">
-                To become Africa&apos;s most trusted digital agency — known
+                To be among Africa&apos;s most trusted digital agency — known
                 for speed, quality, and integrity.
               </p>
               <p className="text-orange-100 mt-6 leading-relaxed text-sm">
@@ -555,7 +563,7 @@ export default function Aboutus() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-11 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
             {techs.map((t) => (
               <div
                 key={t.name}
@@ -669,6 +677,16 @@ export default function Aboutus() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10 flex items-center justify-center">
+            <Link
+              href="/reviews"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group"
+            >
+              See All Reviews
+              <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            </Link>
           </div>
         </div>
       </section>

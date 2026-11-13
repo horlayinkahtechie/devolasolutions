@@ -72,6 +72,30 @@ const showcase = [
   },
 ];
 
+// Two of the showcase projects, told in more depth — challenge, what we
+// actually built, and why the client chose us. `highlightIndexes` points at
+// specific bullets in each project's real caseStudy.solutions list
+// (projects.js) by position rather than duplicating their text, so this
+// can't quietly drift out of sync with the real list if its wording ever
+// changes. `whyTheyChoseUs` is editorial, written to match what each
+// client's own testimonial and challenge actually said — not a generic claim.
+const flagshipCaseStudies = [
+  {
+    slug: "dwelcore",
+    displayName: "Dwelcore",
+    highlightIndexes: [2, 9, 14, 17], // AI search · Plan Fit Report · Calendly booking · abandoned-cart recovery
+    whyTheyChoseUs:
+      "Dwelcore came to us stuck on WordPress, unable to build the custom plan-browsing and purchase flow their business actually needed. They chose us because we could ship real custom functionality — AI-powered search, a paid Plan Fit Report lead magnet, Klaviyo-driven abandoned-cart recovery — not just another theme, and because we stayed easy to work with throughout.",
+  },
+  {
+    slug: "that-local-girl",
+    displayName: "That Local Girl",
+    highlightIndexes: [3, 5, 8, 9], // multi-currency display · shipping-zone pricing · loyalty points · referral program
+    whyTheyChoseUs:
+      "That Local Girl, a Canada-based African groceries brand, needed more than a storefront — they needed real cross-border logistics: accurate shipping costs, multiple currencies, and a loyalty and referral system to keep customers coming back. They chose us because we built all of it as one connected platform, with an admin system simple enough that they manage it themselves day to day.",
+  },
+];
+
 const faqs = [
   {
     q: "Is this a template, or a custom build?",
@@ -95,13 +119,11 @@ const faqs = [
   },
 ];
 
-// lolaselan has no case-study page, and its live site is currently down
-// (DNS failure — the domain itself doesn't resolve) — routed to the
-// portfolio listing instead of a dead external link. amazon-world's site
-// is also down right now (connection times out) but links straight to it
-// anyway, per instruction — fix amazonworld.com's hosting/DNS before
-// running ads at this page, or that click wastes ad spend.
-const DEAD_LIVE_LINKS = new Set(["lolaselan"]);
+// lolaselan now points to a live Netlify deployment (confirmed working).
+// amazon-world is still down (connection times out) but links straight to
+// the real domain anyway, per instruction — fix its hosting/DNS before
+// running ads at this page, or those clicks waste ad spend.
+const DEAD_LIVE_LINKS = new Set([]);
 
 function resolveHref(project) {
   if (project.caseStudy) return { href: `/portfolio/${project.slug}`, external: false };
@@ -125,6 +147,16 @@ export default async function EcommerceWebsiteDevelopment() {
   const testimonials = showcaseProjects
     .map((s) => s.project.caseStudy?.testimonial)
     .filter(Boolean);
+
+  const flagshipCaseStudyProjects = flagshipCaseStudies
+    .map((c) => ({ ...c, project: projects.find((p) => p.slug === c.slug) }))
+    .filter((c) => c.project?.caseStudy)
+    .map((c) => ({
+      ...c,
+      highlightSolutions: c.highlightIndexes
+        .map((i) => c.project.caseStudy.solutions[i])
+        .filter(Boolean),
+    }));
 
   // A fixed, hand-picked set — in this exact order. Most of these have no
   // case-study write-up, so they route through resolveHref the same way
@@ -258,6 +290,87 @@ export default async function EcommerceWebsiteDevelopment() {
       </section>
 
       {/* ══════════════════════════════
+          FLAGSHIP CASE STUDIES
+      ══════════════════════════════ */}
+      {flagshipCaseStudyProjects.length > 0 && (
+        <section className="py-20 px-6 md:px-12 border-t border-slate-100 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-16">
+              <Label text="How We've Helped" />
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-[1.05]">
+                What We Actually Built, And Why They Chose Us.
+              </h2>
+            </div>
+
+            {flagshipCaseStudyProjects.map(({ project, displayName, highlightSolutions, whyTheyChoseUs }, i) => (
+              <div
+                key={project.slug}
+                className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${i > 0 ? "mt-20 pt-16 border-t border-slate-100" : ""}`}
+              >
+                <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className={i % 2 === 1 ? "md:order-1" : ""}>
+                  <p className="text-xs font-black uppercase tracking-widest text-[#FF5C00] mb-3">
+                    Case Study — {displayName}
+                  </p>
+                  <h3 className="text-2xl font-black text-slate-900 mb-5 leading-snug">
+                    {project.desc}
+                  </h3>
+
+                  <div className="mb-5">
+                    <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                      The Challenge
+                    </p>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {project.caseStudy.challenge}
+                    </p>
+                  </div>
+
+                  <div className="mb-5">
+                    <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                      What We Built
+                    </p>
+                    <ul className="space-y-2">
+                      {highlightSolutions.map((s) => (
+                        <li key={s} className="flex items-start gap-2.5 text-sm text-slate-600">
+                          <BsCheckLg className="text-[#FF5C00] shrink-0 mt-0.5" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mb-6">
+                    <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                      Why {displayName} Chose Us
+                    </p>
+                    <p className="text-sm text-slate-600 leading-relaxed">{whyTheyChoseUs}</p>
+                  </div>
+
+                  <Link
+                    href={`/portfolio/${project.slug}`}
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-[#FF5C00] transition-colors"
+                  >
+                    Read the Full Case Study
+                    <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════
           MORE OF THE PORTFOLIO
       ══════════════════════════════ */}
       {moreProjects.length > 0 && (
@@ -350,6 +463,57 @@ export default async function EcommerceWebsiteDevelopment() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 flex items-center justify-center">
+              <Link
+                href="/reviews"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group"
+              >
+                See All Reviews
+                <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════
+          BOOK A CALL
+      ══════════════════════════════ */}
+      {currency === "USD" && (
+        <section className="py-20 px-6 md:px-12 border-t border-slate-100">
+          <div className="max-w-7xl mx-auto">
+            <div className="rounded-3xl bg-white border border-slate-100 p-10 md:p-14">
+              <div className="max-w-xl">
+                <Label text="Not Ready to Commit?" />
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-[1.05] mb-4">
+                  Talk It Through First. It&apos;s Free.
+                </h2>
+                <p className="text-slate-500 leading-relaxed mb-6">
+                  Book a focused 30-minute video call with the person
+                  who&apos;ll actually build your store — before you commit
+                  to anything bigger.
+                </p>
+                <ul className="space-y-2.5 mb-8">
+                  {[
+                    "Talk directly with the developer, not a salesperson",
+                    "Google Meet — nothing to install",
+                    "Pick a time instantly, no back-and-forth",
+                  ].map((b) => (
+                    <li key={b} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <BsCheckLg className="text-[#FF5C00] shrink-0 mt-0.5" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/book-a-call"
+                  className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-[#FF5C00] transition-all duration-300"
+                >
+                  Book Your Call →
+                </Link>
+              </div>
             </div>
           </div>
         </section>

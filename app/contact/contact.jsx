@@ -240,6 +240,13 @@ export default function Contact() {
               Tell us what you&apos;re working on and we&apos;ll get back to you
               within 24 hours. No commitment — just a conversation.
             </p>
+            <Link
+              href="/book-a-call"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#FF5C00] hover:gap-2.5 transition-all duration-200 group mt-6"
+            >
+              Prefer to talk live? Book a Call Instead
+              <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            </Link>
           </div>
         </div>
       </section>
