@@ -7,7 +7,12 @@
    netlify/functions/send-call-reminders.mjs), which runs outside Next's own
    bundler. */
 
-export const SLOT_MINUTES = 30;
+export const SLOT_MINUTES = 60;
+
+// Human-readable duration label used in copy ("1-hour call") — derived so
+// it can never drift out of sync with SLOT_MINUTES if this changes again.
+export const SLOT_DURATION_LABEL =
+  SLOT_MINUTES % 60 === 0 ? `${SLOT_MINUTES / 60}-hour` : `${SLOT_MINUTES}-minute`;
 
 // Nigeria (WAT) has no daylight saving time — it's always a fixed UTC+1
 // offset. That's what makes plain epoch-ms arithmetic safe everywhere in
@@ -32,3 +37,13 @@ export const REMINDER_OFFSETS = [
   { key: "h24", ms: 24 * 60 * 60 * 1000, label: "tomorrow" },
   { key: "h3", ms: 3 * 60 * 60 * 1000, label: "in 3 hours" },
 ];
+
+// Validated at the source so nothing downstream can accidentally bake a
+// wrong value (e.g. the webhook URL, pasted into the wrong env var) into a
+// booking — every consumer gets either a real Meet link or null, never
+// garbage. `meetLinkConfigured` gates whether new bookings can be created
+// at all (see booking-service.js) — a call booking with no way to join it
+// isn't a successful booking.
+const RAW_GOOGLE_MEET_LINK = process.env.GOOGLE_MEET_LINK || "";
+export const meetLinkConfigured = RAW_GOOGLE_MEET_LINK.startsWith("https://meet.google.com/");
+export const GOOGLE_MEET_LINK = meetLinkConfigured ? RAW_GOOGLE_MEET_LINK : null;

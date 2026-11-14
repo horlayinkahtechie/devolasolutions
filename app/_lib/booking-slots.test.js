@@ -28,16 +28,16 @@ test("getSlotsForDate excludes weekends", () => {
   assert.deepEqual(getSlotsForDate("2026-11-15", WED_10AM_WAT_MS), []);
 });
 
-test("getSlotsForDate generates 30-min slots across business hours", () => {
+test("getSlotsForDate generates 1-hour slots across business hours", () => {
   // Far enough ahead that the notice window doesn't trim anything.
   const slots = getSlotsForDate("2026-11-20", WED_10AM_WAT_MS); // a Friday
-  // 10am-4pm WAT, 30-min slots = 12 slots.
-  assert.equal(slots.length, 12);
+  // 10am-4pm WAT, 1-hour slots = 6 slots.
+  assert.equal(slots.length, 6);
   assert.equal(slots[0].endMs - slots[0].startMs, SLOT_MINUTES * 60 * 1000);
   // First slot starts at 10:00 WAT = 09:00 UTC on 2026-11-20.
   assert.equal(slots[0].startMs, Date.UTC(2026, 10, 20, 9, 0, 0));
-  // Last slot starts at 3:30pm WAT (so it ends exactly at 4pm WAT).
-  assert.equal(slots.at(-1).startMs, Date.UTC(2026, 10, 20, 14, 30, 0));
+  // Last slot starts at 3pm WAT (so it ends exactly at 4pm WAT).
+  assert.equal(slots.at(-1).startMs, Date.UTC(2026, 10, 20, 14, 0, 0));
 });
 
 test("getSlotsForDate respects the minimum-notice window", () => {
@@ -45,9 +45,9 @@ test("getSlotsForDate respects the minimum-notice window", () => {
   const todaySlots = getSlotsForDate("2026-11-11", WED_10AM_WAT_MS);
   const earliestAllowed = WED_10AM_WAT_MS + 4 * 60 * 60 * 1000;
   assert.ok(todaySlots.every((s) => s.startMs >= earliestAllowed));
-  // The 2:30pm WAT slot (13:30 UTC) is after the 4h cutoff (13:00 UTC) and should remain.
-  assert.ok(todaySlots.some((s) => s.startMs === Date.UTC(2026, 10, 11, 13, 30, 0)));
-  // The 10:00am WAT slot (09:00 UTC) is before "now" entirely and must be gone.
+  // The 2pm WAT slot (13:00 UTC) is exactly at the 4h cutoff and should remain.
+  assert.ok(todaySlots.some((s) => s.startMs === Date.UTC(2026, 10, 11, 13, 0, 0)));
+  // The 10am WAT slot (09:00 UTC) is "now" itself and must be gone.
   assert.ok(!todaySlots.some((s) => s.startMs === Date.UTC(2026, 10, 11, 9, 0, 0)));
 });
 

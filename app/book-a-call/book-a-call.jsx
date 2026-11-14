@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsCheckLg } from "react-icons/bs";
 import FinalCTA from "../_components/FinalCTA";
 import BookACallWidget from "../_components/BookACallWidget";
+import { SLOT_DURATION_LABEL } from "../_lib/booking-config";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -52,7 +53,7 @@ export default function BookACall() {
               <span className="text-[#FF5C00]">Works for You.</span>
             </h1>
             <p className="text-lg text-slate-500 leading-relaxed">
-              A focused 30-minute video call with the person who&apos;ll
+              A focused {SLOT_DURATION_LABEL} video call with the person who&apos;ll
               actually build your project — completely free, instantly
               booked, no back-and-forth over email.
             </p>

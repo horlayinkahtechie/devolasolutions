@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { getBookableDateRange } from "../_lib/booking-slots";
+import { SLOT_DURATION_LABEL } from "../_lib/booking-config";
 import { trackEvent } from "../_lib/analytics";
 
 const dateChipFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -36,6 +37,31 @@ function dateChipLabel(dateStr) {
   return dateChipFormatter.format(new Date(Date.UTC(y, m - 1, d, 12)));
 }
 
+/* Formats `date` in an arbitrary IANA timezone, split into the main
+   date/time string and a short zone abbreviation picked up from Intl
+   itself (DST-aware — e.g. correctly "GMT" or "BST" depending on the
+   date) rather than a hand-maintained map, since the visitor's zone is
+   only known at runtime. Returns null for an invalid/unrecognized zone. */
+function formatInZone(date, timeZone, options) {
+  try {
+    const parts = new Intl.DateTimeFormat("en-GB", { timeZone, timeZoneName: "short", ...options }).formatToParts(
+      date
+    );
+    const main = parts
+      .filter((p) => p.type !== "timeZoneName")
+      .map((p) => p.value)
+      .join("")
+      .trim();
+    const zone = parts.find((p) => p.type === "timeZoneName")?.value || "";
+    return { main, zone };
+  } catch {
+    return null;
+  }
+}
+
+const TIME_OPTS = { hour: "numeric", minute: "2-digit", hour12: true };
+const FULL_OPTS = { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit", hour12: true };
+
 const inputBase =
   "w-full bg-white border rounded-xl px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-300 outline-none transition-all duration-200 focus:ring-2 focus:ring-[#FF5C00]/20 focus:border-[#FF5C00]";
 const inputError = "border-red-300 focus:ring-red-100 focus:border-red-400";
@@ -54,8 +80,23 @@ export default function BookACallWidget() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [booked, setBooked] = useState(null); // { startMs, email } once confirmed
+  const [visitorTz, setVisitorTz] = useState(null);
 
   const latestDateRef = useRef(null);
+
+  // Intl.DateTimeFormat().resolvedOptions().timeZone reflects the browser's
+  // own timezone, which isn't available the same way during server/first-
+  // client render — applying it as a state update after mount (rather than
+  // a lazy useState initializer) sidesteps that entirely, same reasoning as
+  // the UTM-sourced source field in app/contact/contact.jsx.
+  useEffect(() => {
+    try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisitorTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    } catch {
+      // Stays null — the widget just shows WAT only, which is still correct.
+    }
+  }, []);
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -113,7 +154,12 @@ export default function BookACallWidget() {
       const res = await fetch("/api/book-a-call/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name.trim(), email: form.email.trim(), startMs: selectedSlot }),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          startMs: selectedSlot,
+          timezone: visitorTz,
+        }),
       });
       const data = await res.json();
       if (!data.success) {
@@ -134,7 +180,10 @@ export default function BookACallWidget() {
     }
   };
 
+  const showLocal = Boolean(visitorTz && visitorTz !== "Africa/Lagos");
+
   if (booked) {
+    const local = showLocal ? formatInZone(new Date(booked.startMs), visitorTz, FULL_OPTS) : null;
     return (
       <div className="bg-white border border-slate-100 rounded-3xl p-10 shadow-sm text-center">
         <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center text-3xl text-green-600 mx-auto mb-6">
@@ -142,10 +191,15 @@ export default function BookACallWidget() {
         </div>
         <h3 className="text-xl font-black text-slate-900 mb-2">You&apos;re booked!</h3>
         <p className="text-sm text-slate-600 mb-1">Your call is confirmed for</p>
-        <p className="text-base font-bold text-slate-900 mb-6">
+        <p className="text-base font-bold text-slate-900 mb-1">
           {summaryFormatter.format(new Date(booked.startMs))} WAT
         </p>
-        <p className="text-sm text-slate-500">
+        {local && (
+          <p className="text-sm text-slate-500 mb-6">
+            {local.main} {local.zone} your time
+          </p>
+        )}
+        <p className={`text-sm text-slate-500 ${local ? "" : "mt-5"}`}>
           Check {booked.email} for the Google Meet link — we&apos;ll also
           remind you 3 days, 1 day, and a few hours before.
         </p>
@@ -178,7 +232,7 @@ export default function BookACallWidget() {
 
       {/* Step 2: time */}
       <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-        2. Pick a Time (WAT)
+        2. Pick a Time (WAT{showLocal ? " · your time shown below" : ""})
       </p>
       {slotsLoading ? (
         <p className="text-sm text-slate-400 mb-6">Loading available times…</p>
@@ -186,20 +240,36 @@ export default function BookACallWidget() {
         <p className="text-sm text-slate-400 mb-6">No times left on this date — try another.</p>
       ) : (
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-6">
-          {slots.map((startMs) => (
-            <button
-              key={startMs}
-              type="button"
-              onClick={() => setSelectedSlot(startMs)}
-              className={`px-3 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
-                selectedSlot === startMs
-                  ? "bg-[#FF5C00] text-white"
-                  : "bg-slate-50 border border-slate-100 text-slate-700 hover:border-slate-300"
-              }`}
-            >
-              {timeFormatter.format(new Date(startMs))}
-            </button>
-          ))}
+          {slots.map(({ startMs, booked: isBooked }) => {
+            const local = showLocal ? formatInZone(new Date(startMs), visitorTz, TIME_OPTS) : null;
+            return (
+              <button
+                key={startMs}
+                type="button"
+                disabled={isBooked}
+                onClick={() => setSelectedSlot(startMs)}
+                title={isBooked ? "Already booked" : undefined}
+                className={`px-3 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
+                  isBooked
+                    ? "bg-slate-50 text-slate-300 line-through cursor-not-allowed"
+                    : selectedSlot === startMs
+                      ? "bg-[#FF5C00] text-white"
+                      : "bg-slate-50 border border-slate-100 text-slate-700 hover:border-slate-300"
+                }`}
+              >
+                <span className="block">{timeFormatter.format(new Date(startMs))}</span>
+                {local && (
+                  <span
+                    className={`block text-[10px] font-normal mt-0.5 ${
+                      isBooked ? "text-slate-300" : selectedSlot === startMs ? "text-white/80" : "text-slate-400"
+                    }`}
+                  >
+                    {local.main} {local.zone}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
 
@@ -234,9 +304,20 @@ export default function BookACallWidget() {
             </div>
           </div>
 
-          <p className="text-sm text-slate-600 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3">
-            You&apos;re booking: <span className="font-bold text-slate-900">{summaryFormatter.format(new Date(selectedSlot))} WAT</span> · 30 min
-          </p>
+          <div className="text-sm text-slate-600 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3">
+            <p>
+              You&apos;re booking: <span className="font-bold text-slate-900">{summaryFormatter.format(new Date(selectedSlot))} WAT</span> · {SLOT_DURATION_LABEL}
+            </p>
+            {showLocal &&
+              (() => {
+                const local = formatInZone(new Date(selectedSlot), visitorTz, FULL_OPTS);
+                return local ? (
+                  <p className="text-xs text-slate-500 mt-1">
+                    That&apos;s <span className="font-bold text-slate-700">{local.main} {local.zone}</span> your time.
+                  </p>
+                ) : null;
+              })()}
+          </div>
 
           <button
             type="submit"

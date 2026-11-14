@@ -13,6 +13,7 @@ import {
 } from "../_data/solutions";
 import { getServerCurrency } from "../_lib/currency-server";
 import { projects } from "../_data/projects";
+import { SLOT_DURATION_LABEL } from "../_lib/booking-config";
 
 const Label = ({ text }) => (
   <div className="inline-flex items-center gap-2.5 mb-5">
@@ -491,7 +492,7 @@ export default async function EcommerceWebsiteDevelopment() {
                   Talk It Through First. It&apos;s Free.
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-6">
-                  Book a focused 30-minute video call with the person
+                  Book a focused {SLOT_DURATION_LABEL} video call with the person
                   who&apos;ll actually build your store — before you commit
                   to anything bigger.
                 </p>

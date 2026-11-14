@@ -1,4 +1,5 @@
 import { adminConfigured } from "../../../_lib/firebase-admin.js";
+import { meetLinkConfigured } from "../../../_lib/booking-config.js";
 import { createBooking } from "../../../_lib/booking-service.js";
 import { checkRateLimit, getClientIp } from "../../../_lib/booking-rate-limit.js";
 
@@ -7,7 +8,7 @@ function isValidEmail(email) {
 }
 
 export async function POST(request) {
-  if (!adminConfigured) {
+  if (!adminConfigured || !meetLinkConfigured) {
     return Response.json({ success: false, message: "Booking isn't set up yet." }, { status: 503 });
   }
 
@@ -17,7 +18,7 @@ export async function POST(request) {
   } catch {
     return Response.json({ success: false, message: "Invalid request." }, { status: 400 });
   }
-  const { name, email, startMs } = body || {};
+  const { name, email, startMs, timezone } = body || {};
 
   if (!name?.trim() || !email?.trim() || !isValidEmail(email) || !Number.isFinite(startMs)) {
     return Response.json(
@@ -41,8 +42,11 @@ export async function POST(request) {
       );
     }
 
-    const result = await createBooking({ name: name.trim(), email: email.trim(), startMs });
+    const result = await createBooking({ name: name.trim(), email: email.trim(), startMs, timezone });
     if (!result.ok) {
+      if (result.reason === "not_configured") {
+        return Response.json({ success: false, message: "Booking isn't set up yet." }, { status: 503 });
+      }
       return Response.json(
         { success: false, message: "That time slot is no longer available. Please pick another." },
         { status: 409 }

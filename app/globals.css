@@ -112,3 +112,9 @@ body {
 
 /* ── Smooth image rendering ── */
 img { image-rendering: -webkit-optimize-contrast; }
+
+/* ── Buttons always show a pointer cursor, disabled ones a "not-allowed"
+   one — Tailwind v4's preflight resets <button> to the browser default
+   (cursor: default) instead of normalize.css's old cursor: pointer. ── */
+button:not(:disabled) { cursor: pointer; }
+button:disabled { cursor: not-allowed; }

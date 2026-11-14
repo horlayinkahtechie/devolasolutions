@@ -28,6 +28,11 @@ export const COLLECTIONS = {
  * @property {string|null} meetLink - GOOGLE_MEET_LINK snapshotted at
  *   booking time; the reminder function reads this field, never the env
  *   var directly.
+ * @property {string|null} timezone - the visitor's IANA timezone (e.g.
+ *   "Europe/London"), captured client-side at booking time via
+ *   Intl.DateTimeFormat().resolvedOptions().timeZone. Used to show both WAT
+ *   and the visitor's local time in the confirmation/reminder emails —
+ *   null if the browser didn't report one or it failed validation.
  * @property {{h72: ReminderState, h24: ReminderState, h3: ReminderState}} remindersSent
  * @property {number} createdAt - ms epoch.
  * @property {number} updatedAt - ms epoch.

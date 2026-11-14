@@ -2,12 +2,13 @@ import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import BookACall from "./book-a-call";
 import { alternateLocales } from "../_data/seo";
+import { SLOT_DURATION_LABEL } from "../_lib/booking-config";
 
 export const metadata = {
   metadataBase: new URL("https://devolasolutions.com"),
   title: "Book a Free 30-Minute Call | Devola Solutions",
   description:
-    "Book a free, focused 30-minute call with Devola Solutions — pick a time instantly and get a Google Meet link by email with automatic reminders.",
+    `Book a free, focused ${SLOT_DURATION_LABEL} call with Devola Solutions — pick a time instantly and get a Google Meet link by email with automatic reminders.`,
   robots: { index: true, follow: true },
   alternates: { canonical: "/book-a-call" },
   openGraph: {

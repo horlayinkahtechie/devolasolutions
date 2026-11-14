@@ -58,6 +58,7 @@ const handler = async () => {
           startMs: booking.startMs,
           meetLink: booking.meetLink,
           label: offset.label,
+          timezone: booking.timezone,
         });
         await doc.ref.update({
           [`remindersSent.${offset.key}`]: { sent: true, sentAt: Date.now() },
