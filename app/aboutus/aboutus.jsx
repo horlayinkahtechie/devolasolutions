@@ -13,6 +13,9 @@ import {
   SiFlutter,
   SiSupabase,
   SiClaude,
+  SiWordpress,
+  SiElementor,
+  SiShopify,
 } from "react-icons/si";
 import { TbAutomation } from "react-icons/tb";
 import FinalCTA from "../_components/FinalCTA";
@@ -154,6 +157,9 @@ const techs = [
   { icon: <SiSupabase />, name: "Supabase", color: "text-emerald-500" },
   { icon: <SiClaude />, name: "Claude", color: "text-orange-600" },
   { icon: <TbAutomation />, name: "Automation", color: "text-slate-600" },
+  { icon: <SiWordpress />, name: "WordPress", color: "text-slate-700" },
+  { icon: <SiElementor />, name: "Elementor", color: "text-pink-600" },
+  { icon: <SiShopify />, name: "Shopify", color: "text-green-600" },
 ];
 
 const achievements = [

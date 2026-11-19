@@ -303,7 +303,7 @@ export default async function GraphicDesignPricing() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-4 gap-3 mb-2 sticky top-0 bg-[#fafafa] py-3 z-10">
+          <div className="grid grid-cols-4 gap-3 mb-2 sticky top-28 bg-[#fafafa] py-3 z-10">
             <div />
             {pricing.map((t) => (
               <div

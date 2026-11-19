@@ -48,6 +48,7 @@ const Navbar = () => {
     { name: "Services", href: "/services" },
     { name: "How We Work", href: "/how-we-work" },
     { name: "Portfolio", href: "/portfolio" },
+    { name: "Reviews", href: "/reviews" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -58,7 +59,7 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
           scrolled || isOpen
-            ? "bg-white/90 backdrop-blur-2xl py-3 shadow-sm shadow-slate-900/5 border-b border-slate-100/80"
+            ? "bg-white py-3 shadow-sm shadow-slate-900/5 border-b border-slate-100/80"
             : "bg-transparent py-5"
         }`}
       >
