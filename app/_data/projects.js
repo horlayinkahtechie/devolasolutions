@@ -429,6 +429,29 @@ export const projects = [
     featured: true,
     status: "Completed",
     link: "https://campfleet.com.ng",
+    caseStudy: {
+      challenge:
+        "Campfleet needed a landing page that could explain a genuinely feature-rich campus social app — feed, stories, messaging, an academic toolkit, and more — clearly enough to convert curious visitors into app downloads, without the page turning into a wall of text.",
+      solutions: [
+        "Built a conversion-focused landing page explaining Campfleet's full feature set to prospective student users, with clear Android and iOS download calls-to-action throughout",
+        "Covered account onboarding: email sign-up with verification, Google and Apple Sign-In, and a guided setup wizard (institution, faculty, level of study, avatar)",
+        "Covered the core feed: text, image, video, and poll posts scoped to everyone or just the user's own campus, with hashtags, quote-posts, likes, and threaded comments",
+        "Covered 24-hour ephemeral stories with seen/unseen indicators, reply-to-DM, and save-to-highlight, plus a dedicated vertical-swipe Reels feed",
+        "Covered 1:1 direct messaging with audience controls and data-layer-enforced blocking",
+        "Covered social discovery: follow/followers, mutual connections, campus-specific pages, search, and a full campus directory",
+        "Covered the in-app notification center and push notifications that deep-link straight to the relevant post or status",
+        "Covered TaskBell, the app's built-in academic toolkit — tasks with subtasks and due dates, a class timetable, exams tracker, CGPA calculator, course/credit-unit log, and a Pomodoro timer",
+        "Covered account security and controls: two-factor authentication, device/session management with remote sign-out, and granular per-content privacy settings",
+        "Covered everyday settings: data-saver mode, light/dark/auto theme, support tickets, identity verification, and account deletion",
+        "Noted features already built but currently feature-flagged off pending compliance — Gigs (a campus gig marketplace), Wallet (Paystack-based balance and transfers), Campus Pro subscription perks, and an Ad Centre for paid post boosts — paused because they route real money through Paystack rather than Apple/Google's in-app billing",
+      ],
+      gallery: ["/campfleetweb.png"],
+      testimonial: null,
+      appLinks: {
+        android: "https://expo.dev/accounts/horlayinkah/projects/campfleets/builds/a01f7524-6bf4-4744-977d-7e3d62ef6cc4",
+        ios: "https://expo.dev/accounts/horlayinkah/projects/campfleets/builds/a01f7524-6bf4-4744-977d-7e3d62ef6cc4",
+      },
+    },
   },
   {
     id: 4,
