@@ -2,6 +2,7 @@ import { BiGlobe, BiPhone } from "react-icons/bi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { MdOutlineDesignServices } from "react-icons/md";
 import Link from "next/link";
+import ExpandableList from "./ExpandableList";
 
 const services = [
   {
@@ -73,6 +74,7 @@ const schemeStyles = {
     viewPricing: "border border-slate-200 text-slate-600 hover:border-[#FF5C00] hover:text-[#FF5C00]",
     divider: "border-slate-100",
     label: "text-slate-400",
+    toggle: "text-slate-500 hover:text-[#FF5C00]",
   },
   orange: {
     card: "bg-[#FF5C00]",
@@ -84,6 +86,7 @@ const schemeStyles = {
     viewPricing: "border border-white/25 text-white hover:bg-white/10",
     divider: "border-orange-400/25",
     label: "text-orange-200/60",
+    toggle: "text-white/80 hover:text-white",
   },
   dark: {
     card: "bg-slate-900",
@@ -95,6 +98,7 @@ const schemeStyles = {
     viewPricing: "border border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white",
     divider: "border-slate-800",
     label: "text-slate-600",
+    toggle: "text-slate-400 hover:text-white",
   },
 };
 
@@ -148,8 +152,8 @@ const Services = () => (
               {/* Pill tags */}
               <div className="relative z-10">
                 <p className={`text-[10px] font-black uppercase tracking-widest mb-3 ${st.label}`}>What we build</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {s.types.map((type) => (
+                <ExpandableList
+                  items={s.types.map((type) => (
                     <span
                       key={type}
                       className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 cursor-default ${st.pill}`}
@@ -157,7 +161,10 @@ const Services = () => (
                       {type}
                     </span>
                   ))}
-                </div>
+                  initialCount={3}
+                  wrapperClassName="flex flex-wrap gap-1.5"
+                  toggleClassName={st.toggle}
+                />
               </div>
 
               {/* Buttons */}

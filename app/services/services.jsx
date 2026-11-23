@@ -10,6 +10,7 @@ import { GiCheckMark } from "react-icons/gi";
 import { BsBank, BsLightningCharge, BsStarFill } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
 import { FcDocument } from "react-icons/fc";
+import ExpandableList from "../_components/ExpandableList";
 
 /* ─────────────────────────────────────────────
    SHARED LABEL
@@ -324,16 +325,21 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Feature list */}
-                <ul className="relative z-10 space-y-2.5">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full shrink-0 ${s.featureDot}`}
-                      />
-                      <span className={s.muted}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="relative z-10">
+                  <ExpandableList
+                    items={s.features.map((f) => (
+                      <div key={f} className="flex items-center gap-3 text-sm">
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full shrink-0 ${s.featureDot}`}
+                        />
+                        <span className={s.muted}>{f}</span>
+                      </div>
+                    ))}
+                    initialCount={3}
+                    wrapperClassName="space-y-2.5"
+                    toggleClassName={`${s.muted} hover:underline underline-offset-4`}
+                  />
+                </div>
 
                 {/* CTAs */}
                 <div className="relative z-10 flex items-center gap-4 pt-2 border-t border-current/10">
