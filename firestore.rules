@@ -44,6 +44,15 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Published blog posts are publicly readable (blog listing/detail pages,
+    // SEO) — drafts stay invisible to the client SDK, same pattern as
+    // eduCourses above. Only the Admin SDK (via our own Route Handlers,
+    // after verifying the admin session) ever writes these.
+    match /blogPosts/{postId} {
+      allow get, list: if resource.data.status == 'published';
+      allow write: if false;
+    }
+
     // Everything else — users, enrollments, payments, progress, audit
     // logs, rate limits, login tokens, marketing preferences — is
     // Admin-SDK-only. No client reads, no client writes.

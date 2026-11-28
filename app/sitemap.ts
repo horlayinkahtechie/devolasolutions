@@ -1,10 +1,22 @@
 import type { MetadataRoute } from "next";
 import { projects } from "./_data/projects";
 import { solutions } from "./_data/solutions";
+import { listBlogPosts } from "./_lib/blog-service";
 
 const BASE_URL = "https://devolasolutions.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Blog posts live in Firestore, not a static import — fetched at request
+  // time. Falls back to an empty list rather than failing the whole
+  // sitemap if Firebase isn't configured yet in some environment.
+  const posts = await listBlogPosts({ status: "published" }).catch(() => []);
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${BASE_URL}/blog/${p.slug}`,
+    lastModified: new Date(p.updatedAt),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   const caseStudyRoutes: MetadataRoute.Sitemap = projects
     .filter((p) => p.caseStudy)
     .map((p) => ({
@@ -125,6 +137,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/contact`,
       lastModified: new Date(),
       changeFrequency: "yearly",
@@ -132,5 +150,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...solutionRoutes,
     ...caseStudyRoutes,
+    ...blogRoutes,
   ];
 }

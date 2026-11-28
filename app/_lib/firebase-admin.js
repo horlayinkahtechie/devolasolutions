@@ -1,9 +1,12 @@
 import { initializeApp, getApps, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
+import { getAuth } from "firebase-admin/auth";
 
 /* Firebase Admin SDK for the main marketing site (not the "edu" sub-app —
    see app/edu/_lib/firebase-admin.js for that one). Same Firebase project,
-   same env vars, same lazy-singleton pattern.
+   same env vars, same lazy-singleton pattern. Used by the booking feature
+   (Firestore only) and the general admin/blog system (Firestore + Auth, for
+   verifying admin session cookies).
 
    Deliberately NOT `import "server-only"` here, unlike the edu version:
    this file is also imported directly (via a relative path) by the
@@ -40,4 +43,8 @@ function getAdminApp() {
 
 export function getAdminDb() {
   return getFirestore(getAdminApp());
+}
+
+export function getAdminAuth() {
+  return getAuth(getAdminApp());
 }
