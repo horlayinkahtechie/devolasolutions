@@ -608,7 +608,20 @@ export const projects = [
     year: "2026",
     featured: true,
     status: "Ongoing",
-    link: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
+    caseStudy: {
+      challenge:
+        "That Local Girl needed a true mobile storefront — not just a mobile-friendly website — so customers could browse products, pay, and track orders straight from their phones.",
+      solutions: [
+        "Designed the full shopping flow in Figma first — product listings, cart, checkout, and order tracking — before writing any code",
+        "Built the app in React Native with Expo for a single codebase across iOS and Android",
+        "Connected the app to a Supabase backend for products, cart, and orders",
+        "Integrated Paystack for in-app checkout",
+        "Added order tracking so customers can follow their order status without contacting support",
+      ],
+      appLinks: {
+        figma: "https://www.figma.com/design/TSZMZQ3E4iBlWYIGFjh9l3/E-Commerce-Shopping-App?t=GCtgR0SKzuiNTdpx-0",
+      },
+    },
   },
   {
     id: 27,
@@ -624,7 +637,19 @@ export const projects = [
     year: "2026",
     featured: true,
     status: "Ongoing",
-    link: "https://www.figma.com/design/qfsNXDrlonPqPJ3n7qm6r8/Untitled?node-id=28-9484&t=HNemgnPmuTgHUV9z-0",
+    caseStudy: {
+      challenge:
+        "The Abuja Municipal Area Council (AMAC) needed a mobile-first way for residents and staff to file and manage tax records, replacing a purely manual, in-person process.",
+      solutions: [
+        "Designed the full tax filing and management flow in Figma, from resident sign-up to filing status and payment history",
+        "Planned the build on React Native and Expo for a single Android and iOS codebase",
+        "Planned Firebase as the backend for records, auth, and data storage",
+        "Planned Resend for transactional email notifications — filing confirmations and status updates",
+      ],
+      appLinks: {
+        figma: "https://www.figma.com/design/qfsNXDrlonPqPJ3n7qm6r8/Untitled?node-id=28-9484&t=HNemgnPmuTgHUV9z-0",
+      },
+    },
   },
   {
     id: 9,
@@ -640,7 +665,18 @@ export const projects = [
     year: "2026",
     featured: false,
     status: "Ongoing",
-    link: "https://expo.dev/accounts/horlayinkah/projects/campfleets/builds/a01f7524-6bf4-4744-977d-7e3d62ef6cc4",
+    caseStudy: {
+      challenge:
+        "Nigerian university students lacked a single app built specifically around campus life — Campfleet set out to be that campus-focused social network.",
+      solutions: [
+        "Built the app in React Native for a single codebase across Android and iOS",
+        "Built a Node.js backend API to power the social features",
+        "Used Firebase for app data and storage",
+      ],
+      appLinks: {
+        android: "https://expo.dev/accounts/horlayinkah/projects/campfleets/builds/a01f7524-6bf4-4744-977d-7e3d62ef6cc4",
+      },
+    },
   },
   
   {

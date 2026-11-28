@@ -125,66 +125,73 @@ const Services = () => (
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {services.map((s) => {
-          const st = schemeStyles[s.scheme];
-          return (
-            <div
-              key={s.num}
-              className={`relative rounded-[1.75rem] ${st.card} p-7 md:p-9 flex flex-col gap-7 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-500`}
-            >
-              {/* Icon + title + desc */}
-              <div className="relative z-10 flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4">
-                  <div className={`w-11 h-11 rounded-xl ${st.icon} flex items-center justify-center text-lg shrink-0 mt-0.5`}>
-                    {s.icon}
+      <div className="flex flex-col items-center">
+        <ExpandableList
+          items={services.map((s) => {
+            const st = schemeStyles[s.scheme];
+            return (
+              <div
+                key={s.num}
+                className={`relative rounded-[1.75rem] ${st.card} p-7 md:p-9 flex flex-col gap-7 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-500`}
+              >
+                {/* Icon + title + desc */}
+                <div className="relative z-10 flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className={`w-11 h-11 rounded-xl ${st.icon} flex items-center justify-center text-lg shrink-0 mt-0.5`}>
+                      {s.icon}
+                    </div>
+                    <div>
+                      <h3 className={`text-xl font-black tracking-tight mb-1.5 ${st.title}`}>{s.title}</h3>
+                      <p className={`text-sm leading-relaxed ${st.desc}`}>{s.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className={`text-xl font-black tracking-tight mb-1.5 ${st.title}`}>{s.title}</h3>
-                    <p className={`text-sm leading-relaxed ${st.desc}`}>{s.desc}</p>
-                  </div>
+                  <span className={`text-xs font-bold tabular-nums shrink-0 mt-1 ${st.label}`}>{s.num}</span>
                 </div>
-                <span className={`text-xs font-bold tabular-nums shrink-0 mt-1 ${st.label}`}>{s.num}</span>
-              </div>
 
-              <div className={`border-t ${st.divider}`} />
+                <div className={`border-t ${st.divider}`} />
 
-              {/* Pill tags */}
-              <div className="relative z-10">
-                <p className={`text-[10px] font-black uppercase tracking-widest mb-3 ${st.label}`}>What we build</p>
-                <ExpandableList
-                  items={s.types.map((type) => (
-                    <span
-                      key={type}
-                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 cursor-default ${st.pill}`}
-                    >
-                      {type}
-                    </span>
-                  ))}
-                  initialCount={3}
-                  wrapperClassName="flex flex-wrap gap-1.5"
-                  toggleClassName={st.toggle}
-                />
-              </div>
+                {/* Pill tags */}
+                <div className="relative z-10">
+                  <p className={`text-[10px] font-black uppercase tracking-widest mb-3 ${st.label}`}>What we build</p>
+                  <ExpandableList
+                    items={s.types.map((type) => (
+                      <span
+                        key={type}
+                        className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 cursor-default ${st.pill}`}
+                      >
+                        {type}
+                      </span>
+                    ))}
+                    initialCount={3}
+                    wrapperClassName="flex flex-wrap gap-1.5"
+                    toggleClassName={st.toggle}
+                  />
+                </div>
 
-              {/* Buttons */}
-              <div className="relative z-10 flex flex-wrap gap-2.5 mt-auto">
-                <Link
-                  href={s.link}
-                  className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${st.learnMore}`}
-                >
-                  Learn More →
-                </Link>
-                <Link
-                  href={s.pricingLink}
-                  className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${st.viewPricing}`}
-                >
-                  View Pricing
-                </Link>
+                {/* Buttons */}
+                <div className="relative z-10 flex flex-wrap gap-2.5 mt-auto">
+                  <Link
+                    href={s.link}
+                    className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${st.learnMore}`}
+                  >
+                    Learn More →
+                  </Link>
+                  <Link
+                    href={s.pricingLink}
+                    className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${st.viewPricing}`}
+                  >
+                    View Pricing
+                  </Link>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+          initialCount={2}
+          wrapperClassName="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full"
+          toggleClassName="bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-full hover:border-slate-300 hover:text-[#FF5C00] transition-colors duration-300"
+          expandLabel="Show More Services"
+          collapseLabel="Show Less Services"
+        />
       </div>
     </div>
   </section>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FaAndroid, FaApple } from "react-icons/fa";
+import { SiFigma } from "react-icons/si";
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import FinalCTA from "../../_components/FinalCTA";
@@ -79,19 +80,26 @@ export default async function CaseStudyPage({ params }) {
               {project.desc}
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-9">
-              {tools.map((tool) => (
-                <span
-                  key={tool}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-full bg-white border border-slate-100 text-slate-600"
-                >
-                  {tool}
-                </span>
-              ))}
+            <div className="mb-9">
+              <div className="flex flex-wrap gap-2">
+                {tools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="text-xs font-semibold px-3 py-1.5 rounded-full bg-white border border-slate-100 text-slate-600"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+              {caseStudy.duration && (
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-4">
+                  Development Time: <span className="text-slate-700">{caseStudy.duration}</span>
+                </p>
+              )}
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              {project.link && (
+              {project.link && !caseStudy.appLinks && (
                 <Link
                   href={project.link}
                   target="_blank"
@@ -123,6 +131,18 @@ export default async function CaseStudyPage({ params }) {
                 >
                   <FaApple />
                   iOS App
+                  <span>↗</span>
+                </Link>
+              )}
+              {caseStudy.appLinks?.figma && (
+                <Link
+                  href={caseStudy.appLinks.figma}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-full hover:border-slate-300 transition-colors duration-300"
+                >
+                  <SiFigma className="text-[#F24E1E]" />
+                  Figma Design
                   <span>↗</span>
                 </Link>
               )}

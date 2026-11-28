@@ -15,6 +15,8 @@ export default function ExpandableList({
   initialCount = 3,
   wrapperClassName,
   toggleClassName = "text-xs font-bold text-slate-500 hover:text-[#FF5C00] transition-colors duration-200",
+  expandLabel,
+  collapseLabel = "Show less",
 }) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = items.length > initialCount;
@@ -29,7 +31,7 @@ export default function ExpandableList({
           onClick={() => setExpanded((e) => !e)}
           className={`inline-flex items-center gap-1.5 mt-3 ${toggleClassName}`}
         >
-          {expanded ? "Show less" : `Show ${items.length - initialCount} more`}
+          {expanded ? collapseLabel : expandLabel || `Show ${items.length - initialCount} more`}
           {expanded ? <BsChevronUp size={10} /> : <BsChevronDown size={10} />}
         </button>
       )}
